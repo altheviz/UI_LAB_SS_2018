@@ -19,6 +19,7 @@ Einige Features können mittels folgender Plugins "nachgeliefert" werden:
     tns plugin add nativescript-snackbar
     tns plugin add nativescript-pulltorefresh
     tns plugin add nativescript-cardview
+    tns plugin add nativescript-pager
 
 
 ### iOS: Human Interface Guidelines
