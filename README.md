@@ -1,12 +1,6 @@
 UI_LAB_SS_2018
 ==============
 
-**teamJAG:**
- - Johannes
- - Adrian
- - Gereon
-
-![teamJAG](teamJAG.png)
 
 Exercise 1: Special Feature "Image search"
 ------------------------------------------
@@ -20,8 +14,6 @@ Problems:
 Using Qawnt API
 
 
-
 ---
 
-teamJAG
-
+**teamJAG:** Johannes. Adrian. Gereon.
