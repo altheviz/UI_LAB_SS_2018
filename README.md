@@ -6,7 +6,7 @@ UI_LAB_SS_2018
  - Adrian
  - Gereon
 
-![teamJAG](teamJAG.jpg)
+![teamJAG](teamJAG.png)
 
 Exercise 1: Special Feature "Image search"
 ------------------------------------------
