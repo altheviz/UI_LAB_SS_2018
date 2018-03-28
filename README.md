@@ -1,16 +1,8 @@
 UI_LAB_SS_2018
 ==============
 
-**teamJAG:**
- - Johannes
- - Adrian
- - Gereon
-
-![teamJAG](teamJAG.png)
-
 Exercise 2: UI Patterns & Co
 ------------------------------------------
-
 
 
 ### Plugins
@@ -40,5 +32,4 @@ Einige Features können mittels folgender Plugins "nachgeliefert" werden:
 
 ---
 
-teamJAG
-
+**teamJAG:** Johannes. Adrian. Gereon.
