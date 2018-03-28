@@ -1,0 +1,14 @@
+<Page loaded="onPageLoaded" xmlns="http://schemas.nativescript.org/tns.xsd">
+    <!-- Every row and column needs a specification. You can use *, auto or a fixed value.-->
+    <!-- To make all columns have equal width use columns="*,*,*" -->
+    <GridLayout columns="100,auto,*" rows="auto,50,*" horizontalAlignment="stretch" verticalAlignment="stretch" backgroundColor="lightgray">
+		<Label text="Label 1" row="0" col="0" backgroundColor="red" ></Label>
+        <!-- colSpan determines how much columns the element shall take. -->
+        <Label text="Label 2" row="0" col="1" colSpan="2" backgroundColor="green" ></Label>
+		<Label text="Label 3" row="1" col="0" rowSpan="2" backgroundColor="blue" ></Label>
+		<Label text="Label 4" row="1" col="1" backgroundColor="yellow" ></Label>
+		<Label text="Label 5" row="1" col="2" backgroundColor="orange" ></Label>
+		<Label text="Label 6" row="2" col="1" backgroundColor="pink" ></Label>
+		<Label text="Label 7" row="2" col="2" backgroundColor="purple" ></Label>
+	</GridLayout>
+</Page>
