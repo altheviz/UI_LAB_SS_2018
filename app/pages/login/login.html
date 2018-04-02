@@ -1,0 +1,103 @@
+<Page xmlns="http://www.nativescript.org/tns.xsd"
+        xmlns:examples="examples/example-base-page"
+        loaded="onLoaded"
+        >
+  <TabView 
+  (selectedIndexChanged)="selectedIndexChanged()"
+  selectedIndex="{{ selectedIndex }}" 
+  sdkExampleTitle 
+  sdkToggleNavButton>
+    <!-- Uses left-top-coordinates for children -->
+    <!-- Will not enforce any layout constraints on its children 
+        and will not resize them at runtime when its size changes-->
+    <!-- Thus there are not many use cases for this layout -->
+    <AbsoluteLayout width="210" verticalAlignment="top" height="210" backgroundColor="lightgray" *tabItem="{title: 'Absolute'}">
+      <Label class="bg-primary" text="10, 10" left="10" top="10" width="90" height="90" ></Label>
+      <Label class="body" text="110, 10" left="110" top="10" width="90" height="90"  ></Label>
+      <Label text="110, 110" left="110" top="110" width="90" height="90" backgroundColor="blue" ></Label>
+      <Label text="10, 110" left="10" top="110" width="90" height="90" backgroundColor="yellow" ></Label>
+    </AbsoluteLayout>
+    <!-- Child views can be docked to the left, right, top, bottom and center of the layout -->
+    <!-- You can only use one direction. You can use stretchLastChild to let the last mentioned child take the rest of the available space. -->
+    <DockLayout width="210" height="210" backgroundColor="lightgray" stretchLastChild="false" *tabItem="{title: 'Dock'}">
+      <Label text="left" dock="left" width="60" backgroundColor="red"></Label>
+      <Label text="top" dock="top" height="60" backgroundColor="green"></Label>
+      <Label text="right" dock="right" width="60" backgroundColor="blue"></Label>
+      <Label text="bottom" dock="bottom" height="60" backgroundColor="yellow"></Label>
+    </DockLayout>
+    <!-- Every row and column needs a specification. You can use *, auto or a fixed value.-->
+    <!-- To make all columns have equal width use columns="*,*,*" -->
+    <GridLayout columns="100,auto,*" rows="auto,50,*" horizontalAlignment="stretch" verticalAlignment="stretch" backgroundColor="lightgray" *tabItem="{title: 'Grid'}">
+      <Label text="Label 1" row="0" col="0" backgroundColor="red" ></Label>
+      <!-- colSpan determines how much columns the element shall take. -->
+      <Label text="Label 2" row="0" col="1" colSpan="2" backgroundColor="green" ></Label>
+      <Label text="Label 3" row="1" col="0" rowSpan="2" backgroundColor="blue" ></Label>
+      <Label text="Label 4" row="1" col="1" backgroundColor="yellow" ></Label>
+      <Label text="Label 5" row="1" col="2" backgroundColor="orange" ></Label>
+      <Label text="Label 6" row="2" col="1" backgroundColor="pink" ></Label>
+      <Label text="Label 7" row="2" col="2" backgroundColor="purple" ></Label>
+    </GridLayout>
+    <!-- Stacks its children vertically or horizontally -->
+    <!-- Pretty easy to use -->
+    <StackLayout orientation="vertical" width="210" height="210" backgroundColor="lightgray" *tabItem="{title: 'Stack'}">
+      <Button id="3btn-red" text="Label 1" horizontalAlignment="left" backgroundColor="red" class="btn btn-primary" (tap)="buttonTap()"></Button>
+      <Button id="3btn-lightblue" text="Label 2" horizontalAlignment="center" backgroundColor="lightblue" class="btn-lightblue" (tap)="buttonTap()" ></Button>
+      <Button id="3btn-lightgreen" text="Label 3" horizontalAlignment="right" backgroundColor="lightgreen" class="btn-lightgreen" (tap)="buttonTap()" ></Button>
+      <Button id="3btn-yellow" text="Label 4" horizontalAlignment="stretch" backgroundColor="yellow"class="btn-yellow" (tap)="buttonTap()"></Button>
+    </StackLayout>
+    <!-- Works the same as StackLayout, but if a child doesn't fit into the row/column -->
+    <!-- it will be wrapped into the next one. -->
+    <WrapLayout orientation="horizontal" width="210" height="210" backgroundColor="lightgray" *tabItem="{title: 'Wrap'}">
+      <Label text="Label 1" width="70" height="70" backgroundColor="red"></Label>
+      <Label text="Label 2" width="70" height="70" backgroundColor="green"></Label>
+      <Label text="Label 3" width="70" height="70" backgroundColor="blue"></Label>
+      <Label text="Label 4" width="70" height="70" backgroundColor="yellow"></Label>
+      <Label text="Label 5" width="70" height="70" backgroundColor="orange"></Label>
+      <Label text="Label 6" width="70" height="70" backgroundColor="pink"></Label>
+    </WrapLayout>
+    <!-- TODO -->
+    <FlexboxLayout flexDirection="column" *tabItem="{title: 'Flexbox'}">
+        <!-- Reverse the natural flow of items -->
+        <FlexboxLayout height="22" flexDirection="row-reverse">
+          <!-- Use even flexGrow to achieve uniform grid -->
+          <Label text="1" backgroundColor="#EEEEEE" flexGrow="1" id="one" ></Label>
+          <Label text="2" backgroundColor="#DDDDDD" flexGrow="1" ></Label>
+          <Label text="3" backgroundColor="#CCCCCC" flexGrow="1" ></Label>
+          <Label text="4" backgroundColor="#BBBBBB" flexGrow="1" ></Label>
+          <Label text="5" backgroundColor="#AAAAAA" flexGrow="1" ></Label>
+          <Label text="6" backgroundColor="#999999" flexGrow="1" id="six" ></Label>
+        </FlexboxLayout>
+
+        <!-- Set flexGrow to accomodate into any extra space -->
+        <ScrollView flexGrow="1" id="scrollview">
+
+            <!-- Wrap excessive items on new lines -->
+            <FlexboxLayout flexWrap="wrap" alignContent="flex-start">
+
+              <Label textWrap="true" text="Sed aliquet diam sed augue vestibulum scelerisque." id="title" ></Label>
+
+              <!-- Use flexWrapBefore to control explicit line wrapping -->
+              <Label text="Gihub issue labels:" flexWrapBefore="true" fontSize="11" ></Label>
+
+              <Label text="S: High" flexWrapBefore="true" borderRadius="5" backgroundColor="red" margin="2" id="firstlabel" ></Label>
+              <Label text="T: Feature" borderRadius="5" backgroundColor="green" margin="2"></Label>
+              <Label text="3 - In Progress" borderRadius="5" backgroundColor="gray" margin="2"></Label>
+              <Label text="S: Ullamcorper" borderRadius="5" backgroundColor="red" margin="2" ></Label>
+              <Label text="T: Vulputate" borderRadius="5" backgroundColor="green" margin="2"></Label>
+              <Label text="2 - Egestas magna" borderRadius="5" backgroundColor="gray" margin="2"></Label>
+              <Label text="S: High" borderRadius="5" backgroundColor="red" margin="2" ></Label>
+              <Label text="T: Phasellus" borderRadius="5" backgroundColor="green" margin="2"></Label>
+              <Label text="Nullam" borderRadius="5" backgroundColor="gray" margin="2"></Label>
+
+              <Label flexWrapBefore="true" textWrap="true" text="Pellentesque molestie nibh et leo facilisis gravida ac porttitor eros. Etiam tempus diam nulla, ut fermentum mauris aliquet quis. Cras finibus vitae magna in bibendum." id="description" ></Label>
+            </FlexboxLayout>
+        </ScrollView>
+        <FlexboxLayout>
+          <Button text="&lt;" width="50" backgroundColor="gray" ></Button>
+          <!-- Set flexGrow to 1 accomodate into any extra space -->
+          <Button text="reactions" flexGrow="1" backgroundColor="darkgray" ></Button>
+          <Button text="&gt;" width="50" backgroundColor="gray" ></Button>
+        </FlexboxLayout>
+    </FlexboxLayout>
+  </TabView>
+</Page>
