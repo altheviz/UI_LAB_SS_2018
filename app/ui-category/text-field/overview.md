@@ -1,0 +1,1 @@
+The TextField component allows you to type text in your app. The TextField has attributes such as `secure` for handling password fields, and `pipes` for specifying the text format the control should use.
