@@ -1,6 +1,7 @@
 <Page xmlns="http://www.nativescript.org/tns.xsd"
         xmlns:examples="examples/example-base-page"
         loaded="onLoaded"
+        class="page"
         >
   <TabView 
   (selectedIndexChanged)="selectedIndexChanged()"
@@ -13,7 +14,7 @@
     <!-- Thus there are not many use cases for this layout -->
     <AbsoluteLayout width="210" verticalAlignment="top" height="210" backgroundColor="lightgray" *tabItem="{title: 'Absolute'}">
       <Label class="bg-primary" text="10, 10" left="10" top="10" width="90" height="90" ></Label>
-      <Label class="body" text="110, 10" left="110" top="10" width="90" height="90"  ></Label>
+      <Label backgroundColor="lightgreen" text="110, 10" left="110" top="10" width="90" height="90"  ></Label>
       <Label text="110, 110" left="110" top="110" width="90" height="90" backgroundColor="blue" ></Label>
       <Label text="10, 110" left="10" top="110" width="90" height="90" backgroundColor="yellow" ></Label>
     </AbsoluteLayout>
@@ -40,10 +41,10 @@
     <!-- Stacks its children vertically or horizontally -->
     <!-- Pretty easy to use -->
     <StackLayout orientation="vertical" width="210" height="210" backgroundColor="lightgray" *tabItem="{title: 'Stack'}">
-      <Button id="3btn-red" text="Label 1" horizontalAlignment="left" backgroundColor="red" class="btn btn-primary" (tap)="buttonTap()"></Button>
-      <Button id="3btn-lightblue" text="Label 2" horizontalAlignment="center" backgroundColor="lightblue" class="btn-lightblue" (tap)="buttonTap()" ></Button>
-      <Button id="3btn-lightgreen" text="Label 3" horizontalAlignment="right" backgroundColor="lightgreen" class="btn-lightgreen" (tap)="buttonTap()" ></Button>
-      <Button id="3btn-yellow" text="Label 4" horizontalAlignment="stretch" backgroundColor="yellow"class="btn-yellow" (tap)="buttonTap()"></Button>
+      <Button id="3btn-red" text="Label 1" horizontalAlignment="left" backgroundColor="red"  (tap)="buttonTap()"></Button>
+      <Button id="3btn-lightblue" text="Label 2" horizontalAlignment="center" backgroundColor="lightblue"  (tap)="buttonTap()" ></Button>
+      <Button id="3btn-lightgreen" text="Label 3" horizontalAlignment="right" backgroundColor="lightgreen"  (tap)="buttonTap()" ></Button>
+      <Button id="3btn-yellow" text="Label 4" horizontalAlignment="stretch" backgroundColor="yellow" (tap)="buttonTap()"></Button>
     </StackLayout>
     <!-- Works the same as StackLayout, but if a child doesn't fit into the row/column -->
     <!-- it will be wrapped into the next one. -->
@@ -55,7 +56,7 @@
       <Label text="Label 5" width="70" height="70" backgroundColor="orange"></Label>
       <Label text="Label 6" width="70" height="70" backgroundColor="pink"></Label>
     </WrapLayout>
-    <!-- TODO -->
+    
     <FlexboxLayout flexDirection="column" *tabItem="{title: 'Flexbox'}">
         <!-- Reverse the natural flow of items -->
         <FlexboxLayout height="22" flexDirection="row-reverse">
