@@ -1,0 +1,32 @@
+<ActionBar title="Groceries">
+    <ActionItem text="Flashlight" (tap)="toggleFlashlight()" android.systemIcon="ic_media_play" ios.systemIcon="9" ios.position="right"></ActionItem>
+    <ActionItem (tap)="openlist()"
+      ios.systemIcon="16" ios.position="right"
+      text="List" android.position="popup"></ActionItem>
+    <ActionItem (tap)="openSensors()"
+      ios.systemIcon="16" ios.position="right"
+      text="Sensors" android.position="popup"></ActionItem>  
+    <ActionItem (tap)="openCamera()"
+      ios.systemIcon="16" ios.position="right"
+      text="Camera" android.position="popup"></ActionItem>  
+</ActionBar>
+
+<GridLayout>
+
+    <StackLayout>
+        <Label text="Latitude: {{ latitude }}"></Label>
+        <Label text="Longitude: {{ longitude }}"></Label>
+        <Label text="Azimuth: {{  azimuth }}"></Label>
+        <Label text="Pitch: {{ pitch }}"></Label>
+        <Label text="Roll: {{ roll }}"></Label>
+        <Label text="Temperature: {{ temperature }}"></Label>
+        <Label text="Magentic X: {{  magenticX }}"></Label>
+        <Label text="Magentic Y: {{ magenticY }}"></Label>
+        <Label text="Magnetic Z: {{ magenticZ }}"></Label>
+        <Label text="Gyroscope X: {{  gyroX }}"></Label>
+        <Label text="Gyroscope Y: {{ gyroY }}"></Label>
+        <Label text="Gyroscope Z: {{ gyroZ }}"></Label>
+        <Label text="Light: {{ light }}"></Label>
+    </StackLayout>
+
+</GridLayout>

@@ -1,0 +1,21 @@
+<ActionBar title="Groceries">
+  <ActionItem text="Flashlight" (tap)="toggleFlashlight()" android.systemIcon="ic_media_play" ios.systemIcon="9" ios.position="right"></ActionItem>
+  <ActionItem (tap)="openlist()"
+    ios.systemIcon="16" ios.position="right"
+    text="List" android.position="popup"></ActionItem>
+  <ActionItem (tap)="openSensors()"
+    ios.systemIcon="16" ios.position="right"
+    text="Sensors" android.position="popup"></ActionItem>  
+  <ActionItem (tap)="openCamera()"
+    ios.systemIcon="16" ios.position="right"
+    text="Camera" android.position="popup"></ActionItem>  
+</ActionBar>
+
+<GridLayout rows="auto, auto, auto">
+  <StackLayout orientation="horizontal" row="0" padding="10">
+      <Label text="saveToGallery"></Label>
+      <Switch [(ngModel)]="saveToGallery"></Switch>
+  </StackLayout>
+  <Image row="1" [src]="cameraImage" stretch="fill" margin="10"></Image>
+  <Button text="Take Picture" (tap)='onTakePictureTap($event)' row="2" padding="10"></Button>
+</GridLayout>
