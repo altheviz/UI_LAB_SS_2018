@@ -1,0 +1,23 @@
+<ActionBar title="Repositories">
+    <ActionItem text="Share" (tap)="share()" android.systemIcon="ic_menu_share_holo_dark" ios.systemIcon="9" ios.position="right"></ActionItem>
+    <ActionItem text="Clear" (tap)="clear()" android.systemIcon="ic_menu_delete" ios.systemIcon="9" ios.position="right"></ActionItem>
+    <ActionItem (tap)="codeSite()"
+                position="right"
+                text="code" icon="res://ic_code_white_24dp"  verticalAlignment="center" ></ActionItem>
+    <ActionItem (tap)="logout()"
+                position="right"
+                text="settings" icon="res://ic_power_settings_new_white_24dp"  verticalAlignment="center"></ActionItem>
+</ActionBar>
+<GridLayout rows="auto, *">
+    <ListView [items]="organisations" row="1" class="small-spacing" [class.visible]="listLoaded" (itemTap)="onItemTap($event)">
+        <ng-template let-item="item">
+            <GridLayout columns="*, auto">
+                <Label col="0" [text]="item" class="medium-spacing"></Label>
+                <StackLayout col="1" class="arrow_container">
+                    <Image src="res://ic_keyboard_arrow_right_black_24dp" verticalAlignment="center"></Image>
+                </StackLayout>
+            </GridLayout>
+        </ng-template>
+    </ListView>
+    <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapse'" row="1" horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
+</GridLayout>
