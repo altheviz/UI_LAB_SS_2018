@@ -1,5 +1,8 @@
-# UI_LAB_SS_2018
-HSKA UI Lab SS 2018
+# UI Lab, summer term 2018
+
+**Karlsruhe University of Applied Sciences**  
+Computer Science, Master  
+Summer term 2018  
 
 
 ### Template
