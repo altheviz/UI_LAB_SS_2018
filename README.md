@@ -7,7 +7,7 @@ Summer term 2018
 
 ### Template
 
-Als Grundgerüst wurde das 'Tabs' Template für Angular/TypeScript gewählt. Weitere Templates gibt es [hier](https://docs.nativescript.org/tooling/app-templates). Die App wurde mit folgendem Befehl aufgesetzt:
+As a basic scaffold, we chose the NativeScript template 'Tabs' with Angular/TypeScript. Other templates are available [here](https://docs.nativescript.org/tooling/app-templates). The setup command is:
 
 	tns create uiLab --template tns-template-tab-navigation-ts
 
