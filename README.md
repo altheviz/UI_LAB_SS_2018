@@ -11,7 +11,7 @@ In order to work with the most current templates and tools, it is necessary to u
 
 	npm install -global nativescript
 
-*If you want to know, how to install global npm packages on Linux or OSX without ´sudo´, click [here](https://johnpapa.net/node-and-npm-without-sudo/).*
+*If you want to know, how to install global npm packages on Linux or OSX without `sudo`, click [here](https://johnpapa.net/node-and-npm-without-sudo/).*
 
 
 ### Template
