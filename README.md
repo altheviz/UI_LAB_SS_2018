@@ -7,11 +7,11 @@ Summer term 2018
 
 ### Update to current NativeScript version
 
-In order to work with the most current templates and tools, it is necessary to update the NativeScript cli tool before the createion of a new project:
+In order to work with the most current templates and tools, it is necessary to update the NativeScript cli tool before the creation of a new project:
 
 	npm install -global nativescript
 
-*If you want to know, how to install global npm packages on Linux or OSX without `sudo`, click [here](https://johnpapa.net/node-and-npm-without-sudo/).*
+*If you want to know, how to install global npm packages on Linux or OSX without `sudo`, see [here](https://johnpapa.net/node-and-npm-without-sudo/).*
 
 
 ### Template
