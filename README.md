@@ -23,5 +23,8 @@ As a basic scaffold, we chose the NativeScript template 'Tabs' with Angular/Type
 
 ### Installation
 
+After you checked out this repository, you only have to install the mising npm dependencies and you're ready to go:
+
 	npm install
+
 
