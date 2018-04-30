@@ -20,9 +20,9 @@ You can check your currently installed version of NativeScript by typing:
 
 ### Starting template
 
-As a basic scaffold, we chose the NativeScript template **Tabs** with Angular/TypeScript. Other templates are available [here](https://docs.nativescript.org/tooling/app-templates). You don't have to execute the following command, because the template is already prepared in this repo. It's just here as a documentation:
+As a basic scaffold, we chose the NativeScript template **[Tabs](https://github.com/NativeScript/template-tab-navigation-ng)** with Angular/TypeScript. Other templates are available [here](https://docs.nativescript.org/tooling/app-templates). You don't have to execute the following command, because the template is already prepared in this repo. It's just here as a documentation:
 
-	tns create uiLab --template tns-template-tab-navigation-ts
+	tns create uiLab --template tns-template-tab-navigation-ng
 
 
 ### Installation
