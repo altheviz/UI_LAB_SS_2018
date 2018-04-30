@@ -3,8 +3,7 @@ App templates help you jump start your native cross-platform apps with built-in 
 
 App template featuring a TabView component for navigation.
 
-<img src="https://github.com/NativeScript/template-tab-navigation-ng/raw/master/tools/assets/phone-tab-ios.png" height="400" />
-<img src="https://github.com/NativeScript/template-tab-navigation-ng/raw/master/tools/assets/phone-tab-android.png" height="400" />
+<img src="https://github.com/NativeScript/template-tab-navigation-ng/raw/master/tools/assets/phone-tab-ios.png" height="400" /> <img src="https://github.com/NativeScript/template-tab-navigation-ng/raw/master/tools/assets/phone-tab-android.png" height="400" />
 
 ## Key Features
 - Tab navigation
