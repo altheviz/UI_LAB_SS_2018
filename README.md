@@ -12,9 +12,7 @@ In order to work with the most current templates and tools, it is necessary to u
 
 	npm install -global nativescript
 
-*If you want to know, how to install global npm packages on Linux or OSX without `sudo`, see [here](https://johnpapa.net/node-and-npm-without-sudo/).*  
-
-You can check your currently installed version of NativeScript by typing:
+If you want to know, how to install global npm packages on Linux or OSX without `sudo`, see [here](https://johnpapa.net/node-and-npm-without-sudo/). You can check your currently installed version of NativeScript by typing:
 
 	 tns --version
 
@@ -22,7 +20,7 @@ You can check your currently installed version of NativeScript by typing:
 
 As a basic scaffold, we chose the NativeScript template **[Tabs](https://github.com/NativeScript/template-tab-navigation-ng)** with Angular/TypeScript. Other templates are available [here](https://docs.nativescript.org/tooling/app-templates). You don't have to execute the following command, because the template is already prepared in this repo. It's just here as a documentation:
 
-	tns create uiLab --template tns-template-tab-navigation-ng
+	tns create uiLab --template --template https://github.com/NativeScript/template-tab-navigation-ng
 
 
 ### Installation
@@ -31,9 +29,14 @@ After you checked out this repository, you only have to install the mising npm d
 
 	npm install
 
-### Development
+### Development with VS Code
 
-To start coding with *Visual Studio Code* you can just enter the following command in the main directory:
+The developers of NativeScript recommend the text editor *Visual Studio Code* for TypeScript. We configured the editor to hide all JavaScript and CSS files because those are generated automatically during the build based on their TypeScript and SCSS counterparts. To start coding with *Visual Studio Code* you can just enter the following command in the main directory:
 
 	code .
 
+### Run
+
+To build and deploy the app (incl. live sync), use the following command:
+
+	tns run
