@@ -5,15 +5,23 @@ Learn more about the TabView component in this documentation article:
 http://docs.nativescript.org/cookbook/ui/tab-view
 -->
 <TabView selectedIndexChanged="onSelectedIndexChanged" androidTabsPosition="bottom">
-    <TabViewItem title="Home" ios:iconSource="res://tabIcons/home" android:iconSource="res://home">
-        <Frame defaultPage="home/home-items-page"></Frame>
+    <TabViewItem title="Appointments" ios:iconSource="res://tabIcons/home" android:iconSource="res://home">
+        <Frame defaultPage="appointments/appointments-page"></Frame>
     </TabViewItem>
 
-    <TabViewItem title="Browse" ios:iconSource="res://tabIcons/browse" android:iconSource="res://browse">
-        <Frame defaultPage="browse/browse-page"></Frame>
+    <TabViewItem title="Customers" ios:iconSource="res://tabIcons/browse" android:iconSource="res://browse">
+        <Frame defaultPage="customers/customerbrowse-page"></Frame>
     </TabViewItem>
 
-    <TabViewItem title="Search" ios:iconSource="res://tabIcons/search" android:iconSource="res://search">
-        <Frame defaultPage="search/search-page"></Frame>
+    <TabViewItem title="Map" ios:iconSource="res://tabIcons/search" android:iconSource="res://search">
+        <Frame defaultPage="map/map-page"></Frame>
+    </TabViewItem>
+
+    <TabViewItem title="Warehouse" ios:iconSource="res://tabIcons/search" android:iconSource="res://search">
+        <Frame defaultPage="warehouse/warehouse-page"></Frame>
+    </TabViewItem>
+
+    <TabViewItem title="Notes" ios:iconSource="res://tabIcons/search" android:iconSource="res://search">
+        <Frame defaultPage="notes/notes-page"></Frame>
     </TabViewItem>
 </TabView>

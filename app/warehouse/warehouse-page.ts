@@ -2,8 +2,8 @@ import { View } from "ui/core/view";
 import { ItemEventData } from "ui/list-view";
 import { NavigatedData, Page } from "ui/page";
 
-import { HomeViewModel } from "./home-view-model";
-import { Item } from "./shared/item";
+import { HomeViewModel } from "./warehouse-view-model";
+import { Item } from "./shared/part";
 
 export function onNavigatingTo(args: NavigatedData) {
     const page = <Page>args.object;

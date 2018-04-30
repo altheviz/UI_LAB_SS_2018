@@ -1,5 +1,5 @@
 import { Observable } from "data/observable";
-import { Item } from "./shared/item";
+import { Item } from "./shared/appointment";
 
 export class HomeViewModel extends Observable {
     items: Array<Item>;

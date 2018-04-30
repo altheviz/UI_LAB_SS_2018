@@ -1,6 +1,6 @@
 import { EventData, View } from "ui/core/view";
 import { NavigatedData, Page } from "ui/page";
-import { Item } from "../shared/item";
+import { Item } from "../shared/part";
 
 export function onNavigatingTo(args: NavigatedData) {
     const page = args.object as Page;
