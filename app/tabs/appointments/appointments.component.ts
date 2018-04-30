@@ -1,11 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 
 @Component({
-    selector: "Search",
+    selector: "Appointments",
     moduleId: module.id,
-    templateUrl: "./search.component.html"
+    templateUrl: "./appointments.component.html"
 })
-export class SearchComponent implements OnInit {
+export class AppointmentsComponent implements OnInit {
     constructor() {
         // Use the constructor to inject services.
     }

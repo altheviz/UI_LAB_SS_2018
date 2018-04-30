@@ -1,10 +1,10 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptCommonModule } from "nativescript-angular/common";
 
+import { AppointmentsComponent } from "./appointments/appointments.component";
 import { CustomersComponent } from "./customers/customers.component";
-import { HomeComponent } from "./home/home.component";
 import { MapComponent } from "./map/map.component";
-import { SearchComponent } from "./search/search.component";
+import { NotesComponent } from "./notes/notes.component";
 import { TabsRoutingModule } from "./tabs-routing.module";
 import { TabsComponent } from "./tabs.component";
 import { WarehouseComponent } from "./warehouse/warehouse.component";
@@ -15,9 +15,9 @@ import { WarehouseComponent } from "./warehouse/warehouse.component";
     ],
     declarations: [
         TabsComponent,
-        HomeComponent,
+        AppointmentsComponent,
         CustomersComponent,
-        SearchComponent,
+        NotesComponent,
         MapComponent,
         WarehouseComponent
     ],
