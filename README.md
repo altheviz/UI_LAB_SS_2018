@@ -29,7 +29,9 @@ After you checked out this repository, you only have to install the mising npm d
 
 	npm install
 
-### Development with VS Code
+## Development
+
+### Visual Studio Code
 
 The developers of NativeScript recommend the text editor *Visual Studio Code* for TypeScript. We configured the editor to hide all JavaScript and CSS files because those are generated automatically during the build based on their TypeScript and SCSS counterparts. To start coding with *Visual Studio Code* you can just enter the following command in the main directory:
 
