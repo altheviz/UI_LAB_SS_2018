@@ -1,7 +1,7 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptCommonModule } from "nativescript-angular/common";
 
-import { BrowseComponent } from "./browse/browse.component";
+import { CustomersComponent } from "./customers/customers.component";
 import { HomeComponent } from "./home/home.component";
 import { MapComponent } from "./map/map.component";
 import { SearchComponent } from "./search/search.component";
@@ -16,7 +16,7 @@ import { WarehouseComponent } from "./warehouse/warehouse.component";
     declarations: [
         TabsComponent,
         HomeComponent,
-        BrowseComponent,
+        CustomersComponent,
         SearchComponent,
         MapComponent,
         WarehouseComponent
