@@ -13,15 +13,15 @@ http://docs.nativescript.org/cookbook/ui/tab-view
         <Frame defaultPage="customers/customer-page"></Frame>
     </TabViewItem>
 
-    <TabViewItem title="Map" ios:iconSource="res://tabIcons/search" android:iconSource="res://search">
+    <TabViewItem title="Map" ios:iconSource="res://tabIcons/browse" android:iconSource="res://browse">
         <Frame defaultPage="map/map-page"></Frame>
     </TabViewItem>
 
-    <TabViewItem title="Warehouse" ios:iconSource="res://tabIcons/search" android:iconSource="res://search">
+    <TabViewItem title="Warehouse" ios:iconSource="res://tabIcons/browse" android:iconSource="res://browse">
         <Frame defaultPage="warehouse/warehouse-page"></Frame>
     </TabViewItem>
 
-    <TabViewItem title="Notes" ios:iconSource="res://tabIcons/search" android:iconSource="res://search">
+    <TabViewItem title="Notes" ios:iconSource="res://tabIcons/browse" android:iconSource="res://browse">
         <Frame defaultPage="notes/notes-page"></Frame>
     </TabViewItem>
 </TabView>

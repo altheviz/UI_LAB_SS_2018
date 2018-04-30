@@ -28,4 +28,9 @@ After you checked out this repository, you only have to install the mising npm d
 
 	npm install
 
+### Development
+
+To start coding with *Visual Studio Code* you can just enter the following command in the main directory:
+
+	code .
 
