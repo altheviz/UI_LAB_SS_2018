@@ -10,7 +10,7 @@ http://docs.nativescript.org/cookbook/ui/tab-view
     </TabViewItem>
 
     <TabViewItem title="Customers" ios:iconSource="res://tabIcons/browse" android:iconSource="res://browse">
-        <Frame defaultPage="customers/customerbrowse-page"></Frame>
+        <Frame defaultPage="customers/customer-page"></Frame>
     </TabViewItem>
 
     <TabViewItem title="Map" ios:iconSource="res://tabIcons/search" android:iconSource="res://search">

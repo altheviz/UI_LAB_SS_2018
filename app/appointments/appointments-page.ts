@@ -16,7 +16,7 @@ export function onItemTap(args: ItemEventData) {
     const tappedItem = <Item>view.bindingContext;
 
     page.frame.navigate({
-        moduleName: "home/home-item-detail/home-item-detail-page",
+        moduleName: "appointments/appointment-detail/appointment-detail-page",
         context: tappedItem,
         animated: true,
         transition: {
