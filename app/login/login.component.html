@@ -4,6 +4,5 @@
     <TextField #email hint="Email-Adresse" keyboardType="email" autocorrect="false" autocapitalizationType="none" [(ngModel)]="user.email"></TextField>
     <TextField #password hint="Passwort" secure="true" [(ngModel)]="user.password"></TextField>
 
-    <Button [text]="isLoggingIn ? 'Anmelden' : 'Registrieren'" class="submit-button" (tap)="submit()"></Button>
-    <Button [text]="isLoggingIn ? 'Registrieren' : 'Zurück zur Anmeldung'" (tap)="toggleDisplay()"></Button>
+    <Button text="Login" class="submit-button" (tap)="submit()"></Button>
 </StackLayout>
