@@ -13,19 +13,6 @@ export class UserService {
 
     constructor(private http: Http) { }
 
-    register(user: User) {
-        return this.http.post(
-            Config.apiUrl + "user/" + Config.appKey,
-            JSON.stringify({
-                username: user.email,
-                email: user.email,
-                password: user.password
-            }),
-            { headers: this.getCommonHeaders() }
-        )
-            .catch(this.handleErrors);
-    }
-
     login(user: User) {
         return this.http.post(
             Config.apiUrl + "user/" + Config.appKey + "/login",

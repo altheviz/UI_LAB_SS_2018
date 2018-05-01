@@ -6,7 +6,6 @@ import { Router } from "@angular/router";
 import { Color } from "color";
 import { Page } from "ui/page";
 import { View } from "ui/core/view";
-import { TextField } from "ui/text-field";
 import { isAndroid } from "platform";
 
 // App imports
@@ -36,7 +35,7 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.page.actionBarHidden = true;
-        this.page.backgroundImage = "res://bg";
+        this.page.backgroundImage = "res://bg_uilab";
     }
 
     submit() {
