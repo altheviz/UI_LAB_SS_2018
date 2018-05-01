@@ -42,3 +42,15 @@ The developers of NativeScript recommend the text editor *Visual Studio Code* fo
 To build and deploy the app (incl. live sync), use the following command:
 
 	tns run
+
+### Optimized Deployment
+
+After developing a new feature, you may want to deploy an optimized version of the app to your mobile device.
+
+	tns deploy anroid --clean --bundle --env.uglify --env.snapshot
+
+For `iOS` you have to change the command accordingly. You can specify the device by adding `--device <device ID>` to the command above. That might be helpful if you have multiple devices. If you need to find out the correct identifier for your device, type the following command to list all available devices:
+
+	tns devices
+
+
