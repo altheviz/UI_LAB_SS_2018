@@ -20,7 +20,7 @@ If you want to know, how to install global npm packages on Linux or OSX without 
 
 As a basic scaffold, we chose the NativeScript template **[Tabs](https://github.com/NativeScript/template-tab-navigation-ng)** with Angular/TypeScript. Other templates are available [here](https://docs.nativescript.org/tooling/app-templates). You don't have to execute the following command, because the template is already prepared in this repo. It's just here as a documentation:
 
-	tns create uiLab --template --template https://github.com/NativeScript/template-tab-navigation-ng
+	tns create uiLab --template https://github.com/NativeScript/template-tab-navigation-ng
 
 
 ### Installation
