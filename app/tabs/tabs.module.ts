@@ -8,6 +8,7 @@ import { CustomersComponent } from "./customers/customers.component";
 import { MapComponent } from "./map/map.component";
 import { NotesComponent } from "./notes/notes.component";
 import { WarehouseComponent } from "./warehouse/warehouse.component";
+import { ListComponent } from "./../util/list/list.component";
 
 @NgModule({
     imports: [
@@ -20,7 +21,8 @@ import { WarehouseComponent } from "./warehouse/warehouse.component";
         CustomersComponent,
         NotesComponent,
         MapComponent,
-        WarehouseComponent
+        WarehouseComponent,
+        ListComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA
