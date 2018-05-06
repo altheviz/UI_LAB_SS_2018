@@ -21,9 +21,9 @@ export class UserService {
             }),
             { headers: this.getCommonHeaders() }
         )
-            .map(response => response.json())
-            .do(data => {
-                Config.token = data._kmd.authtoken
+            .map((response) => response.json())
+            .do((data) => {
+                Config.token = data._kmd.authtoken;
             })
             .catch(this.handleErrors);
     }
