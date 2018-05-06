@@ -1,11 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 
 @Component({
-    selector: "ServiceRequest",
+    selector: "Completion",
     moduleId: module.id,
-    templateUrl: "./servicerequest.component.html"
+    templateUrl: "./completion.component.html"
 })
-export class ServiceRequestComponent implements OnInit {
+export class CompletionComponent implements OnInit {
 
     constructor() {
         // Use the constructor to inject services.
