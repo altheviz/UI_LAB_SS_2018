@@ -2,32 +2,30 @@
     <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
 
         <!-- APPOINTMENT -->
-        <StackLayout *ngIf="item.type===appointment" [class.odd]="odd" [class.even]="even">
-            <!-- <Label [text]="item.name"></Label> -->
-            <!-- <Label [text]='"[" + item.id +"] " + item.name'></Label> -->
-            <Label [text]='item'></Label>   
+        <StackLayout *ngIf="item.type==='appointment'" [class.odd]="odd" [class.even]="even">
+            <Label [text]='item.description'></Label>
+            <Label [text]='item.site.name + "   " + item.date'></Label>
         </StackLayout>
 
         <!-- CUSTOMER -->
-        <DockLayout *ngIf="item.type===customer" stretchLastChild="true" [class.odd]="odd" [class.even]="even">
-            <Image dock="left" class="search-image" (tap)="delete(item)" [src]="item.imageSrc"></Image>
-            <Image dock="right" class="delete-image" (tap)="delete(item)" src="res://delete"></Image>
-            <Label [text]="item.name" class="medium-spacing"></Label>
+        <DockLayout *ngIf="item.type==='customer'" stretchLastChild="true" [class.odd]="odd" [class.even]="even">
+            <Label [text]="item.name" class="medium-spacing" dock="left"></Label>
+            <Label [text]="item.sites[0].name" class="medium-spacing" dock="right"></Label>            
+            <Label [text]="item.contact.firstName + ' ' + item.contact.lastName" class="medium-spacing"></Label>
         </DockLayout>
 
          <!-- NOTES -->
-        <StackLayout *ngIf="item.type===note">
-            <!-- <Label [text]="item.name"></Label> -->
-            <!-- <Label [text]='"[" + item.id +"] " + item.name'></Label> -->
-            <Label [text]='item'></Label>   
+        <StackLayout *ngIf="item.type==='note'" [class.odd]="odd" [class.even]="even">
+            <Label [text]='item.text'></Label>
+            <Label [text]='item.status'></Label>
         </StackLayout>
 
         <!-- WAREHOUSE -->
-        <StackLayout *ngIf="item.type===sparePart">
-            <!-- <Label [text]="item.name"></Label> -->
-            <!-- <Label [text]='"[" + item.id +"] " + item.name'></Label> -->
-            <Label [text]='item'></Label>   
-        </StackLayout>
+        <DockLayout *ngIf="item.type==='sparePart'" stretchLastChild="true" [class.odd]="odd" [class.even]="even">
+            <Label [text]="item.partNumber" class="medium-spacing" dock="left"></Label>
+            <Label [text]="item.amount" class="medium-spacing" dock="right"></Label>            
+            <Label [text]="item.description" class="medium-spacing"></Label>
+        </DockLayout>
 
     </ng-template>
 </ListView>
