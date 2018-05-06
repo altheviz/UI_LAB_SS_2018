@@ -1,8 +1,9 @@
 <ListView [items]="listItems" (setupItemView)="onSetupItemView($event)">
     <ng-template let-item="item" let-i="index" let-third="third">
         <StackLayout>
-          <Label [text]="item.name"></Label>
+            <!-- <Label [text]="item.name"></Label> -->
             <!-- <Label [text]='"[" + item.id +"] " + item.name'></Label> -->
+            <Label [text]='item'></Label>            
         </StackLayout>
     </ng-template>
 </ListView>
