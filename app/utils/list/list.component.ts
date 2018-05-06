@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import {SetupItemViewArgs} from "nativescript-angular/directives";
+import { SetupItemViewArgs } from "nativescript-angular/directives";
 import { isAndroid } from "platform";
 
 @Component({
@@ -10,7 +10,7 @@ import { isAndroid } from "platform";
 })
 export class ListComponent implements OnInit {
 
-    @Input("items")
+    @Input()
     listItems: Array<any> = [];
 
     constructor() {

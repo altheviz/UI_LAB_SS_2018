@@ -1,12 +1,11 @@
 import { Injectable } from "@angular/core";
-import { Http, Headers, Response } from "@angular/http";
-import { Observable } from "rxjs/Observable";
+import { Headers, Http, Response } from "@angular/http";
 import "rxjs/add/operator/catch";
 import "rxjs/add/operator/do";
 import "rxjs/add/operator/map";
-
-import { User } from "./user";
+import { Observable } from "rxjs/Observable";
 import { Config } from "./config";
+import { User } from "./user";
 
 @Injectable()
 export class UserService {
@@ -30,14 +29,16 @@ export class UserService {
     }
 
     getCommonHeaders() {
-        let headers = new Headers();
+        const headers = new Headers();
         headers.append("Content-Type", "application/json");
         headers.append("Authorization", Config.authHeader);
+
         return headers;
     }
 
     handleErrors(error: Response) {
         console.log(JSON.stringify(error.json()));
+
         return Observable.throw(error);
     }
 }

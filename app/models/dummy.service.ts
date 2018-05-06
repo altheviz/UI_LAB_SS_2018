@@ -34,7 +34,7 @@ contact.phone = "+49 1234 56 78 90 12";
 @Injectable()
 export class DummyService {
 
-    getAppointments() {
+    getAppointments(): Array<Appointment> {
 
         const appointment1 = new Appointment();
         appointment1.id = "appointment01";
@@ -62,7 +62,7 @@ export class DummyService {
         return appointments;
     }
 
-    getCustomers() {
+    getCustomers(): Array<Customer> {
 
         const customers = [];
 
@@ -90,7 +90,7 @@ export class DummyService {
         return customers;
     }
 
-    getNotes() {
+    getNotes(): Array<Note> {
 
         const notes = [];
 
@@ -121,7 +121,7 @@ export class DummyService {
         return notes;
     }
 
-    getSpareParts() {
+    getSpareParts(): Array<SparePart> {
 
         const spareParts = [];
 
