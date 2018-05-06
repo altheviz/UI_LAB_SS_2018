@@ -20,6 +20,10 @@ export class TabsComponent implements OnInit {
         // Init your component properties here.
     }
 
+    onNewServiceRequest() {
+        console.log("TODO: Call ServiceRequestComponent");
+    }
+
     get title(): string {
         return this._title;
     }
