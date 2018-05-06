@@ -1,9 +1,34 @@
 <ListView [items]="listItems" (setupItemView)="onSetupItemView($event)">
     <ng-template let-item="item" let-i="index" let-third="third">
-        <StackLayout>
+    <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+
+        <!-- APPOINTMENT -->
+        <StackLayout *ngIf="item.type===appointment" [class.odd]="odd" [class.even]="even">
             <!-- <Label [text]="item.name"></Label> -->
             <!-- <Label [text]='"[" + item.id +"] " + item.name'></Label> -->
-            <Label [text]='item'></Label>            
+            <Label [text]='item'></Label>   
         </StackLayout>
+
+        <!-- CUSTOMER -->
+        <DockLayout *ngIf="item.type===customer" stretchLastChild="true" [class.odd]="odd" [class.even]="even">
+            <Image dock="left" class="search-image" (tap)="delete(item)" [src]="item.imageSrc"></Image>
+            <Image dock="right" class="delete-image" (tap)="delete(item)" src="res://delete"></Image>
+            <Label [text]="item.name" class="medium-spacing"></Label>
+        </DockLayout>
+
+         <!-- NOTES -->
+        <StackLayout *ngIf="item.type===note">
+            <!-- <Label [text]="item.name"></Label> -->
+            <!-- <Label [text]='"[" + item.id +"] " + item.name'></Label> -->
+            <Label [text]='item'></Label>   
+        </StackLayout>
+
+        <!-- WAREHOUSE -->
+        <StackLayout *ngIf="item.type===sparePart">
+            <!-- <Label [text]="item.name"></Label> -->
+            <!-- <Label [text]='"[" + item.id +"] " + item.name'></Label> -->
+            <Label [text]='item'></Label>   
+        </StackLayout>
+
     </ng-template>
 </ListView>

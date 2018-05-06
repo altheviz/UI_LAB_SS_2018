@@ -7,7 +7,10 @@ import { Component, OnInit } from "@angular/core";
 })
 export class AppointmentsComponent implements OnInit {
 
-    appointments: string[] = [ 'teamJAG', 'Pappnase', 'Die Lappenhaften', 'Dungeonkeepers', 'Aviator', '3null3', 'SexyMachine4001', 'Anime Gurl 96', 'Die Ritter der Zärtlichkeit' ];
+    appointments: Array<string> = [
+        "teamJAG", "Pappnase", "Die Lappenhaften", "Dungeonkeepers", "Aviator",
+        "3null3", "SexyMachine4001", "Anime Gurl 96", "Die Ritter der Zärtlichkeit"
+    ];
 
     constructor() {
         // Use the constructor to inject services.
