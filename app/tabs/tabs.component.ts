@@ -9,7 +9,7 @@ import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-mo
     styleUrls: ["./tabs.component.scss"]
 })
 export class TabsComponent implements OnInit {
-    
+
     private _title: string;
 
     constructor() {
