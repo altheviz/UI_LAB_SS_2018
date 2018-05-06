@@ -1,5 +1,6 @@
 <ActionBar class="action-bar">
     <Label class="far fas action-bar-title" [text]="title"></Label>
+    <ActionItem (tap)="onNewServiceRequest()" ios.systemIcon="14" ios.position="right" text="New Request" android.position="popup"></ActionItem>
 </ActionBar>
 
 <!--
@@ -14,7 +15,7 @@ http://docs.nativescript.org/angular/code-samples/ui/tab-view
     </StackLayout>
 
     <StackLayout *tabItem="{title: '&#xf2bb;', iconSource: getIconSource('browse')}">
-            <Customers></Customers>
+        <Customers></Customers>
     </StackLayout>
 
     <StackLayout *tabItem="{title: '&#xf3c5;', iconSource: getIconSource('browse')}">
