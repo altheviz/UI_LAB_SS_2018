@@ -10,8 +10,8 @@ import {SetupItemViewArgs} from "nativescript-angular/directives";
 })
 export class ListComponent implements OnInit {
 
-    @Input()
-    listItems: Array<any>;
+    @Input('items')
+    listItems: Array<any> = [];
 
     constructor() {
         // Use the component constructor to inject providers.
