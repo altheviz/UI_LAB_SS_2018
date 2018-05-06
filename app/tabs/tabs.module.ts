@@ -1,14 +1,14 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptCommonModule } from "nativescript-angular/common";
 
-import { ListComponent } from "../utils/list/list.component";
-import { AppointmentsComponent } from "./appointments/appointments.component";
-import { CustomersComponent } from "./customers/customers.component";
-import { MapComponent } from "./map/map.component";
-import { NotesComponent } from "./notes/notes.component";
-import { TabsRoutingModule } from "./tabs-routing.module";
-import { TabsComponent } from "./tabs.component";
-import { WarehouseComponent } from "./warehouse/warehouse.component";
+import { AppointmentsComponent } from "~/tabs/appointments/appointments.component";
+import { CustomersComponent } from "~/tabs/customers/customers.component";
+import { MapComponent } from "~/tabs/map/map.component";
+import { NotesComponent } from "~/tabs/notes/notes.component";
+import { TabsRoutingModule } from "~/tabs/tabs-routing.module";
+import { TabsComponent } from "~/tabs/tabs.component";
+import { WarehouseComponent } from "~/tabs/warehouse/warehouse.component";
+import { ListComponent } from "~/utils/list/list.component";
 
 @NgModule({
     imports: [

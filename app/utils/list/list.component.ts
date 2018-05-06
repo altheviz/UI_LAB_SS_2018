@@ -24,4 +24,14 @@ export class ListComponent implements OnInit {
     onSetupItemView(args: SetupItemViewArgs) {
         args.view.context.third = (args.index % 3 === 0);
     }
+
+    templateSelector(item: any, index: number, items: Array<any>) {
+
+        if (item.type) {
+            return item.type;
+
+        } else {
+            throw new Error("Unrecognized template!");
+        }
+    }
 }
