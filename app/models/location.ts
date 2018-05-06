@@ -5,7 +5,7 @@
  * CH: Switzerland
  * AT: Austria
  */
-enum Country {
+export enum Country {
     DE,
     CH,
     AT
@@ -31,7 +31,7 @@ export class Location {
     // Street of an address, e.g. "Karlsruhe"
     city: string;
 
-    // Country of an address, e.g. "DE"
+    // Country of an address, e.g. Country.DE
     country: Country;
 
     // A geographic coordinate that specifies the north–south position of a point on the Earth's surface, e.g. 49.015666

@@ -5,7 +5,7 @@
  * ToDo: This item is a ToDo item that has not yet been done
  * Done: This item is a ToDo item that has already been done
  */
-enum NoteStatus {
+export enum NoteStatus {
     Note,
     ToDo,
     Done
