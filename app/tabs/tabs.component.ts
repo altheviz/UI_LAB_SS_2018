@@ -9,6 +9,7 @@ import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-mo
     styleUrls: ["./tabs.component.scss"]
 })
 export class TabsComponent implements OnInit {
+
     private _title: string;
 
     constructor() {
@@ -17,6 +18,10 @@ export class TabsComponent implements OnInit {
 
     ngOnInit(): void {
         // Init your component properties here.
+    }
+
+    onNewServiceRequest() {
+        console.log("TODO: Call ServiceRequestComponent");
     }
 
     get title(): string {

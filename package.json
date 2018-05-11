@@ -6,7 +6,10 @@
   "nativescript": {
     "id": "org.nativescript.UILab",
     "tns-android": {
-      "version": "4.0.0"
+      "version": "4.0.1"
+    },
+    "tns-ios": {
+      "version": "4.0.1"
     }
   },
   "scripts": {
@@ -50,7 +53,7 @@
     "resolve-url-loader": "~2.2.1",
     "sass-loader": "~6.0.6",
     "tslint": "~5.8.0",
-    "typescript": "~2.7.2",
+    "typescript": "~2.6.2",
     "uglifyjs-webpack-plugin": "~1.1.6",
     "webpack": "~3.10.0",
     "webpack-bundle-analyzer": "^2.9.1",

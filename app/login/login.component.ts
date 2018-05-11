@@ -4,9 +4,9 @@ import { Router } from "@angular/router";
 
 // NativeScript imports
 import { Color } from "color";
-import { Page } from "ui/page";
-import { View } from "ui/core/view";
 import { isAndroid } from "platform";
+import { View } from "ui/core/view";
+import { Page } from "ui/page";
 
 // App imports
 import { User } from "./user/user";
@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
     submit() {
         if (!this.user.isValidEmail()) {
             alert("Enter a valid email address.");
+
             return;
         }
         this.login();
