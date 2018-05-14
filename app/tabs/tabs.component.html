@@ -1,6 +1,7 @@
 <ActionBar class="action-bar">
     <Label class="far fas action-bar-title" [text]="title"></Label>
     <ActionItem (tap)="onNewServiceRequest()" ios.systemIcon="14" ios.position="right" text="New Request" android.position="popup"></ActionItem>
+    <ActionItem (tap)="logout()" ios.position="right" text="Logout" android.position="popup"></ActionItem>
 </ActionBar>
 
 <!--

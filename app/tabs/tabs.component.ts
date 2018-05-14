@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { isAndroid } from "platform";
 import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";
+import { Router } from "@angular/router";
 
 @Component({
     selector: "TabsComponent",
@@ -11,8 +12,9 @@ import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-mo
 export class TabsComponent implements OnInit {
 
     private _title: string;
+    appSettings = require("application-settings")
 
-    constructor() {
+    constructor(private router: Router) {
         // Use the component constructor to inject providers.
     }
 
@@ -21,7 +23,12 @@ export class TabsComponent implements OnInit {
     }
 
     onNewServiceRequest() {
-        console.log("TODO: Call ServiceRequestComponent");
+        console.warn("TODO: Call ServiceRequestComponent");
+    }
+
+    logout() {
+        this.appSettings.clear();
+        this.router.navigate(["/login"]);
     }
 
     get title(): string {
