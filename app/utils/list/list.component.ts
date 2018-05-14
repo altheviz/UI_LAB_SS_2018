@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { SetupItemViewArgs } from "nativescript-angular/directives";
 import { isAndroid } from "platform";
 
 @Component({
@@ -19,10 +18,6 @@ export class ListComponent implements OnInit {
 
     ngOnInit(): void {
         // Init your component properties here.
-    }
-
-    onSetupItemView(args: SetupItemViewArgs) {
-        args.view.context.third = (args.index % 3 === 0);
     }
 
     templateSelector(item: any, index: number, items: Array<any>) {
