@@ -34,9 +34,6 @@ export class TabsComponent implements OnInit {
         }
     }
 
-    getIconSource(icon: string): string {
-        return isAndroid ? "" : "res://tabIcons/" + icon;
-    }
 
     onSelectedIndexChanged(args: SelectedIndexChangedEventData) {
         const tabView = <TabView>args.object;
