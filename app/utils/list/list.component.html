@@ -1,4 +1,4 @@
-<ListView [items]="listItems" [itemTemplateSelector]="templateSelector" (setupItemView)="onSetupItemView($event)">
+<ListView class="visible" [items]="listItems" [itemTemplateSelector]="templateSelector" (setupItemView)="onSetupItemView($event)">
 
     <!-- APPOINTMENT -->
     <ng-template nsTemplateKey="appointment" let-item="item" let-i="index" let-odd="odd" let-even="even">
