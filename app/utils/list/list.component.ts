@@ -21,6 +21,10 @@ export class ListComponent implements OnInit {
         // Init your component properties here.
     }
 
+    onSetupItemView(args: SetupItemViewArgs) {
+        args.view.context.third = (args.index % 3 === 0);
+    }
+
     templateSelector(item: any, index: number, items: Array<any>) {
 
         if (item.type) {
