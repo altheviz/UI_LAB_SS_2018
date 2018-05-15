@@ -22,7 +22,7 @@ export class ListComponent implements OnInit {
     }
 
     onSetupItemView(args: SetupItemViewArgs) {
-        args.view.context.third = (args.index % 3 === 0);
+        // args.view.context.third = (args.index % 3 === 0);
     }
 
     templateSelector(item: any, index: number, items: Array<any>) {
