@@ -1,8 +1,8 @@
 <StackLayout #container>
     <Image src="res://logo_login" stretch="none" horizontalAlignment="center"></Image>
 
-    <TextField #email hint="Email-Adresse" keyboardType="email" autocorrect="false" autocapitalizationType="none" [(ngModel)]="user.email"></TextField>
-    <TextField #password hint="Passwort" secure="true" [(ngModel)]="user.password"></TextField>
+    <TextField #email hint="Email-Adresse" keyboardType="email" autocorrect="false" autocapitalizationType="none" [(ngModel)]='user.email'></TextField>
+    <TextField #password hint="Passwort" secure="true" [(ngModel)]='user.password'></TextField>
 
     <Button text="Login" class="submit-button" (tap)="submit()"></Button>
 </StackLayout>

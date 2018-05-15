@@ -34,8 +34,6 @@ export class LoginComponent implements OnInit {
 
     constructor(private routerExtensions: RouterExtensions, private userService: UserService, private page: Page) {
         this.user = new User();
-        this.user.email = "nils@holgersson.se";
-        this.user.password = "Selma Lagerlöf";
     }
 
     ngOnInit() {
@@ -49,6 +47,7 @@ export class LoginComponent implements OnInit {
     }
 
     submit() {
+        console.log("User " + this.user.email + " is logging in.");
         if (!this.user.isValidEmail()) {
             alert("Enter a valid email address.");
             return;
@@ -59,7 +58,11 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
-        this.userService.login(this.user)
+        let loginUser = new User();
+        loginUser.email = "nils@holgersson.se";
+        loginUser.password = "Selma Lagerlöf";
+        console.info("Logging in with default user credentials. No actual registration implemented, as of yet. ¯\\_(ツ)_/¯");
+        this.userService.login(loginUser)
             .subscribe(
                 () => this.routerExtensions.navigate(["/tabs"], { clearHistory: true }),
                 (error) => alert("Unfortunately we could not find your account.")
