@@ -8,6 +8,18 @@ import { Note, NoteStatus } from "~/models/note";
 import { Site } from "~/models/site";
 import { SparePart } from "~/models/spare-part";
 
+const firebase = require("nativescript-plugin-firebase/app");
+
+firebase.initializeApp({
+  persist: true
+});
+
+
+
+const citiesCollection = firebase.firestore().collection("parts");
+
+
+
 const location = new Location();
 location.id = "location01";
 location.street = "Moltkestraße";
@@ -35,7 +47,7 @@ contact.phone = "+49 1234 56 78 90 12";
 export class DummyService {
 
     getAppointments(): Array<Appointment> {
-
+        console.log("MUHAHAHAHAHAHAHAHAHA!");
         const appointment1 = new Appointment();
         appointment1.id = "appointment01";
         appointment1.description = "Repair smart coffee machine @HsKA";
@@ -58,6 +70,12 @@ export class DummyService {
         appointments.push(appointment1);
         appointments.push(appointment2);
         appointments.push(appointment3);
+
+        citiesCollection.get().then(querySnapshot => {
+            querySnapshot.forEach(doc => {
+              console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
+            });
+          });
 
         return appointments;
     }
