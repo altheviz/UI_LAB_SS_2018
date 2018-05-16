@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "673554228355",
+    "firebase_url": "https://ui-lab-ss-2018.firebaseio.com",
+    "project_id": "ui-lab-ss-2018",
+    "storage_bucket": "ui-lab-ss-2018.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:673554228355:android:9213d45a16e754c3",
+        "android_client_info": {
+          "package_name": "org.nativescript.UILABSS2018master"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "673554228355-rbllak65hid1ako5mj2qgdv3942ft9dj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWCA9SYdMbpL0Nw7lapIzNwQKBd5YtUI0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:673554228355:android:5e6bf09def682570",
+        "android_client_info": {
+          "package_name": "org.nativescript.UILab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "673554228355-rbllak65hid1ako5mj2qgdv3942ft9dj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWCA9SYdMbpL0Nw7lapIzNwQKBd5YtUI0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
