@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { isAndroid } from "platform";
 import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";
-import { Router } from "@angular/router";
+import { RouterExtensions } from "nativescript-angular/router";
 
 @Component({
     selector: "TabsComponent",
@@ -14,7 +14,7 @@ export class TabsComponent implements OnInit {
     private _title: string;
     appSettings = require("application-settings")
 
-    constructor(private router: Router) {
+    constructor(private routerExtensions: RouterExtensions) {
         // Use the component constructor to inject providers.
     }
 
@@ -28,7 +28,7 @@ export class TabsComponent implements OnInit {
 
     logout() {
         this.appSettings.clear();
-        this.router.navigate(["/login"]);
+        this.routerExtensions.navigate(["/login"], {clearHistory: true});
     }
 
     get title(): string {
