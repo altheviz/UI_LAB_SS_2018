@@ -13,7 +13,9 @@
     }
   },
   "scripts": {
-    "lint": "tslint \"app/**/*.ts\""
+    "lint": "tslint \"app/**/*.ts\"",
+    "verify": "node_modules/.bin/tsfmt --verify",
+    "format": "node_modules/.bin/tsfmt --replace"
   },
   "dependencies": {
     "@angular/animations": "^5.2.11",
