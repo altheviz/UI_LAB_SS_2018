@@ -1,13 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { Label } from "ui/label";
 import { DummyService } from "~/models/dummy.service";
 import { Note, NoteStatus } from "~/models/note";
-import {screen} from "platform";
-import { Label } from "ui/label";
-
-class DataItem {
-    constructor(public id: number, public name: string) { }
-}
-
 
 @Component({
     selector: "Notes",
@@ -15,44 +9,47 @@ class DataItem {
     moduleId: module.id,
     templateUrl: "./notes.component.html",
     styleUrls: ["./notes.component.scss"],
-	changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush
 
 })
 export class NotesComponent implements OnInit {
 
     notes: Array<Note>;
-	visibleNotes: Array<Note>;
-	counter: number;
+    visibleNotes: Array<Note>;
+    counter: number;
     appSettings = require("application-settings");
-	directory;
-	label:Label;
-	
-	constructor(private dummyService: DummyService) {
-        
-		this.notes = dummyService.getNotes();
-		this.visibleNotes = [];
-		this.directory = {};
-		
-		for(var i=0; i < this.notes.length; i++)	{
-			this.directory[this.notes[i].id] = i;
-			this.notes[i].wrapText = false;
-			if(this.notes[i].status !== NoteStatus.Done && this.notes[i].assignedTo === this.appSettings.getString('user'))	{
-				this.visibleNotes.push(this.notes[i]);
-			}
-		}
-	}
+    directory;
+    label: Label;
 
-    ngOnInit() { }
-	
-	public onTap(args) {
-		
-		this.label = <Label> args.object;
-		this.notes[this.directory[this.label.id]].status = NoteStatus.Done;
-	}
-	
-    public onItemTap(args) {
-		console.log(Object.keys(args));
-		console.log(args.object.nodeName[0]);
-    	this.visibleNotes[args.index].wrapText = !this.visibleNotes[args.index].wrapText;
-	}
+    constructor(private dummyService: DummyService) {
+
+        this.notes = dummyService.getNotes();
+        this.visibleNotes = [];
+        this.directory = {};
+
+        for (let i = 0; i < this.notes.length; i++) {
+            this.directory[this.notes[i].id] = i;
+            this.notes[i].wrapText = false;
+            if (this.notes[i].status !== NoteStatus.Done
+                && this.notes[i].assignedTo === this.appSettings.getString("user")) {
+                this.visibleNotes.push(this.notes[i]);
+            }
+        }
+    }
+
+    ngOnInit() {
+        // Don't do anything
+    }
+
+    onTap(args) {
+
+        this.label = <Label>args.object;
+        this.notes[this.directory[this.label.id]].status = NoteStatus.Done;
+    }
+
+    onItemTap(args) {
+        console.log(Object.keys(args));
+        console.log(args.object.nodeName[0]);
+        this.visibleNotes[args.index].wrapText = !this.visibleNotes[args.index].wrapText;
+    }
 }

@@ -5,9 +5,9 @@ import { Contact } from "~/models/contact";
 import { Customer } from "~/models/customer";
 import { Country, Location } from "~/models/location";
 import { Note, NoteStatus } from "~/models/note";
+import { Order } from "~/models/order";
 import { Site } from "~/models/site";
 import { SparePart } from "~/models/spare-part";
-import {Order} from "~/models/order";
 
 const location = new Location();
 location.id = "location01";
@@ -113,21 +113,21 @@ export class DummyService {
         customer1.id = "customer01";
         customer1.name = "The Company";
         customer1.contact = contact;
-        customer1.sites = [ site ];
+        customer1.sites = [site];
         customers.push(customer1);
 
         const customer2 = new Customer();
         customer2.id = "customer02";
         customer2.name = "The Other Company";
         customer2.contact = contact;
-        customer2.sites = [ site ];
+        customer2.sites = [site];
         customers.push(customer2);
 
         const customer3 = new Customer();
         customer3.id = "customer03";
         customer3.name = "Yet Another Company";
         customer3.contact = contact;
-        customer3.sites = [ site ];
+        customer3.sites = [site];
         customers.push(customer3);
 
         return customers;
@@ -135,16 +135,16 @@ export class DummyService {
 
     getNotes(): Array<Note> {
 
-        var notes = [];
+        const notes = [];
 
-        var note1 = new Note();
+        const note1 = new Note();
         note1.id = "note01";
         note1.text = "";
         note1.status = NoteStatus.Note;
         note1.wrapText = false;
-		notes.push(note1);
+        notes.push(note1);
 
-        var note2 = new Note();
+        const note2 = new Note();
         note2.id = "note02";
         note2.text = "Buy more PZ 4x35 screws doooooooooooooooooooooooooooooooooooooooooooooooo";
         note2.status = NoteStatus.ToDo;
@@ -152,15 +152,15 @@ export class DummyService {
         note2.wrapText = false;
         notes.push(note2);
 
-        var note3 = new Note();
+        const note3 = new Note();
         note3.id = "note03";
         note3.text = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahhhhhhhhhhhhhhhhh";
         note3.status = NoteStatus.Note;
         note3.assignedTo = "h@w.com";
-		note3.wrapText = false;
+        note3.wrapText = false;
         notes.push(note3);
 
-        var note4 = new Note();
+        const note4 = new Note();
         note4.id = "note04";
         note4.text = "Bring cordless lithium-ion screwdriver";
         note4.status = NoteStatus.Done;

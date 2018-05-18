@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
-import { SelectedIndexChangedEventData, TabView} from "tns-core-modules/ui/tab-view";
+import { clear } from "tns-core-modules/application-settings";
+import { SelectedIndexChangedEventData, TabView } from "tns-core-modules/ui/tab-view";
 
 @Component({
     selector: "TabsComponent",
@@ -26,8 +27,8 @@ export class TabsComponent implements OnInit {
     }
 
     logout() {
-        this.appSettings.clear();
-        this.routerExtensions.navigate(["/login"], {clearHistory: true});
+        clear();
+        this.routerExtensions.navigate(["/login"], { clearHistory: true });
     }
 
     get title(): string {

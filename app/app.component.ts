@@ -17,5 +17,5 @@ export class AppComponent {
         if (isAlreadyLoggedIn) {
             routerExtensions.navigate(["/tabs"], { clearHistory: true });
         }
-      }
- }
+    }
+}
