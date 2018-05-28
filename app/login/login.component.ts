@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
     @ViewChild("container") container: ElementRef;
     @ViewChild("email") email: ElementRef;
     @ViewChild("password") password: ElementRef;
+    @ViewChild("remember") remember: ElementRef;
 
     constructor(private routerExtensions: RouterExtensions, private userService: UserService, private page: Page) {
         this.user = new User();
@@ -59,6 +60,9 @@ export class LoginComponent implements OnInit {
                 (error) => alert("Unfortunately we could not find your account.")
             );
         */
+        if (this.remember.nativeElement.checked) {
+            this.appSettings.setBoolean("remember", true);
+        }
         this.appSettings.setBoolean("login", true);
         this.appSettings.setString("user", this.user.email);
         this.routerExtensions.navigate(["/tabs"], {clearHistory: true});
