@@ -62,6 +62,8 @@ export class LoginComponent implements OnInit {
         */
         if (this.remember.nativeElement.checked) {
             this.appSettings.setBoolean("remember", true);
+        } else {
+            this.appSettings.setBoolean("remember", false);
         }
         this.appSettings.setBoolean("login", true);
         this.appSettings.setString("user", this.user.email);
