@@ -1,11 +1,7 @@
 // Angular imports
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
-import { Router } from "@angular/router";
-
+import { RouterExtensions } from "nativescript-angular/router";
 // NativeScript imports
-import { Color } from "color";
-import { isAndroid } from "platform";
-import { View } from "ui/core/view";
 import { Page } from "ui/page";
 
 // App imports
@@ -19,18 +15,18 @@ import { UserService } from "./user/user.service";
     templateUrl: "./login.component.html",
     styleUrls: ["./login.component.scss"]
 })
+
 export class LoginComponent implements OnInit {
 
     user: User;
+    appSettings = require("application-settings");
 
     @ViewChild("container") container: ElementRef;
     @ViewChild("email") email: ElementRef;
     @ViewChild("password") password: ElementRef;
 
-    constructor(private router: Router, private userService: UserService, private page: Page) {
+    constructor(private routerExtensions: RouterExtensions, private userService: UserService, private page: Page) {
         this.user = new User();
-        this.user.email = "nils@holgersson.se";
-        this.user.password = "Selma Lagerlöf";
     }
 
     ngOnInit() {
@@ -39,19 +35,33 @@ export class LoginComponent implements OnInit {
     }
 
     submit() {
+        console.log("User " + this.user.email + " is logging in.");
         if (!this.user.isValidEmail()) {
             alert("Enter a valid email address.");
-
-            return;
+        } else {
+            this.login();
         }
-        this.login();
     }
 
     login() {
-        this.userService.login(this.user)
+        /*
+        You can uncomment this code, which will then log in a user with default data. Since we don't actually have any
+        registration service, this is utterly pointless, and the whole "login" process can be faked. Which is actually
+        done here :)
+
+        let loginUser = new User();
+        loginUser.email = "nils@holgersson.se";
+        loginUser.password = "Selma Lagerlöf";
+        console.info("Logging in with default user credentials. No actual registration implemented, as of yet.");
+        this.userService.login(loginUser)
             .subscribe(
-                () => this.router.navigate(["/tabs"]),
+                () => this.routerExtensions.navigate(["/tabs"], { clearHistory: true }),
                 (error) => alert("Unfortunately we could not find your account.")
             );
+        */
+        this.appSettings.setBoolean("login", true);
+        this.appSettings.setString("user", this.user.email);
+        this.routerExtensions.navigate(["/tabs"], {clearHistory: true});
+
     }
 }

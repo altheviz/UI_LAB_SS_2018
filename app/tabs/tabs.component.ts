@@ -1,58 +1,51 @@
 import { Component, OnInit } from "@angular/core";
 import { isAndroid } from "platform";
 import { SelectedIndexChangedEventData, TabView, TabViewItem } from "tns-core-modules/ui/tab-view";
-import { PageRoute } from "nativescript-angular/router";
-import { switchMap } from "rxjs/operators";
+import { RouterExtensions } from "nativescript-angular/router";
 
 @Component({
-  selector: "TabsComponent",
-  moduleId: module.id,
-  templateUrl: "./tabs.component.html",
-  styleUrls: ["./tabs.component.scss"]
+    selector: "TabsComponent",
+    moduleId: module.id,
+    templateUrl: "./tabs.component.html",
+    styleUrls: ["./tabs.component.scss"]
 })
 export class TabsComponent implements OnInit {
 
-  private _title: string;
+    private _title: string;
+    appSettings = require("application-settings")
 
-  constructor(private pageRoute: PageRoute) {
-    // Use the component constructor to inject providers.
-
-    // use switchMap to get the latest activatedRoute instance
-    let self:any=this;
-    this.pageRoute.activatedRoute.pipe(
-      switchMap(activatedRoute => activatedRoute.params)
-    ).forEach((params) => {
-      console.log(params["tab"]);
-    });
-  }
-
-  ngOnInit(): void {
-    // Init your component properties here.
-
-  }
-
-  onNewServiceRequest() {
-    console.log("TODO: Call ServiceRequestComponent");
-  }
-
-  get title(): string {
-    return this._title;
-  }
-
-  set title(value: string) {
-    if (this._title !== value) {
-      this._title = value;
+    constructor(private routerExtensions: RouterExtensions) {
+        // Use the component constructor to inject providers.
     }
-  }
 
-  getIconSource(icon: string): string {
-    return isAndroid ? "" : "res://tabIcons/" + icon;
-  }
+    ngOnInit(): void {
+        // Init your component properties here.
+    }
 
-  onSelectedIndexChanged(args: SelectedIndexChangedEventData) {
-    const tabView = <TabView>args.object;
-    const selectedTabViewItem = tabView.items[args.newIndex];
+    onNewServiceRequest() {
+        console.warn("TODO: Call ServiceRequestComponent");
+    }
 
-    this.title = selectedTabViewItem.title;
-  }
+    logout() {
+        this.appSettings.clear();
+        this.routerExtensions.navigate(["/login"], {clearHistory: true});
+    }
+
+    get title(): string {
+        return this._title;
+    }
+
+    set title(value: string) {
+        if (this._title !== value) {
+            this._title = value;
+        }
+    }
+
+
+    onSelectedIndexChanged(args: SelectedIndexChangedEventData) {
+        const tabView = <TabView>args.object;
+        const selectedTabViewItem = tabView.items[args.newIndex];
+
+        this.title = selectedTabViewItem.title;
+    }
 }
