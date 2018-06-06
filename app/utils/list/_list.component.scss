@@ -1,52 +1,56 @@
 
 .list-group {
   // background-color: blue;
-}
+  .list-item {
+    padding: 15em;
 
-.list-item {
-  // background-color: red;
-  padding: 15em;
-}
+    .title {
+      font-weight: bold;
+    }
 
-.list-text {
-  margin-left: 10em;
+    .ml-10 {
+      margin-left: 10em;
+    }
+
+    .ordered {
+      color: orange;
+    }
+
+    .ready {
+      color: green;
+    }
+
+    .done {
+      color: grey;
+    }
+  }
 }
-//
-//
-// ListView {
-//     opacity: 1;
-// }
 
 .visible {
-    animation-name: show;
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
+  animation-name: show;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
 }
 
 @keyframes show {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 TextField {
-    color: white;
+  color: white;
 }
 
 .odd {
-    // background-color: #ddd;
-    // background-color: green;
 }
 
 .even {
-    // background-color: white;
 }
 
-
-
 DockLayout Label {
-    vertical-align: center;
+  vertical-align: center;
 }

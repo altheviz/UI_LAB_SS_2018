@@ -1,3 +1,8 @@
 <GridLayout class="page page-content">
-    <ListComponent [listItems]="spareParts"></ListComponent>
+    <StackLayout orientation="vertical">
+        <Label text="Orders:"></Label>
+        <ListComponent [listItems]="orders"></ListComponent>
+        <Label text="Available:"></Label>
+        <ListComponent [listItems]="spareParts"></ListComponent>
+    </StackLayout>
 </GridLayout>
