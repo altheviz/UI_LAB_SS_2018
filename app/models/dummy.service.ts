@@ -7,6 +7,7 @@ import { Country, Location } from "~/models/location";
 import { Note, NoteStatus } from "~/models/note";
 import { Site } from "~/models/site";
 import { SparePart } from "~/models/spare-part";
+import { ServiceProducts } from "~/models/service-products";
 
 const location = new Location();
 location.id = "location01";
@@ -31,135 +32,166 @@ contact.position = "Site Manager";
 contact.email = "john.doe@company.com";
 contact.phone = "+49 1234 56 78 90 12";
 
+const contacts = new Array<Contact>();
+contacts.push(contact);
+contacts.push(contact);
+
+const serviceproducts = new Array<ServiceProducts>();
+const sp = new ServiceProducts();
+sp.id = "serviceproduct01";
+sp.location = location;
+sp.name = "Server 01";
+sp.status = "OK";
+serviceproducts.push(sp);
+const sp1 = new ServiceProducts();
+sp1.id = "serviceproduct02";
+sp1.name = "USV";
+sp1.status = "burning";
+sp1.location = location;
+serviceproducts.push(sp1);
+
 @Injectable()
 export class DummyService {
+  getAppointments(): Array<Appointment> {
+    const appointment1 = new Appointment();
+    appointment1.id = "appointment01";
+    appointment1.description = "Repair smart coffee machine @HsKA";
+    appointment1.date = new Date("2018-05-25T08:30:00");
+    appointment1.site = site;
 
-    getAppointments(): Array<Appointment> {
+    const appointment2 = new Appointment();
+    appointment2.id = "appointment02";
+    appointment2.description = "Repair smart coffee machine @HsKA again";
+    appointment2.date = new Date("2018-06-15T10:30:00");
+    appointment2.site = site;
 
-        const appointment1 = new Appointment();
-        appointment1.id = "appointment01";
-        appointment1.description = "Repair smart coffee machine @HsKA";
-        appointment1.date = new Date("2018-05-25T08:30:00");
-        appointment1.site = site;
+    const appointment3 = new Appointment();
+    appointment3.id = "appointment03";
+    appointment3.description = "Throw smart coffee machine in the trash @HsKA";
+    appointment3.date = new Date("2018-07-20T16:00:00");
+    appointment3.site = site;
 
-        const appointment2 = new Appointment();
-        appointment2.id = "appointment02";
-        appointment2.description = "Repair smart coffee machine @HsKA again";
-        appointment2.date = new Date("2018-06-15T10:30:00");
-        appointment2.site = site;
+    const appointments = [];
+    appointments.push(appointment1);
+    appointments.push(appointment2);
+    appointments.push(appointment3);
 
-        const appointment3 = new Appointment();
-        appointment3.id = "appointment03";
-        appointment3.description = "Throw smart coffee machine in the trash @HsKA";
-        appointment3.date = new Date("2018-07-20T16:00:00");
-        appointment3.site = site;
+    return appointments;
+  }
 
-        const appointments = [];
-        appointments.push(appointment1);
-        appointments.push(appointment2);
-        appointments.push(appointment3);
+  getCustomers(): Array<Customer> {
+    const customers = [];
 
-        return appointments;
-    }
+    const customer1 = new Customer();
+    customer1.id = "customer01";
+    customer1.name = "The Company";
+    customer1.address = location;
+    customer1.contact = contact;
+    customer1.contacts = contacts;
+    customer1.serviceProducts = serviceproducts;
+    customer1.sites = [site];
+    customer1.telephone = "+41 12 345 6564";
+    customer1.email = "company@internet.de";
+    customer1.homepage = "http://www.company.de";
+    customers.push(customer1);
 
-    getCustomers(): Array<Customer> {
+    const customer2 = new Customer();
+    customer2.id = "customer02";
+    customer2.name = "The Other Company";
+    customer2.address = location;
+    customer2.telephone = "+33 123 334 56564";
+    customer2.contacts = contacts;
+    customer2.serviceProducts = serviceproducts;
+    customer2.contact = contact;
+    customer2.email = "other-company@internet.de";
+    customer2.homepage = "http://www.other-company.de";
+    customer2.sites = [site];
+    customers.push(customer2);
 
-        const customers = [];
+    const customer3 = new Customer();
+    customer3.id = "customer03";
+    customer3.name = "Yet Another Company";
+    customer3.address = location;
+    customer3.telephone = "+42 333 456 564";
+    customer3.contacts = contacts;
+    customer3.serviceProducts = serviceproducts;
+    customer3.email = "anothercompany@internet.de";
+    customer3.homepage = "http://www.another-company.de";
+    customer3.contact = contact;
+    customer3.sites = [site];
+    customers.push(customer3);
 
-        const customer1 = new Customer();
-        customer1.id = "customer01";
-        customer1.name = "The Company";
-        customer1.contact = contact;
-        customer1.sites = [ site ];
-        customers.push(customer1);
+    return customers;
+  }
 
-        const customer2 = new Customer();
-        customer2.id = "customer02";
-        customer2.name = "The Other Company";
-        customer2.contact = contact;
-        customer2.sites = [ site ];
-        customers.push(customer2);
+  getNotes(): Array<Note> {
+    const notes = [];
 
-        const customer3 = new Customer();
-        customer3.id = "customer03";
-        customer3.name = "Yet Another Company";
-        customer3.contact = contact;
-        customer3.sites = [ site ];
-        customers.push(customer3);
+    const note1 = new Note();
+    note1.id = "note01";
+    note1.text = "";
+    note1.status = NoteStatus.Note;
+    notes.push(note1);
 
-        return customers;
-    }
+    const note2 = new Note();
+    note2.id = "note02";
+    note2.text = "Buy more PZ 4x35 screws ";
+    note2.status = NoteStatus.ToDo;
+    notes.push(note2);
 
-    getNotes(): Array<Note> {
+    const note3 = new Note();
+    note3.id = "note03";
+    note3.text = "";
+    note3.status = NoteStatus.Note;
+    notes.push(note3);
 
-        const notes = [];
+    const note4 = new Note();
+    note4.id = "note04";
+    note4.text = "Bring cordless lithium-ion screwdriver";
+    note4.status = NoteStatus.Done;
+    notes.push(note4);
 
-        const note1 = new Note();
-        note1.id = "note01";
-        note1.text = "";
-        note1.status = NoteStatus.Note;
-        notes.push(note1);
+    return notes;
+  }
 
-        const note2 = new Note();
-        note2.id = "note02";
-        note2.text = "Buy more PZ 4x35 screws ";
-        note2.status = NoteStatus.ToDo;
-        notes.push(note2);
+  getSpareParts(): Array<SparePart> {
+    const spareParts = [];
 
-        const note3 = new Note();
-        note3.id = "note03";
-        note3.text = "";
-        note3.status = NoteStatus.Note;
-        notes.push(note3);
+    const part1 = new SparePart();
+    part1.id = "part01";
+    part1.partNumber = "ASIN_B01IH803FI";
+    part1.description = "Screw Assortment Kit";
+    part1.amount = 2;
+    spareParts.push(part1);
 
-        const note4 = new Note();
-        note4.id = "note04";
-        note4.text = "Bring cordless lithium-ion screwdriver";
-        note4.status = NoteStatus.Done;
-        notes.push(note4);
+    const part2 = new SparePart();
+    part2.id = "part02";
+    part2.partNumber = "ASIN_B00MG2PETW";
+    part2.description = "Temperature Sensor";
+    part2.amount = 5;
+    spareParts.push(part2);
 
-        return notes;
-    }
+    const part3 = new SparePart();
+    part3.id = "part03";
+    part3.partNumber = "ASIN_B073F472JL";
+    part3.description = "Humidity Sensor Module";
+    part3.amount = 2;
+    spareParts.push(part3);
 
-    getSpareParts(): Array<SparePart> {
+    const part4 = new SparePart();
+    part4.id = "part04";
+    part4.partNumber = "ASIN_B00QZLV03O";
+    part4.description = "Precision Repair Tool Ki";
+    part4.amount = 1;
+    spareParts.push(part4);
 
-        const spareParts = [];
+    const part5 = new SparePart();
+    part5.id = "part05";
+    part5.partNumber = "ASIN_B00JJTPWII";
+    part5.description = "Wire 50 ft Solid Copper Cable";
+    part5.amount = 2;
+    spareParts.push(part5);
 
-        const part1 = new SparePart();
-        part1.id = "part01";
-        part1.partNumber = "ASIN_B01IH803FI";
-        part1.description = "Screw Assortment Kit";
-        part1.amount = 2;
-        spareParts.push(part1);
-
-        const part2 = new SparePart();
-        part2.id = "part02";
-        part2.partNumber = "ASIN_B00MG2PETW";
-        part2.description = "Temperature Sensor";
-        part2.amount = 5;
-        spareParts.push(part2);
-
-        const part3 = new SparePart();
-        part3.id = "part03";
-        part3.partNumber = "ASIN_B073F472JL";
-        part3.description = "Humidity Sensor Module";
-        part3.amount = 2;
-        spareParts.push(part3);
-
-        const part4 = new SparePart();
-        part4.id = "part04";
-        part4.partNumber = "ASIN_B00QZLV03O";
-        part4.description = "Precision Repair Tool Ki";
-        part4.amount = 1;
-        spareParts.push(part4);
-
-        const part5 = new SparePart();
-        part5.id = "part05";
-        part5.partNumber = "ASIN_B00JJTPWII";
-        part5.description = "Wire 50 ft Solid Copper Cable";
-        part5.amount = 2;
-        spareParts.push(part5);
-
-        return spareParts;
-    }
+    return spareParts;
+  }
 }
