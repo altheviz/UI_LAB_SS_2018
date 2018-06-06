@@ -10,9 +10,9 @@
 
     <!-- CUSTOMER -->
     <ng-template nsTemplateKey="customer" let-item="item" let-i="index" let-odd="odd" let-even="even">
-        <DockLayout stretchLastChild="true" [class.odd]="odd" [class.even]="even">
+        <DockLayout stretchLastChild="true" class="list-item" [class.odd]="odd" [class.even]="even" [nsRouterLink]="[item.type, item.id]">
             <Label [text]="item.name" class="medium-spacing" dock="left"></Label>
-            <Label [text]="item.sites[0].name" class="medium-spacing" dock="right"></Label>            
+            <Label [text]="item.sites[0].name" class="medium-spacing" dock="right"></Label>
             <Label [text]="item.contact.firstName + ' ' + item.contact.lastName" class="medium-spacing"></Label>
         </DockLayout>
     </ng-template>

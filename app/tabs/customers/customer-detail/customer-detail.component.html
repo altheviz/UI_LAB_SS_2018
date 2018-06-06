@@ -1,0 +1,56 @@
+<ActionBar title="{{active.name}}"></ActionBar>
+<ScrollView orientation="vertical">
+
+<StackLayout>
+    <CardView class="cardStyle" shadowColor="#FE00FC" elevation="10" margin="10">
+        <GridLayout columns="25, *, *, 25 " rows="30,30,30,30,30,30, 30, 30">
+            <Label text="Address" row="0" col="1"> </Label>
+            <Label text="{{active.address.street}} {{active.address.number}}" row="0" col="2"> </Label>
+            <Label text="{{active.address.zipCode}} {{active.address.city}}" row="1" col="2"> </Label>
+            <!-- <Label text="{{active.address.country}}" row="2" col="2"> </Label>-->
+            <Label text="Telephone" row="3" col="1"> </Label>
+            <Label text="{{active.telephone}}" (tap)="callAddressNumber()" row="3" col="2"> </Label>
+            <Label text="E-Mail" row="4" col="1"> </Label>
+            <Label text="{{active.email}}" row="4" col="2" (tap)="sendAddressMail()"> </Label>
+            <Label text="Homepage" row="5" col="1"> </Label>
+            <Label text="{{active.homepage}}" row="5" col="2" (tap)="goToHomepage()"> </Label>
+            <Label text="Geolocation" row="6" col="1" (tap)="openMaps()"> </Label>
+            <Label text="{{active.address.latitude}}, -" row="6" col="2"> </Label>
+            <Label text="{{active.address.longitude}}" row="7" col="2"> </Label>
+        </GridLayout>
+    </CardView>
+
+    <CardView class="cardStyle" shadowColor="#FE00FC" elevation="10" margin="10">
+        <Label text="   Contacts"> </Label>
+        <ListView [items]="active.contacts">
+            <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+                <GridLayout [class.odd]="odd" [class.even]="even" columns="25, *, *, 25 " rows="30,30,30,30,10">
+                    <Label text="Name" row="0" col="1"> </Label>
+                    <Label [text]='item.firstName + " " + item.lastName' row="0" col="2"> </Label>
+                    <Label text="Position" row="1" col="1"> </Label>
+                    <Label [text]='item.position' row="1" col="2"> </Label>
+                    <Label text="E-mail" row="2" col="1"> </Label>
+                    <Label [text]='item.email' row="2" col="2"> </Label>
+                    <Label text="Telephone" row="3" col="1"> </Label>
+                    <Label [text]='item.phone' row="3" col="2"> </Label>
+                </GridLayout>
+            </ng-template>
+        </ListView>
+    </CardView>
+
+    <CardView class="cardStyle" shadowColor="#FE00FC" elevation="10" margin="10">
+        <Label text="   Service Products"> </Label>
+        <ListView [items]="active.serviceProducts">
+            <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+                <GridLayout [class.odd]="odd" [class.even]="even" columns="25, *, *, 25 " rows="30,30,10">
+                    <Label text="Name" row="0" col="1"> </Label>
+                    <Label [text]='item.name' row="0" col="2"> </Label>
+                    <Label text="Status" row="1" col="1"> </Label>
+                    <Label [text]='item.status' row="1" col="2"> </Label>
+                </GridLayout>
+            </ng-template>
+        </ListView>
+    </CardView>
+
+</StackLayout>
+</ScrollView>
