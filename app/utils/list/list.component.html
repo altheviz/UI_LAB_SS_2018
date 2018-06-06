@@ -1,16 +1,19 @@
-<ListView [items]="listItems" [itemTemplateSelector]="templateSelector" >
+<ListView [items]="listItems" [itemTemplateSelector]="templateSelector" class="list-group">
 
     <!-- APPOINTMENT -->
     <ng-template nsTemplateKey="appointment" let-item="item" let-i="index" let-odd="odd" let-even="even">
-        <StackLayout [class.odd]="odd" [class.even]="even" [nsRouterLink]="[item.type, item.id]">
-            <Label [text]='item.description'></Label>
-            <Label [text]='item.site.name + "   " + item.date'></Label>
-        </StackLayout>
+      <GridLayout columns="50em, *, 90em" rows="auto, *" class="list-item" [class.odd]="odd" [class.even]="even" [nsRouterLink]="[item.type, item.id]">
+        <img src="~/img/playstore-icon.png" width="50em" row="0" col="0" rowSpan="2" horizontalAlignment="left">
+        <Label [text]='item.site.name' col="1" row="0" style="font-weight:bold" class="list-text"></Label>
+        <Label [text]='"test"' col="1" row="2" class="list-text"></Label>
+        <Label [text]='item.date | date:"dd.MM.yyyy" ' col="2" row="0" horizontalAlignment="right"></Label>
+        <Label [text]='item.date | date:"HH:mm" ' col="2" row="1" horizontalAlignment="right"></Label>
+      </GridLayout>
     </ng-template>
 
     <!-- CUSTOMER -->
     <ng-template nsTemplateKey="customer" let-item="item" let-i="index" let-odd="odd" let-even="even">
-        <DockLayout stretchLastChild="true" [class.odd]="odd" [class.even]="even" [nsRouterLink]="[item.type, item.id]">
+        <DockLayout stretchLastChild="true" class="list-item" [class.odd]="odd" [class.even]="even" [nsRouterLink]="[item.type, item.id]">
             <Label [text]="item.name" class="medium-spacing" dock="left"></Label>
             <Label [text]="item.sites[0].name" class="medium-spacing" dock="right"></Label>
             <Label [text]="item.contact.firstName + ' ' + item.contact.lastName" class="medium-spacing"></Label>
@@ -19,7 +22,7 @@
 
     <!-- NOTES -->
     <ng-template nsTemplateKey="note" let-item="item" let-i="index" let-odd="odd" let-even="even">
-        <StackLayout [class.odd]="odd" [class.even]="even" [nsRouterLink]="[item.type, item.id]">
+        <StackLayout class="list-item" [class.odd]="odd" [class.even]="even" [nsRouterLink]="[item.type, item.id]">
             <Label [text]='item.text'></Label>
             <Label [text]='item.status'></Label>
         </StackLayout>
@@ -27,7 +30,7 @@
 
     <!-- WAREHOUSE -->
     <ng-template nsTemplateKey="sparePart" let-item="item" let-i="index" let-odd="odd" let-even="even">
-        <DockLayout stretchLastChild="true" [class.odd]="odd" [class.even]="even" [nsRouterLink]="[item.type, item.id]">
+        <DockLayout stretchLastChild="true" class="list-item" [class.odd]="odd" [class.even]="even" [nsRouterLink]="[item.type, item.id]">
             <Label [text]="item.partNumber" class="medium-spacing" dock="left"></Label>
             <Label [text]="item.amount" class="medium-spacing" dock="right"></Label>
             <Label [text]="item.description" class="medium-spacing"></Label>
