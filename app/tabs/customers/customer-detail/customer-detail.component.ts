@@ -1,11 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { DummyService } from "~/models/dummy.service";
-import { Customer } from "~/models/customer";
-import { ActionBar } from "tns-core-modules/ui/action-bar/action-bar";
 import { registerElement } from "nativescript-angular/element-registry";
 import { CardView } from "nativescript-cardview";
-import * as utils from "utils/utils";
+import { ActionBar } from "tns-core-modules/ui/action-bar/action-bar";
+import { openUrl } from "utils/utils";
+import { Customer } from "~/models/customer";
+import { DummyService } from "~/models/dummy.service";
+
+registerElement("CardView", () => CardView);
 
 @Component({
   selector: "CustomerDetail",
@@ -19,10 +21,7 @@ export class CustomerComponent implements OnInit {
   private id: string;
   private active: Customer;
 
-  constructor(
-    private route: ActivatedRoute,
-    private dummyService: DummyService
-  ) {
+  constructor(private route: ActivatedRoute, private dummyService: DummyService) {
     this.route.params.subscribe((params) => {
       this.id = params.id;
     });
@@ -38,7 +37,7 @@ export class CustomerComponent implements OnInit {
     console.log("open map");
   }
   goToHomepage() {
-    utils.openUrl(this.active.homepage);
+    openUrl(this.active.homepage);
   }
   sendAddressMail() {
     console.log("send mail");
