@@ -7,7 +7,6 @@ import { registerElement } from "nativescript-angular/element-registry";
 import { CardView } from "nativescript-cardview";
 import * as utils from "utils/utils";
 
-
 @Component({
   selector: "CustomerDetail",
   providers: [DummyService],
@@ -16,20 +15,19 @@ import * as utils from "utils/utils";
   styleUrls: ["./customer-detail.component.scss"]
 })
 export class CustomerComponent implements OnInit {
+  customers: Array<Customer>;
   private id: string;
   private active: Customer;
-  
-  customers: Array<Customer>;
 
   constructor(
     private route: ActivatedRoute,
     private dummyService: DummyService
   ) {
-    this.route.params.subscribe(params => {
-      this.id = params["id"];
+    this.route.params.subscribe((params) => {
+      this.id = params.id;
     });
     this.customers = dummyService.getCustomers();
-    this.active = this.customers.filter(c => c.id === this.id)[0];
+    this.active = this.customers.filter((c) => c.id === this.id)[0];
   }
 
   callAddressNumber() {
