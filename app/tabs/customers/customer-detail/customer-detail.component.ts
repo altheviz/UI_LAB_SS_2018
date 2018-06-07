@@ -7,7 +7,7 @@ import { openUrl } from "utils/utils";
 import { Customer } from "~/models/customer";
 import { DummyService } from "~/models/dummy.service";
 
-registerElement("CardView", () => CardView);
+// registerElement("CardView", () => CardView);
 
 @Component({
   selector: "CustomerDetail",
