@@ -20,8 +20,11 @@
         </CardView>
 
         <CardView class="cardStyle" shadowColor="#FE00FC" margin="10" elevation="40" radius="1">
-            <Label class="headline" text="Contacts"> </Label>    
-            <GridLayout class="border" columns="auto,15,*" rows="35,35,35,35" *ngFor="let contact of active.contacts">
+            <Label class="border headline" text="Contacts"> </Label>
+        </CardView>
+
+        <CardView class="cardStyle" shadowColor="#FE00FC" margin="10" elevation="40" radius="1"  *ngFor="let contact of active.contacts">
+            <GridLayout class="border" columns="auto,15,*" rows="35,35,35,35">
                 <Label class="strong" text="Name" row="0" col="0"> </Label>
                 <Label [text]='contact.firstName + " " + contact.lastName' row="0" col="2"> </Label>
                 <Label class="strong" text="Position" row="1" col="0"> </Label>
@@ -34,8 +37,11 @@
         </CardView>
 
         <CardView class="cardStyle" shadowColor="#FE00FC" margin="10" elevation="40" radius="1">
-            <Label class="headline" text="Service Products"> </Label>
-            <GridLayout class="border" columns="auto,15,*" rows="35,35" *ngFor="let product of active.serviceProducts">
+            <Label class="border headline" text="Service Products"> </Label>
+        </CardView>
+
+        <CardView class="cardStyle" shadowColor="#FE00FC" margin="10" elevation="40" radius="1"  *ngFor="let product of active.serviceProducts">
+            <GridLayout class="border" columns="auto,15,*" rows="35,35">
                 <Label class="strong" text="Name" row="0" col="0"> </Label>
                 <Label [text]='product.name' row="0" col="2"> </Label>
                 <Label class="strong" text="Status" row="1" col="0"> </Label>

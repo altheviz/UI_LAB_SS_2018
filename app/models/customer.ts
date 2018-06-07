@@ -24,5 +24,4 @@ export class Customer {
     telephone: string;
     email: string;
     homepage: string;
-
 }
