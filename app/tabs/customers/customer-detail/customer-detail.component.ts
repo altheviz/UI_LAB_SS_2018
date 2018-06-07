@@ -5,12 +5,11 @@ import { CardView } from "nativescript-cardview";
 import { compose } from "nativescript-email";
 import { dial } from "nativescript-phone";
 import { ActionBar } from "tns-core-modules/ui/action-bar/action-bar";
-import { GestureEventData } from "ui/gestures";
 import { openUrl } from "utils/utils";
 import { Customer } from "~/models/customer";
 import { DummyService } from "~/models/dummy.service";
 
-// registerElement("CardView", () => CardView);
+registerElement("CardView", () => CardView);
 
 @Component({
   selector: "CustomerDetail",
@@ -36,39 +35,25 @@ export class CustomerComponent implements OnInit {
     console.log("Open company site");
   }
 
-  goToHomepage(args: GestureEventData) {
+  goToHomepage() {
     console.log("Open company homepage");
-    console.log("Tap!");
-    console.log("Object that triggered the event: " + args.object);
-    console.log("View that triggered the event: " + args.view);
-    console.log("Event name: " + args.eventName);
-    // openUrl(homepage);
+    openUrl(this.active.homepage);
   }
 
-  callAddressNumber(args: GestureEventData) {
+  callAddressNumber() {
     console.log("Call number of the company");
-    console.log("Tap!");
-    console.log("Object that triggered the event: " + args.object);
-    console.log("View that triggered the event: " + args.view);
-    console.log("Event name: " + args.eventName);
-    //dial(telephone, true);
+    dial(this.active.telephone, true);
   }
 
-  sendAddressMail(args: GestureEventData) {
+  sendAddressMail() {
     console.log("Send email to company");
-    console.log("Tap!");
-    console.log("Object that triggered the event: " + args.object);
-    console.log("View that triggered the event: " + args.view);
-    console.log("Event name: " + args.eventName);
-    /*
     compose({
-      to: [ email ]
+      to: [ this.active.email ]
     }).then(() => {
       console.log("Email composer closed");
     }, (err) => {
       console.log("Error: " + err);
     });
-    */
   }
 
   ngOnInit(): void {}
