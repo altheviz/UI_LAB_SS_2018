@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { DummyService } from "~/models/dummy.service";
+import { Order } from "~/models/order";
 import { SparePart } from "~/models/spare-part";
 
 @Component({
@@ -11,9 +12,11 @@ import { SparePart } from "~/models/spare-part";
 export class WarehouseComponent implements OnInit {
 
     spareParts: Array<SparePart>;
+    orders: Array<Order>;
 
     constructor(private dummyService: DummyService) {
         this.spareParts = dummyService.getSpareParts();
+        this.orders = dummyService.getOrders();
     }
 
     ngOnInit(): void {

@@ -7,6 +7,7 @@ import { Country, Location } from "~/models/location";
 import { Note, NoteStatus } from "~/models/note";
 import { Site } from "~/models/site";
 import { SparePart } from "~/models/spare-part";
+import {Order} from "~/models/order";
 
 const location = new Location();
 location.id = "location01";
@@ -203,5 +204,28 @@ export class DummyService {
         spareParts.push(part5);
 
         return spareParts;
+    }
+
+    getOrders(): Array<Order> {
+
+        const orderedParts = [];
+
+        const part1 = new Order();
+        part1.id = "order1";
+        part1.partNumber = "ASIN_B01IH803FI";
+        part1.description = "Screw Assortment Kit";
+        part1.amount = 2;
+        part1.status = "ordered";
+        orderedParts.push(part1);
+
+        const part2 = new Order();
+        part2.id = "order2";
+        part2.partNumber = "ASIN_B00MG2PETW";
+        part2.description = "Temperature Sensor";
+        part2.amount = 5;
+        part2.status = "ready";
+        orderedParts.push(part2);
+
+        return orderedParts;
     }
 }
