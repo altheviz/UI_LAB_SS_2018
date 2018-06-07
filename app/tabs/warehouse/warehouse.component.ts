@@ -7,7 +7,8 @@ import { SparePart } from "~/models/spare-part";
     selector: "Warehouse",
     providers: [DummyService],
     moduleId: module.id,
-    templateUrl: "./warehouse.component.html"
+    templateUrl: "./warehouse.component.html",
+    styleUrls: ["./warehouse.component.scss"]
 })
 export class WarehouseComponent implements OnInit {
 
