@@ -2,7 +2,7 @@
 <ScrollView orientation="vertical">
     <StackLayout>
         <CardView class="cardStyle" shadowColor="#FE00FC" margin="10" elevation="40" radius="1">
-            <GridLayout class="border" columns="auto,15,*" rows="30,30,30,30,30,30,30,30">
+            <GridLayout class="border" columns="auto,15,*" rows="35,35,10,35,35,35,35,35">
                 <Label class="strong" text="Address" row="0" col="0"> </Label>
                 <Label text="{{active.address.street}} {{active.address.number}}" row="0" col="2"> </Label>
                 <Label text="{{active.address.zipCode}} {{active.address.city}}" row="1" col="2"> </Label>
@@ -20,25 +20,25 @@
         </CardView>
 
         <CardView class="cardStyle" shadowColor="#FE00FC" margin="10" elevation="40" radius="1">
-            <Label class="headline" text="   Contacts"> </Label>    
-            <GridLayout [class.odd]="odd" [class.even]="even" columns="25, *, *, 25 " rows="30,30,30,30,10" *ngFor="let contact of active.contacts">
-                <Label text="Name" row="0" col="1"> </Label>
+            <Label class="headline" text="Contacts"> </Label>    
+            <GridLayout class="border" columns="auto,15,*" rows="35,35,35,35" *ngFor="let contact of active.contacts">
+                <Label class="strong" text="Name" row="0" col="0"> </Label>
                 <Label [text]='contact.firstName + " " + contact.lastName' row="0" col="2"> </Label>
-                <Label text="Position" row="1" col="1"> </Label>
+                <Label class="strong" text="Position" row="1" col="0"> </Label>
                 <Label [text]='contact.position' row="1" col="2"> </Label>
-                <Label text="E-mail" row="2" col="1"> </Label>
+                <Label class="strong" text="E-mail" row="2" col="0"> </Label>
                 <Label [text]='contact.email' row="2" col="2"> </Label>
-                <Label text="Telephone" row="3" col="1"> </Label>
+                <Label class="strong" text="Telephone" row="3" col="0"> </Label>
                 <Label [text]='contact.phone' row="3" col="2"> </Label>
             </GridLayout>
         </CardView>
 
         <CardView class="cardStyle" shadowColor="#FE00FC" margin="10" elevation="40" radius="1">
-            <Label class="headline" text="   Service Products"> </Label>
-            <GridLayout [class.odd]="odd" [class.even]="even" columns="25, *, *, 25 " rows="30,30,10" *ngFor="let product of active.serviceProducts">
-                <Label text="Name" row="0" col="1"> </Label>
+            <Label class="headline" text="Service Products"> </Label>
+            <GridLayout class="border" columns="auto,15,*" rows="35,35" *ngFor="let product of active.serviceProducts">
+                <Label class="strong" text="Name" row="0" col="0"> </Label>
                 <Label [text]='product.name' row="0" col="2"> </Label>
-                <Label text="Status" row="1" col="1"> </Label>
+                <Label class="strong" text="Status" row="1" col="0"> </Label>
                 <Label [text]='product.status' row="1" col="2"> </Label>
             </GridLayout>
         </CardView>
