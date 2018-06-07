@@ -17,7 +17,7 @@ export class ContentService {
 
     appointments = firebase.firestore().collection("appointments");
     countries = firebase.firestore().collection("countries");
-    customer = firebase.firestore().collection("customer");
+    customers = firebase.firestore().collection("customers");
     locations = firebase.firestore().collection("locations");
     notes = firebase.firestore().collection("notes");
     parts = firebase.firestore().collection("parts");
