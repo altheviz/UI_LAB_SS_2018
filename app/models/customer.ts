@@ -1,8 +1,7 @@
+import { Country, Location } from "~/models/location";
+import { ServiceProducts } from "~/models/service-products";
 import { Contact } from "./contact";
 import { Site } from "./site";
-import { Country, Location } from "~/models/location";
-import {ServiceProducts} from "~/models/service-products"
-
 
 /**
  * All top-level information about a company that is our customer.
@@ -21,7 +20,7 @@ export class Customer {
     address: Location;
     // List of all sites
     sites: Array<Site>;
-    serviceProducts: Array<ServiceProducts>
+    serviceProducts: Array<ServiceProducts>;
     telephone: string;
     email: string;
     homepage: string;
