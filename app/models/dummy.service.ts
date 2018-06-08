@@ -37,7 +37,6 @@ contact.phone = "+49 1234 56 78 90 12";
 export class DummyService {
 
     getAppointments(): Array<Appointment> {
-
         const appointment1 = new Appointment();
         appointment1.id = "appointment01";
         appointment1.description = "Repair smart coffee machine @HsKA";
