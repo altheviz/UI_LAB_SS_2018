@@ -32,5 +32,4 @@ export class Note {
     assignedTo: string;
 
     wrapText: boolean;
-
 }

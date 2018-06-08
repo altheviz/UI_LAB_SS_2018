@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { Routes } from "@angular/router";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 
+import { ServiceProductComponent } from "./../service-product/service-product.component";
 import { AppointmentDetailComponent } from "./appointments/appointment-detail/appointment-detail.component";
 import { CompletionComponent } from "./appointments/completion/completion.component";
 import { ServiceRequestComponent } from "./appointments/servicerequest/servicerequest.component";
