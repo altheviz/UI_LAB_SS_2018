@@ -14,6 +14,7 @@ class DataItem {
     providers: [DummyService],
     moduleId: module.id,
     templateUrl: "./notes.component.html",
+    styleUrls: ["./notes.component.scss"],
 	changeDetection: ChangeDetectionStrategy.OnPush
 
 })
