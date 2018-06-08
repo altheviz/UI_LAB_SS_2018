@@ -135,30 +135,37 @@ export class DummyService {
 
     getNotes(): Array<Note> {
 
-        const notes = [];
+        var notes = [];
 
-        const note1 = new Note();
+        var note1 = new Note();
         note1.id = "note01";
         note1.text = "";
         note1.status = NoteStatus.Note;
-        notes.push(note1);
+        note1.wrapText = false;
+		notes.push(note1);
 
-        const note2 = new Note();
+        var note2 = new Note();
         note2.id = "note02";
-        note2.text = "Buy more PZ 4x35 screws ";
+        note2.text = "Buy more PZ 4x35 screws doooooooooooooooooooooooooooooooooooooooooooooooo";
         note2.status = NoteStatus.ToDo;
+        note2.assignedTo = "h@w.com";
+        note2.wrapText = false;
         notes.push(note2);
 
-        const note3 = new Note();
+        var note3 = new Note();
         note3.id = "note03";
-        note3.text = "";
+        note3.text = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahhhhhhhhhhhhhhhhh";
         note3.status = NoteStatus.Note;
+        note3.assignedTo = "h@w.com";
+		note3.wrapText = false;
         notes.push(note3);
 
-        const note4 = new Note();
+        var note4 = new Note();
         note4.id = "note04";
         note4.text = "Bring cordless lithium-ion screwdriver";
         note4.status = NoteStatus.Done;
+        note4.assignedTo = "h@w.com";
+        note4.wrapText = false;
         notes.push(note4);
 
         return notes;
