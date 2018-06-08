@@ -10,7 +10,7 @@ Summer term 2018
 
 In order to work with the most current templates and tools, it is necessary to update the NativeScript cli tool before the creation of a new project:
 
-	npm install -global nativescript
+npm install -global nativescript
 
 If you want to know, how to install global npm packages on Linux or OSX without `sudo`, see [here](https://johnpapa.net/node-and-npm-without-sudo/). You can check your currently installed version of NativeScript by typing:
 
@@ -53,4 +53,14 @@ For `iOS` you have to change the command accordingly. You can specify the device
 
 	tns devices
 
+### Lint and Format
+To ensure a unified coding style this project uses pre-commit hooks. These pre-commit hooks use a linter and verify the formatting and will abort the commit, if any issues are introduced. If a commit is discarded, run the following, to check if linting errors are present
 
+```
+npm run lint
+```
+
+To auto-format all files in the project run
+```
+npm run format
+```
