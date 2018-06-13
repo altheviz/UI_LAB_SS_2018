@@ -1,5 +1,23 @@
-<GridLayout class="page page-content" >
-    <Label class="page-icon far" text="&#xf073;"></Label>
-    <Label class="page-placeholder" text="<!-- Request completion content goes here -->"></Label>
-    
+<ActionBar title="TODO"></ActionBar>
+<GridLayout rows="auto, auto, *, auto" columns="*" class="border">
+    <GridLayout row="0" col="0" columns="auto,15,*" rows="35,35,35,35,35" marginBottom="10">
+        <Label class="strong" text="Product" row="0" col="0"></Label>
+        <Label text="TODO" row="0" col="2"></Label>
+        <Label class="strong" text="Customer" row="1" col="0"></Label>
+        <Label text="TODO" row="1" col="2"></Label>
+        <Label class="strong" text="Technician" row="2" col="0"></Label>
+        <Label text="TODO" row="2" col="2"></Label>
+        <Label class="strong" text="Date" row="3" col="0"></Label>
+        <Label text="TODO" row="3" col="2"></Label>
+        <Label class="strong" text="Hours spent" row="4" col="0"></Label>
+        <Label text="TODO" row="4" col="2"></Label>
+    </GridLayout>
+    <DockLayout row="1" col="0"  horizontalAlignment="stretch">
+        <Label dock="left" text="Used parts" class="strong"></Label>
+        <Button class="far fas" dock="right" text="&#xf067;" width="60" horizontalAlignment="right"></Button> 
+    </DockLayout>
+    <GridLayout row="2" col="0">
+        <Label text="TODO"></Label>
+    </GridLayout>
+    <Button row="3" col="0" text="SIGN" verticalAlignment="bottom" horizontalAlginemnet="stretch"></Button>
 </GridLayout>
