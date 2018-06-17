@@ -1,27 +1,32 @@
 <ActionBar title="TODO"></ActionBar>
-<GridLayout rows="auto, auto, *, auto" columns="*" class="border">
-    <GridLayout row="0" col="0" columns="auto,15,*" rows="35,35,35,35,35" marginBottom="10">
-        <Label class="strong" text="Product" row="0" col="0"></Label>
-        <Label text="TODO" row="0" col="2"></Label>
-        <Label class="strong" text="Customer" row="1" col="0"></Label>
-        <Label text="TODO" row="1" col="2"></Label>
-        <Label class="strong" text="Technician" row="2" col="0"></Label>
-        <Label text="TODO" row="2" col="2"></Label>
-        <Label class="strong" text="Date" row="3" col="0"></Label>
-        <Label text="TODO" row="3" col="2"></Label>
-        <Label class="strong" text="Hours spent" row="4" col="0"></Label>
-        <Label text="TODO" row="4" col="2"></Label>
-    </GridLayout>
-    <DockLayout row="1" col="0"  horizontalAlignment="stretch">
-        <Label dock="left" text="Used parts" class="strong"></Label>
-        <Button class="far fas" dock="right" (tap)="addPart()" text="&#xf067;" width="60" horizontalAlignment="right"></Button> 
-    </DockLayout>
-    <StackLayout row="2" col="0">
-        <StackLayout orientation="horizontal" *ngFor="let part of usedParts;let i = index">
-            <Label [text]="part.description" marginRight="20" (tap)="usedPartClicked(i)"></Label >
-            <Label [text]="part.amount" marginRight="20"></Label >
-            <Button class="far fas" (tap)="removePart(i)" text="&#xf014;"></Button>
-        </StackLayout>    
-    </StackLayout>
-    <Button row="3" col="0" text="SIGN" verticalAlignment="bottom" horizontalAlginemnet="stretch" (tap)="signAppointment()"></Button>
+
+<GridLayout rows="*, auto" columns="*" horizontalAlignment="stretch" verticalAlignment="stretch">
+    <ScrollView>
+        <GridLayout row="0" col="0" rows="auto, auto, *, auto" columns="*" class="border">
+            <GridLayout row="0" col="0" columns="auto,15,*" rows="35,35,35,35,35" marginBottom="10">
+                <Label class="strong" text="Product" row="0" col="0"></Label>
+                <Label text="TODO" row="0" col="2"></Label>
+                <Label class="strong" text="Customer" row="1" col="0"></Label>
+                <Label text="TODO" row="1" col="2"></Label>
+                <Label class="strong" text="Technician" row="2" col="0"></Label>
+                <Label text="TODO" row="2" col="2"></Label>
+                <Label class="strong" text="Date" row="3" col="0"></Label>
+                <Label text="TODO" row="3" col="2"></Label>
+                <Label class="strong" text="Hours spent" row="4" col="0"></Label>
+                <Label text="TODO" row="4" col="2"></Label>
+            </GridLayout>
+            <DockLayout row="1" col="0"  horizontalAlignment="stretch">
+                <Label dock="left" text="Used parts" class="strong"></Label>
+                <Button class="far fas" dock="right" (tap)="addPart()" text="&#xf067;" width="60" horizontalAlignment="right"></Button> 
+            </DockLayout>
+            <StackLayout row="2" col="0">
+                <StackLayout orientation="horizontal" *ngFor="let part of usedParts;let i = index">
+                    <Label [text]="part.description" marginRight="20" (tap)="usedPartClicked(i)"></Label >
+                    <Label [text]="part.amount" marginRight="20" (tap)="changeUsedPartAmount(i)"></Label >
+                    <Button class="far fas" (tap)="removePart(i)" text="&#xf014;"></Button>
+                </StackLayout>    
+            </StackLayout>
+        </GridLayout>
+    </ScrollView>
+    <Button row="1" col="0" text="SIGN" verticalAlignment="bottom" horizontalAlginemnet="stretch" (tap)="signAppointment()"></Button>
 </GridLayout>

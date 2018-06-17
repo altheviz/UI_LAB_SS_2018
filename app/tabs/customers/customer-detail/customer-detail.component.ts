@@ -24,7 +24,7 @@ export class CustomerComponent implements OnInit {
 
     addPart() {
         console.log("Adding new warehouse part");
-        this.usedParts.push(this.allParts[0]);
+        this.usedParts.push(this.allParts[0].clone());
     }
 
     removePart(index: number) {
@@ -47,11 +47,31 @@ export class CustomerComponent implements OnInit {
             // result is only the description String but not the dialog index
             const dialogIndex = usedPartDescriptions.indexOf(result);
             console.log("Dialog result: " + result + " at index: " + dialogIndex);
-            this.usedParts[index] = this.allParts[dialogIndex];
+            // Create a copy
+            this.usedParts[index] = this.allParts[dialogIndex].clone();
+        });
+    }
+
+    changeUsedPartAmount(index: number) {
+        console.log("Selecting new amount at index: " + index);
+        const amountSequence: Array<string> = new Array();
+        // Creating sequence of incremented numbers.
+        Array.from(Array(this.usedParts[index].amount).keys()).map((amount) => {
+            amountSequence.push((amount + 1) + "");
+        });
+        dialogs.action({
+            message: "Amount of " + this.usedParts[index].description,
+            cancelButtonText: "Cancel",
+            actions: amountSequence
+        }).then((result) => {
+            // result is only the description String but not the dialog index
+            console.log("Dialog result: " + result);
+            // tslint:disable-next-line:radix
+            this.usedParts[index].amount = parseInt(result);
         });
     }
 
     signAppointment() {
-        console.log("Signing appointment");
+        console.log("TODO: Signing appointment");
     }
 }
