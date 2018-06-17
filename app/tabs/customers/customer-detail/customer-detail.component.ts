@@ -1,62 +1,57 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { registerElement } from "nativescript-angular/element-registry";
-import { CardView } from "nativescript-cardview";
-import { compose } from "nativescript-email";
-import { dial } from "nativescript-phone";
-import { ActionBar } from "tns-core-modules/ui/action-bar/action-bar";
-import { openUrl } from "utils/utils";
-import { Customer } from "~/models/customer";
+import * as dialogs from "ui/dialogs";
 import { DummyService } from "~/models/dummy.service";
-
-registerElement("CardView", () => CardView);
+import { SparePart } from "~/models/spare-part";
 
 @Component({
     selector: "CustomerDetail",
     providers: [DummyService],
     moduleId: module.id,
-    templateUrl: "./customer-detail.component.html",
-    styleUrls: ["./customer-detail.component.scss"]
+    templateUrl: "./customer-detail.component.html"
 })
 export class CustomerComponent implements OnInit {
-    customers: Array<Customer>;
-    private id: string;
-    private active: Customer;
+    private usedParts: Array<SparePart>;
+    private allParts: Array<SparePart>;
 
-    constructor(private route: ActivatedRoute, private dummyService: DummyService) {
-        this.route.params.subscribe((params) => {
-            this.id = params.id;
-        });
-        this.customers = dummyService.getCustomers();
-        this.active = this.customers.filter((c) => c.id === this.id)[0];
-    }
-
-    openMaps() {
-        console.log("Open company site");
-    }
-
-    goToHomepage() {
-        console.log("Open company homepage");
-        openUrl(this.active.homepage);
-    }
-
-    callAddressNumber() {
-        console.log("Call number of the company");
-        dial(this.active.telephone, true);
-    }
-
-    sendAddressMail() {
-        console.log("Send email to company");
-        compose({
-            to: [this.active.email]
-        }).then(() => {
-            console.log("Email composer closed");
-        }, (err) => {
-            console.log("Error: " + err);
-        });
+    constructor(private dummyService: DummyService) {
+        this.allParts = dummyService.getSpareParts();
+        this.usedParts = new Array();
     }
 
     ngOnInit(): void {
-        // No implementation yet
+        // Use the "ngOnInit" handler to initialize data for the view.
+    }
+
+    addPart() {
+        console.log("Adding new warehouse part");
+        this.usedParts.push(this.allParts[0]);
+    }
+
+    removePart(index: number) {
+        console.log("Removing part at index: " + index);
+        // delete doesn't remove the item or reduces the array length. Splice does that
+        this.usedParts.splice(index, 1);
+    }
+
+    usedPartClicked(index: number) {
+        console.log("Clicked: " + index);
+        const usedPartDescriptions: Array<string> = new Array();
+        this.allParts.forEach((part) => {
+            usedPartDescriptions.push(part.description);
+        });
+        dialogs.action({
+            message: "Choose a part",
+            cancelButtonText: "Cancel",
+            actions: usedPartDescriptions
+        }).then((result) => {
+            // result is only the description String but not the dialog index
+            const dialogIndex = usedPartDescriptions.indexOf(result);
+            console.log("Dialog result: " + result + " at index: " + dialogIndex);
+            this.usedParts[index] = this.allParts[dialogIndex];
+        });
+    }
+
+    signAppointment() {
+        console.log("Signing appointment");
     }
 }

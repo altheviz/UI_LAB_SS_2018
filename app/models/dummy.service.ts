@@ -259,6 +259,41 @@ export class DummyService {
         part5.amount = 2;
         spareParts.push(part5);
 
+        const part6 = new SparePart();
+        part6.id = "part06";
+        part6.partNumber = "ASIN_B00DDTAXII";
+        part6.description = "Proton Torpedo Cannon";
+        part6.amount = 4;
+        spareParts.push(part6);
+
+        const part7 = new SparePart();
+        part7.id = "part07";
+        part7.partNumber = "ASIN_X11AAXP1II";
+        part7.description = "Teddybear Cuddle Unit";
+        part7.amount = 10;
+        spareParts.push(part7);
+
+        const part8 = new SparePart();
+        part8.id = "part08";
+        part8.partNumber = "ASIN_B00JJT33FG";
+        part8.description = "Sand, Cement and Communism";
+        part8.amount = 54;
+        spareParts.push(part8);
+
+        const part9 = new SparePart();
+        part9.id = "part09";
+        part9.partNumber = "ASIN_B00A6HPWII";
+        part9.description = "T800, de du du dum dedum";
+        part9.amount = 8;
+        spareParts.push(part9);
+
+        const part10 = new SparePart();
+        part10.id = "part10";
+        part10.partNumber = "ASIN_B44JJTPWII";
+        part10.description = "Crack";
+        part10.amount = 6;
+        spareParts.push(part10);
+
         return spareParts;
     }
 
