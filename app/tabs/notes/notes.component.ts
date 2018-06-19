@@ -1,7 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit, ViewContainerRef } from "@angular/core";
 import { Label } from "ui/label";
 import { DummyService } from "~/models/dummy.service";
 import { Note, NoteStatus } from "~/models/note";
+
+import { ModalDialogService } from "nativescript-angular/directives/dialogs";
+import { NotesModalComponent } from "./notes.modal";
 
 @Component({
     selector: "Notes",
@@ -21,7 +24,9 @@ export class NotesComponent implements OnInit {
     directory;
     label: Label;
 
-    constructor(private dummyService: DummyService) {
+    constructor(private dummyService: DummyService,
+                private modal: ModalDialogService,
+                private vcRef: ViewContainerRef) {
 
         this.notes = dummyService.getNotes();
         this.visibleNotes = [];
@@ -39,6 +44,26 @@ export class NotesComponent implements OnInit {
 
     ngOnInit() {
         // Don't do anything
+    }
+
+    showModal() {
+        const options = {
+            context: {},
+            fullscreen: true,
+            viewContainerRef: this.vcRef
+        };
+
+        this.modal.showModal(NotesModalComponent, options).then((newNote) => {
+            if (newNote instanceof Note) {
+                console.log(newNote);
+                this.notes.push(newNote);
+                if (newNote.status !== NoteStatus.Done && newNote.assignedTo === this.appSettings.getString("user")) {
+                    this.directory[newNote.id] = this.notes.length;
+                    this.notes.push(newNote);
+                    this.visibleNotes.push(newNote);
+                }
+            }
+        });
     }
 
     onTap(args) {

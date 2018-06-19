@@ -1,5 +1,7 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptCommonModule } from "nativescript-angular/common";
+import { NativeScriptFormsModule } from "nativescript-angular/forms";
+import { DropDownModule } from "nativescript-drop-down/angular";
 
 import { AppointmentsComponent } from "~/tabs/appointments/appointments.component";
 import { CustomersComponent } from "~/tabs/customers/customers.component";
@@ -10,17 +12,24 @@ import { TabsComponent } from "~/tabs/tabs.component";
 import { WarehouseComponent } from "~/tabs/warehouse/warehouse.component";
 import { ListComponent } from "~/utils/list/list.component";
 
+import { ModalDialogService } from "nativescript-angular/modal-dialog";
 import { AppointmentDetailComponent } from "~/tabs/appointments/appointment-detail/appointment-detail.component";
 import { CompletionComponent } from "~/tabs/appointments/completion/completion.component";
 import { ServiceRequestComponent } from "~/tabs/appointments/servicerequest/servicerequest.component";
 import { CustomerComponent } from "~/tabs/customers/customer-detail/customer-detail.component";
 import { NoteDetailComponent } from "~/tabs/notes/note-detail/note-detail.component";
+import { NotesModalComponent } from "./notes/notes.modal";
 // import { ServiceProductComponent } from "~/service-product/service-product.component";
 
 @NgModule({
     imports: [
         NativeScriptCommonModule,
-        TabsRoutingModule
+        TabsRoutingModule,
+        NativeScriptFormsModule,
+        DropDownModule
+    ],
+    entryComponents: [
+        NotesModalComponent
     ],
     declarations: [
         TabsComponent,
@@ -34,11 +43,15 @@ import { NoteDetailComponent } from "~/tabs/notes/note-detail/note-detail.compon
         CompletionComponent,
         ServiceRequestComponent,
         CustomerComponent,
-        NoteDetailComponent
+        NoteDetailComponent,
+        NotesModalComponent
         // ServiceProductComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA
+    ],
+    providers: [
+        ModalDialogService
     ]
 })
 export class TabsModule { }
