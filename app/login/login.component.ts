@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
         }
         this.appSettings.setBoolean("login", true);
         this.appSettings.setString("user", this.user.email);
-        this.routerExtensions.navigate(["/tabs"], {clearHistory: true});
+        this.routerExtensions.navigate(["/tabs"], { clearHistory: true });
 
     }
 }

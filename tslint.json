@@ -10,12 +10,13 @@
     "node_modules/codelyzer"
   ],
   "rules": {
+    "align": false,
     "array-type": [true, "generic"],
     "arrow-return-shorthand": true,
     "component-class-suffix": true,
     "directive-class-suffix": true,
     "member-access": [true, "no-public"],
-    "newline-before-return": true,
+    "newline-before-return": false,
     "no-angle-bracket-type-assertion": false,
     "no-attribute-parameter-decorator": true,
     "no-consecutive-blank-lines": [true, 1],

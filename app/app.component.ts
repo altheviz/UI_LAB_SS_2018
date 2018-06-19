@@ -1,21 +1,37 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { getBoolean, setBoolean, setString } from "application-settings";
 import { RouterExtensions } from "nativescript-angular/router";
+import { init } from "nativescript-plugin-firebase";
 
 @Component({
     selector: "ns-app",
     templateUrl: "app.component.html"
 })
-export class AppComponent {
-    appSettings = require("application-settings");
+export class AppComponent implements OnInit {
+
     constructor(routerExtensions: RouterExtensions) {
-        if (!this.appSettings.getBoolean("remember", false)) {
-            this.appSettings.setBoolean("login", false);
-            this.appSettings.setString("user", "");
+        if (!getBoolean("remember", false)) {
+            setBoolean("login", false);
+            setString("user", "");
         }
-        const isAlreadyLoggedIn = this.appSettings.getBoolean("login", false);
+        const isAlreadyLoggedIn = getBoolean("login", false);
         if (isAlreadyLoggedIn) {
             routerExtensions.navigate(["/tabs"], { clearHistory: true });
         }
-      }
- }
+    }
+
+    ngOnInit() {
+        init({
+            // Optionally pass in properties for database, authentication and cloud messaging,
+            // see their respective docs.
+        }).then(
+            (instance) => {
+                console.log("firebase.init done");
+            },
+            (error) => {
+                console.log(`firebase.init error: ${error}`);
+            }
+            );
+    }
+}

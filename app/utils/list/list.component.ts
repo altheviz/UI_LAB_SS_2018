@@ -25,9 +25,15 @@ export class ListComponent implements OnInit {
 
         if (item.type) {
             return item.type;
-
         } else {
-            throw new Error("Unrecognized template!");
+            /* TODO: Quick Hack (!)
+             *********************************************
+             * Since we introduced firebase, our local type definitions in the 'models' folder are
+             * no longer useable and we have to determine the list type elsewhere.
+             *********************************************/
+            console.log("ERROR (due to firebase): Using", item.constructor.name, "instead of the real item type.");
+            // throw new Error("Unrecognized template!");
+            return (item.constructor.name as string).toLowerCase();
         }
     }
 }

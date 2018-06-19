@@ -1,0 +1,52 @@
+<ActionBar title="{{active.name}}"></ActionBar>
+<ScrollView orientation="vertical">
+    <StackLayout>
+        <CardView class="cardStyle" shadowColor="#FE00FC" margin="10" elevation="40" radius="1">
+            <GridLayout class="border" columns="auto,15,*" rows="35,35,10,35,35,35,35,35">
+                <Label class="strong" text="Address" row="0" col="0"> </Label>
+                <Label text="{{active.address.street}} {{active.address.number}}" row="0" col="2"> </Label>
+                <Label text="{{active.address.zipCode}} {{active.address.city}}" row="1" col="2"> </Label>
+                <!-- <Label text="{{active.address.country}}" row="2" col="2"> </Label>-->
+                <Label class="strong" text="Telephone" row="3" col="0"> </Label>
+                <Label text="{{active.telephone}}" (tap)="callAddressNumber()" row="3" col="2"> </Label>
+                <Label class="strong" text="E-Mail" row="4" col="0"> </Label>
+                <Label text="{{active.email}}" row="4" col="2" (tap)="sendAddressMail()"> </Label>
+                <Label class="strong" text="Homepage" row="5" col="0"> </Label>
+                <Label text="{{active.homepage}}" row="5" col="2" (tap)="goToHomepage()"> </Label>
+                <Label class="strong" text="Geolocation" row="6" col="0" (tap)="openMaps()"> </Label>
+                <Label text="{{active.address.latitude}}, -" row="6" col="2"> </Label>
+                <Label text="{{active.address.longitude}}" row="7" col="2"> </Label>
+            </GridLayout>
+        </CardView>
+
+        <CardView class="cardStyle" shadowColor="#FE00FC" margin="10" elevation="40" radius="1">
+            <Label class="border headline" text="Contacts"> </Label>
+        </CardView>
+
+        <CardView class="cardStyle" shadowColor="#FE00FC" margin="10" elevation="40" radius="1"  *ngFor="let contact of active.contacts">
+            <GridLayout class="border" columns="auto,15,*" rows="35,35,35,35">
+                <Label class="strong" text="Name" row="0" col="0"> </Label>
+                <Label [text]='contact.firstName + " " + contact.lastName' row="0" col="2"> </Label>
+                <Label class="strong" text="Position" row="1" col="0"> </Label>
+                <Label [text]='contact.position' row="1" col="2"> </Label>
+                <Label class="strong" text="E-Mail" row="2" col="0"> </Label>
+                <Label [text]='contact.email' row="2" col="2"> </Label>
+                <Label class="strong" text="Telephone" row="3" col="0"> </Label>
+                <Label [text]='contact.phone' row="3" col="2"> </Label>
+            </GridLayout>
+        </CardView>
+
+        <CardView class="cardStyle" shadowColor="#FE00FC" margin="10" elevation="40" radius="1">
+            <Label class="border headline" text="Service Products"> </Label>
+        </CardView>
+
+        <CardView class="cardStyle" shadowColor="#FE00FC" margin="10" elevation="40" radius="1"  *ngFor="let product of active.serviceProducts">
+            <GridLayout class="border" columns="auto,15,*" rows="35,35">
+                <Label class="strong" text="Name" row="0" col="0"> </Label>
+                <Label [text]='product.name' row="0" col="2"> </Label>
+                <Label class="strong" text="Status" row="1" col="0"> </Label>
+                <Label [text]='product.status' row="1" col="2"> </Label>
+            </GridLayout>
+        </CardView>
+    </StackLayout>
+</ScrollView>

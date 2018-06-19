@@ -6,9 +6,9 @@
  * Done: This item is a ToDo item that has already been done
  */
 export enum NoteStatus {
-    Note,
-    ToDo,
-    Done
+    Note = "Note",
+    ToDo = "ToDo",
+    Done = "Done"
 }
 
 /**
@@ -24,4 +24,12 @@ export class Note {
 
     // Current status of this note / todo item
     status: NoteStatus;
+
+    // Assigner
+    assignedFrom: string;
+
+    // Assigner
+    assignedTo: string;
+
+    wrapText: boolean;
 }

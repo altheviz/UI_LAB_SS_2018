@@ -5,37 +5,44 @@
   "repository": "<fill-your-repository-here>",
   "nativescript": {
     "id": "org.nativescript.UILab",
-    "tns-android": {
-      "version": "4.0.1"
-    },
     "tns-ios": {
-      "version": "4.0.1"
+      "version": "4.1.0"
+    },
+    "tns-android": {
+      "version": "4.1.2"
     }
   },
   "scripts": {
-    "lint": "tslint \"app/**/*.ts\""
+    "lint": "tslint \"app/**/*.ts\"",
+    "verify": "node_modules/.bin/tsfmt --verify --no-editorconfig",
+    "format": "node_modules/.bin/tsfmt --replace"
   },
   "dependencies": {
-    "@angular/animations": "~5.2.0",
-    "@angular/common": "~5.2.0",
-    "@angular/compiler": "~5.2.0",
-    "@angular/core": "~5.2.0",
-    "@angular/forms": "~5.2.0",
-    "@angular/http": "~5.2.0",
-    "@angular/platform-browser": "~5.2.0",
-    "@angular/platform-browser-dynamic": "~5.2.0",
-    "@angular/router": "~5.2.0",
+    "@angular/animations": "^5.2.11",
+    "@angular/common": "^5.2.11",
+    "@angular/compiler": "^5.2.11",
+    "@angular/core": "^5.2.11",
+    "@angular/forms": "^5.2.11",
+    "@angular/http": "^5.2.11",
+    "@angular/platform-browser": "^5.2.11",
+    "@angular/platform-browser-dynamic": "^5.2.11",
+    "@angular/router": "^5.2.11",
     "email-validator": "^2.0.3",
     "nativescript-angular": "~5.3.0",
+    "nativescript-cardview": "^3.1.0",
     "nativescript-checkbox": "^3.0.3",
+    "nativescript-email": "^1.5.2",
+    "nativescript-phone": "^1.3.1",
+    "nativescript-plugin-firebase": "^6.0.2",
     "nativescript-theme-core": "~1.0.4",
     "reflect-metadata": "~0.1.10",
     "rxjs": "~5.5.5",
-    "tns-core-modules": "4.0.0",
+    "tns-core-modules": "^4.1.0",
+    "typescript-formatter": "^7.2.0",
     "zone.js": "~0.8.18"
   },
   "devDependencies": {
-    "@angular/compiler-cli": "~5.2.0",
+    "@angular/compiler-cli": "^5.2.11",
     "@ngtools/webpack": "~1.9.4",
     "babel-traverse": "6.4.5",
     "babel-types": "6.4.5",
@@ -50,6 +57,7 @@
     "nativescript-dev-typescript": "~0.7.0",
     "nativescript-dev-webpack": "~0.10.0",
     "nativescript-worker-loader": "~0.8.1",
+    "pre-commit": "^1.2.2",
     "raw-loader": "~0.5.1",
     "resolve-url-loader": "~2.2.1",
     "sass-loader": "~6.0.6",
@@ -57,7 +65,11 @@
     "typescript": "~2.6.2",
     "uglifyjs-webpack-plugin": "~1.1.6",
     "webpack": "~3.10.0",
-    "webpack-bundle-analyzer": "^2.9.1",
+    "webpack-bundle-analyzer": "^2.12.0",
     "webpack-sources": "~1.1.0"
-  }
+  },
+  "pre-commit": [
+    "lint",
+    "verify"
+  ]
 }

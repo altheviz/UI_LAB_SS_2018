@@ -1,36 +1,52 @@
-<ListView [items]="listItems" [itemTemplateSelector]="templateSelector" >
+<ListView [items]="listItems" [itemTemplateSelector]="templateSelector" class="list-group">
 
     <!-- APPOINTMENT -->
     <ng-template nsTemplateKey="appointment" let-item="item" let-i="index" let-odd="odd" let-even="even">
-        <StackLayout [class.odd]="odd" [class.even]="even">
-            <Label [text]='item.description'></Label>
-            <Label [text]='item.site.name + "   " + item.date'></Label>
-        </StackLayout>
+      <GridLayout columns="50em, *, 100em, 20em" rows="auto, *" class="list-item" [class.odd]="odd" [class.even]="even" [nsRouterLink]="[item.type, item.id]">
+        <img src="~/img/playstore-icon.png" width="50em" row="0" col="0" rowSpan="2" horizontalAlignment="left">
+        <Label [text]='item.site.name' col="1" row="0" class="ml-10 title"></Label>
+        <Label [text]='"test"' col="1" row="1" class="ml-10"></Label>
+        <Label [text]='item.date | date:"dd.MM.yyyy" ' col="2" row="0" horizontalAlignment="right"></Label>
+        <Label [text]='item.date | date:"HH:mm" ' col="2" row="1" horizontalAlignment="right"></Label>
+          <Label text="" col="3" row="0" class="far fas" rowSpan="2" horizontalAlignment="right"></Label>
+      </GridLayout>
     </ng-template>
 
     <!-- CUSTOMER -->
     <ng-template nsTemplateKey="customer" let-item="item" let-i="index" let-odd="odd" let-even="even">
-        <DockLayout stretchLastChild="true" [class.odd]="odd" [class.even]="even">
-            <Label [text]="item.name" class="medium-spacing" dock="left"></Label>
-            <Label [text]="item.sites[0].name" class="medium-spacing" dock="right"></Label>            
-            <Label [text]="item.contact.firstName + ' ' + item.contact.lastName" class="medium-spacing"></Label>
-        </DockLayout>
+        <GridLayout columns="50em, *, 20em" rows="auto, *" class="list-item" [class.odd]="odd" [class.even]="even" [nsRouterLink]="[item.type, item.id]">
+            <img src="~/img/playstore-icon.png" width="50em" col="0" row="0" rowSpan="2" horizontalAlignment="left">
+            <Label [text]="item.name" col="1" row="0" class="title ml-10"></Label>
+            <Label [text]="item.sites[0].name" col="1" row="1" class="ml-10"></Label>
+            <Label text="" col="2" row="0" class="far fas" rowSpan="2" horizontalAlignment="right"></Label>
+        </GridLayout>
     </ng-template>
 
     <!-- NOTES -->
     <ng-template nsTemplateKey="note" let-item="item" let-i="index" let-odd="odd" let-even="even">
-        <StackLayout [class.odd]="odd" [class.even]="even">
-            <Label [text]='item.text'></Label>
-            <Label [text]='item.status'></Label>
-        </StackLayout>
+        <GridLayout columns="*, 20em, 20em" rows="auto" class="list-item" [class.odd]="odd" [class.even]="even" [nsRouterLink]="[item.type, item.id]">
+            <Label [text]='item.text' col="0" row="0"></Label>
+            <Label [text]='item.status' col="1" row="0" horizontalAlignment="right"></Label>
+        </GridLayout>
     </ng-template>
 
     <!-- WAREHOUSE -->
     <ng-template nsTemplateKey="sparePart" let-item="item" let-i="index" let-odd="odd" let-even="even">
-        <DockLayout stretchLastChild="true" [class.odd]="odd" [class.even]="even">
-            <Label [text]="item.partNumber" class="medium-spacing" dock="left"></Label>
-            <Label [text]="item.amount" class="medium-spacing" dock="right"></Label>            
-            <Label [text]="item.description" class="medium-spacing"></Label>
-        </DockLayout>
+        <GridLayout columns="*, 20em, 20em" rows="auto, *" class="list-item" [class.odd]="odd" [class.even]="even" [nsRouterLink]="[item.type, item.id]">
+            <Label [text]="item.partNumber" col="0" row="0" class="title"></Label>
+            <Label [text]="item.amount" col="1" row="0" rowSpan="2" horizontalAlignment="right"></Label>
+            <Label [text]="item.description" col="0" row="1"></Label>
+            <Label text="" col="2" row="0" class="far fas" rowSpan="2" horizontalAlignment="right"></Label>
+        </GridLayout>
+    </ng-template>
+
+    <ng-template nsTemplateKey="order" let-item="item" let-i="index" let-odd="odd" let-even="even">
+        <GridLayout columns="*, 20em, 20em, 20em" rows="auto, *" class="list-item" [class.odd]="odd" [class.even]="even" [nsRouterLink]="[item.type, item.id]">
+            <Label [text]="item.partNumber" col="0" row="0" class="title"></Label>
+            <Label [text]="item.description" col="0" row="1"></Label>
+            <Label [text]="item.amount" col="1" row="0" rowSpan="2" horizontalAlignment="left"></Label>
+            <Label text="" col="2" row="0" class="far fas" rowSpan="2" class="{{item.status}}" horizontalAlignment="center"></Label>
+            <Label text="" col="3" row="0" class="far fas" rowSpan="2" horizontalAlignment="right"></Label>
+        </GridLayout>
     </ng-template>
 </ListView>
