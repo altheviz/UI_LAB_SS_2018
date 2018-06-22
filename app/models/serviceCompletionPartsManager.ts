@@ -9,9 +9,6 @@ import { SparePart } from "~/models/spare-part";
  */
 export class ServiceCompletionPartManager {
 
-    readonly type: string = "sparePart";
-    id: string;
-
     // List with all parts of a warehouse that are not used for the current service completion.
     unusedParts: Array<SparePart>;
 

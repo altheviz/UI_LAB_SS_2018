@@ -20,6 +20,7 @@ export class CustomerComponent implements OnInit {
     private date: Date;
 
     constructor(private dummyService: DummyService) {
+        // TODO: Get list of all warehouse parts
         this.manager = new ServiceCompletionPartManager(
             dummyService.getSpareParts()
         );
@@ -125,6 +126,7 @@ export class CustomerComponent implements OnInit {
     }
 
     signAppointment() {
+        // TODO: save all items in the list manager.usedParts
         console.log("TODO: Signing appointment");
     }
 }
