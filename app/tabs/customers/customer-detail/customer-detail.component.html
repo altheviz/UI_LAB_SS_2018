@@ -3,21 +3,21 @@
 <GridLayout rows="*, auto" columns="*" horizontalAlignment="stretch" verticalAlignment="stretch">
     <ScrollView #ScrollList>
         <GridLayout row="0" col="0" rows="auto, auto, *, auto" columns="*" class="border">
-            <GridLayout row="0" col="0" columns="auto,15,*" rows="35,35,35,55,75,75,35" marginBottom="10">
+            <GridLayout row="0" col="0" columns="auto,15,*" rows="35,35,35,auto,auto,auto,35" marginBottom="10">
                 <Label class="strong" text="Product" row="0" col="0"></Label>
                 <Label text="TODO" row="0" col="2"></Label>
                 <Label class="strong" text="Customer" row="1" col="0"></Label>
                 <Label text="TODO" row="1" col="2"></Label>
                 <Label class="strong" text="Technician" row="2" col="0"></Label>
                 <Label text="TODO" row="2" col="2"></Label>
-                <Label class="strong" text="Date" row="3" col="0"></Label>
+                <Label class="strong" verticalAlignment="center" text="Date" row="3" col="0"></Label>
                 <DatePicker row="3" col="2" (loaded)="onDatePickerLoaded($event)" (dateChange)="onDateChanged($event)" verticalAlignment="center"></DatePicker>
-                <Label class="strong" text="Start Time" row="4" col="0"></Label>
-                <TimePicker row="4" col="2" (loaded)="onTimePickerLoaded($event)" (timeChange)="onStartTimeChanged($event)" verticalAlignment="center"
-                    class="m-15"></TimePicker>
-                <Label class="strong" text="End Time" row="5" col="0"></Label>
+                <Label class="strong" verticalAlignment="center" text="Start Time" row="4" col="0"></Label>
+                <TimePicker row="4" col="2" (loaded)="onTimePickerLoaded($event)" (timeChange)="onStartTimeChanged($event)" 
+                    ></TimePicker>
+                <Label class="strong" verticalAlignment="center" text="End Time" row="5" col="0"></Label>
                 <TimePicker row="5" col="2" (loaded)="onTimePickerLoaded($event)" (timeChange)="onEndTimeChanged($event)" verticalAlignment="center"
-                    class="m-15"></TimePicker>
+                    ></TimePicker>
                 <Label class="strong" text="Hours spent" row="6" col="0"></Label>
                 <Label text="{{ hour }}" row="6" col="2"></Label>
             </GridLayout>
