@@ -20,7 +20,7 @@
                 <Button class="far fas" dock="right" (tap)="addPart()" text="&#xf067;" width="60" horizontalAlignment="right"></Button> 
             </DockLayout>
             <StackLayout row="2" col="0">
-                <StackLayout orientation="horizontal" *ngFor="let part of usedParts;let i = index">
+                <StackLayout orientation="horizontal" *ngFor="let part of manager.usedParts;let i = index">
                     <Label [text]="part.description" marginRight="20" (tap)="usedPartClicked(i)"></Label >
                     <Label [text]="part.usedAmount" marginRight="20" (tap)="changeUsedPartAmount(i)"></Label >
                     <Button class="far fas" (tap)="removePart(i)" text="&#xf014;"></Button>

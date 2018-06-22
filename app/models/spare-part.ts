@@ -16,14 +16,5 @@ export class SparePart {
     amount: number;
 
     // How many times has the item been used
-    usedAmount: number = 0;
-
-    // clone(): SparePart {
-    //     const clone: SparePart = new SparePart();
-    //     clone.id = this.id;
-    //     clone.partNumber = this.partNumber;
-    //     clone.description = this.description;
-    //     clone.amount = this.amount;
-    //     return clone;
-    // }
+    usedAmount: number = 0; // TODO: Add constructor, so this can be set to minimum
 }

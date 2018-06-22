@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import * as dialogs from "ui/dialogs";
 import { DummyService } from "~/models/dummy.service";
+import { ServiceCompletionPartManager } from "~/models/serviceCompletionPartsManager";
 import { SparePart } from "~/models/spare-part";
 
 @Component({
@@ -10,12 +11,14 @@ import { SparePart } from "~/models/spare-part";
     templateUrl: "./customer-detail.component.html"
 })
 export class CustomerComponent implements OnInit {
-    private usedParts: Array<SparePart>;
-    private allParts: Array<SparePart>;
+    // private usedParts: Array<SparePart>;
+    // private allParts: Array<SparePart>;
+    private manager: ServiceCompletionPartManager;
 
     constructor(private dummyService: DummyService) {
-        this.allParts = dummyService.getSpareParts();
-        this.usedParts = new Array();
+        // this.allParts = dummyService.getSpareParts();
+        // this.usedParts = new Array();
+        this.manager = new ServiceCompletionPartManager(dummyService.getSpareParts());
     }
 
     ngOnInit(): void {
@@ -23,29 +26,16 @@ export class CustomerComponent implements OnInit {
     }
 
     addPart() {
-        if (this.allParts.length > 0) {
-            console.log("Adding new warehouse part");
-            const temp: SparePart = this.allParts.splice(0, 1)[0];
-            this.usedParts.push(temp);
-        } else {
-            console.log("Warehouse is empty. No more items to add!");
-        }
+        this.manager.addUsedPart();
     }
 
     removePart(index: number) {
-        console.log("Removing part at index: " + index);
-        // delete doesn't remove the item or reduces the array length. Splice does that
-        const temp: SparePart = this.usedParts.splice(index, 1)[0];
-        temp.usedAmount = 0;
-        this.allParts.push(temp);
+        this.manager.removeUsedPart(index);
     }
 
     usedPartClicked(index: number) {
         console.log("Used part clicked at: " + index);
-        const usedPartDescriptions: Array<string> = new Array();
-        this.allParts.forEach((part) => {
-            usedPartDescriptions.push(part.description);
-        });
+        const usedPartDescriptions: Array<string> = this.manager.getWarehousePartDescriptions();
         dialogs.action({
             message: "Choose a part",
             cancelButtonText: "Cancel",
@@ -56,31 +46,23 @@ export class CustomerComponent implements OnInit {
             if (result !== "Cancel") {
                 const dialogIndex = usedPartDescriptions.indexOf(result);
                 console.log("Dialog result: " + result + " at index: " + dialogIndex);
-                const temp: SparePart = this.usedParts[index];
-                this.usedParts[index] = this.allParts[dialogIndex];
-                temp.usedAmount = 0;
-                this.allParts[dialogIndex] = temp;
+                this.manager.replaceUsedPart(index, dialogIndex);
             }
         });
     }
 
     changeUsedPartAmount(index: number) {
         console.log("Selecting new amount at index: " + index);
-        const amountSequence: Array<string> = new Array();
-        // Creating sequence of incremented numbers.
-        Array.from(Array(this.usedParts[index].amount).keys()).map((amount) => {
-            amountSequence.push((amount + 1) + "");
-        });
         dialogs.action({
-            message: "Amount of " + this.usedParts[index].description,
+            message: "Amount of " + this.manager.usedParts[index].description,
             cancelButtonText: "Cancel",
-            actions: amountSequence
+            actions: this.manager.getAmountSequence(index)
         }).then((result) => {
             if (result !== "Cancel") {
                 // result is only the description String but not the dialog index
                 console.log("Dialog result: " + result);
                 // tslint:disable-next-line:radix
-                this.usedParts[index].usedAmount = parseInt(result);
+                this.manager.setUsedPartAmount(index, parseInt(result));
             }
         });
     }
