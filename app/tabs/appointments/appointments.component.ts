@@ -10,12 +10,14 @@ import { ContentService } from "~/models/content.service";
 })
 export class AppointmentsComponent implements OnInit {
 
-    appointments: Array<Appointment>;
+    appointments: Array<Appointment> = [];
 
     constructor(private contentService: ContentService) {
         contentService.getAll<Appointment>(contentService.appointments)
             .then((data) => {
-                this.appointments = data;
+                data.forEach((element) => {
+                    this.appointments.unshift(element);
+                });
             });
     }
 
