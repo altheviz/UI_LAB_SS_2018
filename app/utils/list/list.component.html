@@ -17,7 +17,7 @@
         <GridLayout columns="50em, *, 20em" rows="auto, *" class="list-item" [class.odd]="odd" [class.even]="even" [nsRouterLink]="[item.type, item.id]">
             <img src="~/img/playstore-icon.png" width="50em" col="0" row="0" rowSpan="2" horizontalAlignment="left">
             <Label [text]="item.name" col="1" row="0" class="title ml-10"></Label>
-            <Label [text]="item.sites[0].name" col="1" row="1" class="ml-10"></Label>
+            <Label [text]="item.city" col="1" row="1" class="ml-10"></Label>
             <Label text="" col="2" row="0" class="far fas" rowSpan="2" horizontalAlignment="right"></Label>
         </GridLayout>
     </ng-template>

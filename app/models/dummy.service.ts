@@ -105,52 +105,6 @@ export class DummyService {
         return appointments;
     }
 
-    getCustomers(): Array<Customer> {
-
-        const customers = [];
-
-        const customer1 = new Customer();
-        customer1.id = "customer01";
-        customer1.name = "The Company";
-        customer1.address = location;
-        customer1.contact = contact;
-        customer1.contacts = this.getContacts();
-        customer1.serviceProducts = this.getServiceProducts();
-        customer1.sites = [site];
-        customer1.telephone = "+41 12 345 6564";
-        customer1.email = "company@internet.de";
-        customer1.homepage = "http://www.company.de";
-        customers.push(customer1);
-
-        const customer2 = new Customer();
-        customer2.id = "customer02";
-        customer2.name = "The Other Company";
-        customer2.address = location;
-        customer2.telephone = "+33 123 334 56564";
-        customer2.contacts = this.getContacts();
-        customer2.serviceProducts = this.getServiceProducts();
-        customer2.contact = contact;
-        customer2.email = "other-company@internet.de";
-        customer2.homepage = "http://www.other-company.de";
-        customer2.sites = [site];
-        customers.push(customer2);
-
-        const customer3 = new Customer();
-        customer3.id = "customer03";
-        customer3.name = "Yet Another Company";
-        customer3.address = location;
-        customer3.telephone = "+42 333 456 564";
-        customer3.contacts = this.getContacts();
-        customer3.serviceProducts = this.getServiceProducts();
-        customer3.email = "anothercompany@internet.de";
-        customer3.homepage = "http://www.another-company.de";
-        customer3.contact = contact;
-        customer3.sites = [site];
-        customers.push(customer3);
-
-        return customers;
-    }
-
     getContacts(): Array<Contact> {
 
         const contacts = [];

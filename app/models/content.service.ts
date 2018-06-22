@@ -52,7 +52,7 @@ export class ContentService {
     getAll<T>(collection: firestore.CollectionReference): Promise<Array<T>> {
         return new Promise<Array<T>>((resolve, reject) => {
             collection.get().then((onFulfilled) => {
-                const array = [];
+                const array = new Array<T>();
 
                 onFulfilled.forEach((documentSnapshot) => {
                     array.push(documentSnapshot.data() as T);
