@@ -15,12 +15,15 @@ export class SparePart {
     // How many items are stored in the warehouse
     amount: number;
 
-    clone(): SparePart {
-        const clone: SparePart = new SparePart();
-        clone.id = this.id;
-        clone.partNumber = this.partNumber;
-        clone.description = this.description;
-        clone.amount = this.amount;
-        return clone;
-    }
+    // How many times has the item been used
+    usedAmount: number = 0;
+
+    // clone(): SparePart {
+    //     const clone: SparePart = new SparePart();
+    //     clone.id = this.id;
+    //     clone.partNumber = this.partNumber;
+    //     clone.description = this.description;
+    //     clone.amount = this.amount;
+    //     return clone;
+    // }
 }
