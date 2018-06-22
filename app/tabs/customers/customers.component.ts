@@ -10,20 +10,15 @@ import { Customer } from "~/models/customer";
 })
 export class CustomersComponent implements OnInit {
 
-    customers: Array<Customer>;
+    customers: Array<Customer> = [];
 
     constructor(private contentService: ContentService) { }
 
     ngOnInit(): void {
-        this.contentService.getAll<Customer>(this.contentService.customers).then((data) => {
-            console.log(data);
-            console.log(" - - - - - - - - - - - - - - - - - - - - - - ");
-            console.log(data[0]);
-            console.log(" - - - - - - - - - - - - - - - - - - - - - - ");
-            console.log(data[0].name);
-            console.log(data[0].city);
-
-            this.customers = [];
+        this.contentService.getAll<Customer>(this.contentService.customers).then((customersData) => {
+            customersData.forEach((customerElement) => {
+                this.customers.unshift(customerElement);
+            });
         });
     }
 }

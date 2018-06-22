@@ -6,6 +6,7 @@ import { Geolocation } from "./geolocation";
 export class Customer {
 
     readonly type: string = "customer";
+    id: string;
 
     address: string;
     geolocation: Geolocation;

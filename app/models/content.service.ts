@@ -32,6 +32,13 @@ export class ContentService {
     technicans = firestore.collection("technicans");
     warehouses = firestore.collection("warehouses");
 
+    private types: Map<firestore.CollectionReference, string> = new Map([
+        [this.appointments, "appointment"],
+        [this.customers, "customer"],
+        [this.notes, "note"],
+        [this.parts, "part"]
+    ]);
+
     attachOnDataChangeListener(collection: firestore.CollectionReference,
         callback: (snapshot: firestore.QuerySnapshot) => void) {
 
@@ -55,6 +62,8 @@ export class ContentService {
                 const array = new Array<T>();
 
                 onFulfilled.forEach((documentSnapshot) => {
+                    documentSnapshot.data().id = documentSnapshot.id;
+                    documentSnapshot.data().type = this.types.get(collection);
                     array.push(documentSnapshot.data() as T);
                 });
 

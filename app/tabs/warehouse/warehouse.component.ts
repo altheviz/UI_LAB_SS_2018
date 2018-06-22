@@ -12,11 +12,11 @@ import { SparePart } from "~/models/spare-part";
 })
 export class WarehouseComponent implements OnInit {
 
-    spareParts: Array<SparePart>;
+    parts: Array<SparePart>;
     orders: Array<Order>;
 
     constructor(private dummyService: DummyService) {
-        this.spareParts = dummyService.getSpareParts();
+        this.parts = dummyService.getSpareParts();
         this.orders = dummyService.getOrders();
     }
 

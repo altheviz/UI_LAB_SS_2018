@@ -3,7 +3,7 @@
  */
 export class SparePart {
 
-    readonly type: string = "sparePart";
+    readonly type: string = "part";
     id: string;
 
     // Internal ID of a screw, sensor etc.
