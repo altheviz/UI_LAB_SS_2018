@@ -11,13 +11,9 @@ import { SparePart } from "~/models/spare-part";
     templateUrl: "./customer-detail.component.html"
 })
 export class CustomerComponent implements OnInit {
-    // private usedParts: Array<SparePart>;
-    // private allParts: Array<SparePart>;
     private manager: ServiceCompletionPartManager;
 
     constructor(private dummyService: DummyService) {
-        // this.allParts = dummyService.getSpareParts();
-        // this.usedParts = new Array();
         this.manager = new ServiceCompletionPartManager(dummyService.getSpareParts());
     }
 
