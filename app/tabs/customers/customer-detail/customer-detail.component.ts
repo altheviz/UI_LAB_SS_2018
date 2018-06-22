@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { DatePicker } from "tns-core-modules/ui/date-picker/date-picker";
+import { TimePicker } from "tns-core-modules/ui/time-picker/time-picker";
 import * as dialogs from "ui/dialogs";
 import { DummyService } from "~/models/dummy.service";
 import { ServiceCompletionPartManager } from "~/models/serviceCompletionPartsManager";
@@ -12,13 +14,56 @@ import { SparePart } from "~/models/spare-part";
 })
 export class CustomerComponent implements OnInit {
     private manager: ServiceCompletionPartManager;
+    private hour: number = 0;
+    private startHour: number = -1;
+    private endHour: number = -1;
+    private date: Date;
 
     constructor(private dummyService: DummyService) {
-        this.manager = new ServiceCompletionPartManager(dummyService.getSpareParts());
+        this.manager = new ServiceCompletionPartManager(
+            dummyService.getSpareParts()
+        );
     }
 
     ngOnInit(): void {
         // Use the "ngOnInit" handler to initialize data for the view.
+    }
+
+    onDatePickerLoaded(args): void {
+        const datePicker = <DatePicker>args.object;
+        const today = new Date();
+        datePicker.year = today.getFullYear();
+        datePicker.month = today.getMonth() + 1;
+        datePicker.day = today.getDate();
+    }
+
+    onTimePickerLoaded(args): void {
+        const timePicker = <TimePicker>args.object;
+        const today = new Date();
+        timePicker.hour = today.getHours();
+        timePicker.minute = 0;
+    }
+
+    onStartTimeChanged(args) {
+        const timePicker = <TimePicker>args.object;
+        this.startHour = timePicker.hour;
+        if (this.endHour !== -1) {
+            this.hour = this.endHour - this.startHour;
+        }
+    }
+
+    onEndTimeChanged(args) {
+        const timePicker = <TimePicker>args.object;
+        this.endHour = timePicker.hour;
+        if (this.startHour !== -1) {
+            this.hour = this.endHour - this.startHour;
+        }
+    }
+    onDateChanged(args) {
+        console.log("Date changed");
+        this.date = args.value;
+        console.log("New value: " + args.value);
+        console.log("Old value: " + args.oldValue);
     }
 
     addPart() {
@@ -62,18 +107,21 @@ export class CustomerComponent implements OnInit {
 
     changeUsedPartAmount(index: number) {
         console.log("Selecting new amount at index: " + index);
-        dialogs.action({
-            message: "Amount of " + this.manager.usedParts[index].description,
-            cancelButtonText: "Cancel",
-            actions: this.manager.getAmountSequence(index)
-        }).then((result) => {
-            if (result !== "Cancel") {
-                // result is only the description String but not the dialog index
-                console.log("Dialog result: " + result);
-                // tslint:disable-next-line:radix
-                this.manager.setUsedPartAmount(index, parseInt(result));
-            }
-        });
+        dialogs
+            .action({
+                message:
+                    "Amount of " + this.manager.usedParts[index].description,
+                cancelButtonText: "Cancel",
+                actions: this.manager.getAmountSequence(index)
+            })
+            .then((result) => {
+                if (result !== "Cancel") {
+                    // result is only the description String but not the dialog index
+                    console.log("Dialog result: " + result);
+                    // tslint:disable-next-line:radix
+                    this.manager.setUsedPartAmount(index, parseInt(result));
+                }
+            });
     }
 
     signAppointment() {
