@@ -22,7 +22,6 @@ import { firestore } from "nativescript-plugin-firebase";
 export class ContentService {
 
     appointments = firestore.collection("appointments");
-    countries = firestore.collection("countries");
     customers = firestore.collection("customers");
     locations = firestore.collection("locations");
     notes = firestore.collection("notes");
