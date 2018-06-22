@@ -17,4 +17,16 @@ export class Customer {
     name: string;
     email: string;
     web: string;
+
+    constructor() {
+        this.address = "";
+        this.geolocation = new Geolocation(0, 0);
+        this.country = "";
+        this.zipCode = 0;
+        this.city = "";
+        this.phone = "";
+        this.name = "";
+        this.email = "";
+        this.web = "";
+    }
 }

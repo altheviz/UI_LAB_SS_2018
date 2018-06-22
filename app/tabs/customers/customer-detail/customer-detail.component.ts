@@ -26,6 +26,7 @@ export class CustomerComponent implements OnInit {
         this.route.params.subscribe((params) => {
             this.id = params.id;
         });
+        this.customer = new Customer();
     }
 
     openMaps() {
