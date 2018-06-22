@@ -23,10 +23,10 @@ export class ServiceCompletionPartManager {
         this.usedParts = new Array();
     }
 
-    addUsedPart() {
+    addUsedPart(indexOfUnusedPart: number) {
         if (this.unusedParts.length > 0) {
             console.log("Adding warehouse item to the list of currently used items.");
-            const temp: SparePart = this.unusedParts.splice(0, 1)[0];
+            const temp: SparePart = this.unusedParts.splice(indexOfUnusedPart, 1)[0];
             this.usedParts.push(temp);
         } else {
             console.log("Warehouse is empty. No more items to add!");
@@ -41,11 +41,11 @@ export class ServiceCompletionPartManager {
         this.unusedParts.push(temp);
     }
 
-    replaceUsedPart(indexOfOldUsedPart: number, indexOfnewPart: number) {
+    replaceUsedPart(indexOfOldUsedPart: number, indexOfNewPart: number) {
         const temp: SparePart = this.usedParts[indexOfOldUsedPart];
-        this.usedParts[indexOfOldUsedPart] = this.unusedParts[indexOfnewPart];
+        this.usedParts[indexOfOldUsedPart] = this.unusedParts[indexOfNewPart];
         temp.usedAmount = Math.min(1, temp.amount);
-        this.unusedParts[indexOfnewPart] = temp;
+        this.unusedParts[indexOfNewPart] = temp;
     }
 
     setUsedPartAmount(index: number, newAmount: number) {
@@ -61,11 +61,11 @@ export class ServiceCompletionPartManager {
         return amountSequence;
     }
 
-    getWarehousePartDescriptions(): Array<string> {
-        const usedPartDescriptions: Array<string> = new Array();
+    getUnusedPartDescriptions(): Array<string> {
+        const unusedPartDescriptions: Array<string> = new Array();
         this.unusedParts.forEach((part) => {
-            usedPartDescriptions.push(part.description);
+            unusedPartDescriptions.push(part.description);
         });
-        return usedPartDescriptions;
+        return unusedPartDescriptions;
     }
 }

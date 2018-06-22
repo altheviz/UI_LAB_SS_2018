@@ -22,7 +22,20 @@ export class CustomerComponent implements OnInit {
     }
 
     addPart() {
-        this.manager.addUsedPart();
+        const unusedPartDescriptions: Array<string> = this.manager.getUnusedPartDescriptions();
+        dialogs.action({
+            message: "Choose a part to use",
+            cancelButtonText: "Cancel",
+            actions: unusedPartDescriptions
+        }).then((result) => {
+            // result is only the description String but not the dialog index
+            // Therefore each description must be unique...
+            if (result !== "Cancel") {
+                const dialogIndex = unusedPartDescriptions.indexOf(result);
+                console.log("Dialog result: " + result + " at index: " + dialogIndex);
+                this.manager.addUsedPart(dialogIndex);
+            }
+        });
     }
 
     removePart(index: number) {
@@ -31,16 +44,16 @@ export class CustomerComponent implements OnInit {
 
     usedPartClicked(index: number) {
         console.log("Used part clicked at: " + index);
-        const usedPartDescriptions: Array<string> = this.manager.getWarehousePartDescriptions();
+        const unusedPartDescriptions: Array<string> = this.manager.getUnusedPartDescriptions();
         dialogs.action({
             message: "Choose a part",
             cancelButtonText: "Cancel",
-            actions: usedPartDescriptions
+            actions: unusedPartDescriptions
         }).then((result) => {
             // result is only the description String but not the dialog index
             // Therefore each description must be unique...
             if (result !== "Cancel") {
-                const dialogIndex = usedPartDescriptions.indexOf(result);
+                const dialogIndex = unusedPartDescriptions.indexOf(result);
                 console.log("Dialog result: " + result + " at index: " + dialogIndex);
                 this.manager.replaceUsedPart(index, dialogIndex);
             }
