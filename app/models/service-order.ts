@@ -19,10 +19,10 @@ export class ServiceOrder {
     constructor() {
         this.technician = "";
         this.customer = "";
-        this.serviceProduct =  "";
+        this.serviceProduct = "";
         this.creationDate = new Date();
         this.serviceDate = new Date();
-        this.plannedTime =  0;
+        this.plannedTime = 0;
         this.plannedParts = 0;
         this.description = "";
     }
