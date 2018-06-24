@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { Appointment } from "~/models/appointment";
 import { ContentService } from "~/models/content.service";
+import { ServiceOrder } from "~/models/service-order";
 
 @Component({
     selector: "Appointments",
@@ -10,17 +10,15 @@ import { ContentService } from "~/models/content.service";
 })
 export class AppointmentsComponent implements OnInit {
 
-    appointments: Array<Appointment> = [];
+    serviceOrders: Array<ServiceOrder> = [];
 
     constructor(private contentService: ContentService) {
-        contentService.getAll<Appointment>(contentService.appointments)
-            .then((data) => {
-                data.forEach((element) => {
-                    this.appointments.unshift(element);
-                });
+        this.contentService.getAll<ServiceOrder>(this.contentService.serviceOrders).then((serviceOrdersData) => {
+            serviceOrdersData.forEach((serviceOrderElement) => {
+                this.serviceOrders.unshift(serviceOrderElement);
             });
+        });
     }
-
     ngOnInit(): void {
         // Use the "ngOnInit" handler to initialize data for the view.
     }

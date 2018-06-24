@@ -14,7 +14,7 @@ const routes: Routes = [
     // { path: "", redirectTo: '/tabs/appointments', pathMatch: 'full'},
     { path: "", component: TabsComponent },
     { path: "/:tab", component: TabsComponent },
-    { path: "appointment/:id", component: AppointmentDetailComponent },
+    { path: "service_order/:id", component: AppointmentDetailComponent },
     { path: "appointments-completion/:id", component: CompletionComponent },
     { path: "appointments-service-request", component: ServiceRequestComponent },
     { path: "customer/:id", component: CustomerComponent },

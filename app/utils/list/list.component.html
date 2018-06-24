@@ -2,14 +2,26 @@
 
     <!-- APPOINTMENT -->
     <ng-template nsTemplateKey="appointment" let-item="item" let-i="index" let-odd="odd" let-even="even">
-      <GridLayout columns="50em, *, 100em, 20em" rows="auto, *" class="list-item" [class.odd]="odd" [class.even]="even" [nsRouterLink]="[item.type, item.id]">
-        <img src="~/img/playstore-icon.png" width="50em" row="0" col="0" rowSpan="2" horizontalAlignment="left">
-        <Label [text]='item.site.name' col="1" row="0" class="ml-10 title"></Label>
-        <Label [text]='"test"' col="1" row="1" class="ml-10"></Label>
-        <Label [text]='item.date | date:"dd.MM.yyyy" ' col="2" row="0" horizontalAlignment="right"></Label>
-        <Label [text]='item.date | date:"HH:mm" ' col="2" row="1" horizontalAlignment="right"></Label>
-          <Label text="" col="3" row="0" class="far fas" rowSpan="2" horizontalAlignment="right"></Label>
-      </GridLayout>
+        <GridLayout columns="50em, *, 100em, 20em" rows="auto, *" class="list-item" [class.odd]="odd" [class.even]="even" [nsRouterLink]="[item.type, item.id]">
+            <img src="~/img/playstore-icon.png" width="50em" row="0" col="0" rowSpan="2" horizontalAlignment="left">
+            <Label [text]='item.description' col="1" row="0" class="ml-10 title"></Label>
+            <Label [text]='item.description' col="1" row="1" class="ml-10"></Label>
+            <Label [text]='item.service_date | date:"dd.MM.yyyy" ' col="2" row="0" horizontalAlignment="right"></Label>
+            <Label [text]='item.service_date | date:"HH:mm" ' col="2" row="1" horizontalAlignment="right"></Label>
+            <Label text="" col="3" row="0" class="far fas" rowSpan="2" horizontalAlignment="right"></Label>
+        </GridLayout>
+    </ng-template>
+
+    <!-- SERVICE ORDER -->
+    <ng-template nsTemplateKey="service_order" let-item="item" let-i="index" let-odd="odd" let-even="even">
+        <GridLayout columns="50em, *, 100em, 20em" rows="auto, *" class="list-item" [class.odd]="odd" [class.even]="even" [nsRouterLink]="[item.type, item.id]">
+            <img src="~/img/playstore-icon.png" width="50em" row="0" col="0" rowSpan="2" horizontalAlignment="left">
+            <Label [text]='item.costumer.id' col="1" row="0" class="ml-10 title"></Label>
+            <Label [text]='item.description' col="1" row="1" class="ml-10"></Label>
+            <Label [text]='item.serviceDate | date:"dd.MM.yyyy" ' col="2" row="0" horizontalAlignment="right"></Label>
+            <Label [text]='item.service_date | date:"HH:mm" ' col="2" row="1" horizontalAlignment="right"></Label>
+            <Label text="" col="3" row="0" class="far fas" rowSpan="2" horizontalAlignment="right"></Label>
+        </GridLayout>
     </ng-template>
 
     <!-- CUSTOMER -->

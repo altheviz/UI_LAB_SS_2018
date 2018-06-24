@@ -30,12 +30,14 @@ export class ContentService {
     tasks = firestore.collection("tasks");
     technicans = firestore.collection("technicans");
     warehouses = firestore.collection("warehouses");
+    serviceOrders = firestore.collection("service_orders");
 
     private types: Map<firestore.CollectionReference, string> = new Map([
         [this.appointments, "appointment"],
         [this.customers, "customer"],
         [this.notes, "note"],
-        [this.parts, "part"]
+        [this.parts, "part"],
+        [this.serviceOrders, "service_order"]
     ]);
 
     attachOnDataChangeListener(collection: firestore.CollectionReference,

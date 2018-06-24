@@ -1,4 +1,16 @@
-<GridLayout class="page page-content">
-    <Label class="page-icon far" text="&#xf073;"></Label>
-    <Label class="page-placeholder" text="<!-- Appointment Details content goes here -->"></Label>
-</GridLayout>
+<ActionBar title="{{serviceOrder.id}}"></ActionBar>
+<ScrollView orientation="vertical">
+    <StackLayout>
+
+        <CardView class="cardStyle" shadowColor="#FE00FC" margin="10" elevation="40" radius="1">
+            <GridLayout class="border" columns="auto,15,*" rows="35,35,35,10,35,35,35,35">
+
+                <Label class="strong" text="Technician" row="0" col="0"> </Label>
+                <Label text="{{serviceOrder.technician.id}}" row="0" col="2"> </Label>
+                <Label class="strong" text="Planned Time" row="2" col="0"> </Label>
+                <Label text="{{serviceOrder.planned_time}} h" row="2" col="2"> </Label>
+
+            </GridLayout>
+        </CardView>
+    </StackLayout>
+</ScrollView>
