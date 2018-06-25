@@ -19,8 +19,8 @@ export class AppointmentsComponent implements OnInit {
                 this.serviceOrders.unshift(serviceOrderElement);
                 this.contentService.get<Customer>(this.contentService.customers, serviceOrderElement.customer.id)
                     .then((customerData) => {
-                serviceOrderElement.customer = customerData;
-                });
+                        serviceOrderElement.customer = customerData;
+                    });
             });
         });
     }
