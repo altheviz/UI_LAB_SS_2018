@@ -28,7 +28,7 @@ export class ContentService {
     parts = firestore.collection("parts");
     sites = firestore.collection("sites");
     tasks = firestore.collection("tasks");
-    technicans = firestore.collection("technicans");
+    technicians = firestore.collection("technicans");
     warehouses = firestore.collection("warehouses");
     serviceOrders = firestore.collection("service_orders");
 
@@ -37,7 +37,8 @@ export class ContentService {
         [this.customers, "customer"],
         [this.notes, "note"],
         [this.parts, "part"],
-        [this.serviceOrders, "service_order"]
+        [this.serviceOrders, "service_order"],
+        [this.technicians, "technician"]
     ]);
 
     attachOnDataChangeListener(collection: firestore.CollectionReference,

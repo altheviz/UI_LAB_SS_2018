@@ -6,11 +6,18 @@
             <GridLayout class="border" columns="auto,15,*" rows="35,35,35,10,35,35,35,35">
 
                 <Label class="strong" text="Technician" row="0" col="0"> </Label>
-                <Label text="{{serviceOrder.technician.id}}" row="0" col="2"> </Label>
+                <Label text="{{technician.fullName}}" row="0" col="2"> </Label>
+                <Label class="strong" text="Customer" row="1" col="0"> </Label>
+                <Label text="{{customer.name}}" row="1" col="2"> </Label>
                 <Label class="strong" text="Planned Time" row="2" col="0"> </Label>
-                <Label text="{{serviceOrder.planned_time}} h" row="2" col="2"> </Label>
+                <Label text="{{serviceOrder.plannedTime}} h" row="2" col="2"> </Label>
 
             </GridLayout>
         </CardView>
+        <CardView class="cardStyle" shadowColor="#FE00FC" margin="10" elevation="40" radius="1">
+            <Label class="strong" text="Parts"> </Label>
+            <Label *ngFor="let part of parts" text="{{part.name}}"> </Label>
+        </CardView>
+        <Button text="Complete Service Order!" (tap)="confirmServiceOrder()" class="btn btn-primary btn-active" [isEnabled]="!serviceOrder.completed"></Button>
     </StackLayout>
 </ScrollView>

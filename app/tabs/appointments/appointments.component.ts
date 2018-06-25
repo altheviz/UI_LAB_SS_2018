@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ContentService } from "~/models/content.service";
+import { Customer } from "~/models/customer";
 import { ServiceOrder } from "~/models/service-order";
 
 @Component({
@@ -16,6 +17,10 @@ export class AppointmentsComponent implements OnInit {
         this.contentService.getAll<ServiceOrder>(this.contentService.serviceOrders).then((serviceOrdersData) => {
             serviceOrdersData.forEach((serviceOrderElement) => {
                 this.serviceOrders.unshift(serviceOrderElement);
+                this.contentService.get<Customer>(this.contentService.customers, serviceOrderElement.customer.id)
+                    .then((customerData) => {
+                serviceOrderElement.customer = customerData;
+                });
             });
         });
     }
