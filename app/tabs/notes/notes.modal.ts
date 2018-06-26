@@ -1,10 +1,12 @@
 import { Component } from "@angular/core";
 import { ModalDialogParams } from "nativescript-angular/directives/dialogs";
-import { Note, NoteStatus } from "~/models/note";
+import { DummyService } from "~/models/dummy.service";
+import { Note } from "~/models/note";
 
 @Component({
     selector: "notes-modal",
-    templateUrl: "tabs/notes/notes.modal.html"
+    templateUrl: "tabs/notes/notes.modal.html",
+    providers: [DummyService]
 })
 export class NotesModalComponent {
 
@@ -12,32 +14,32 @@ export class NotesModalComponent {
     selectedIndex = 1;
     items: Array<string>;
     error: string;
+    technicianMail: string;
+    myDummyService: DummyService;
     appSettings = require("application-settings");
 
-    constructor(private params: ModalDialogParams) {
+    constructor(private dummyService: DummyService, private params: ModalDialogParams) {
 
-        this.items = ["Note", "TODO"];
+        this.items = ["NOTE", "TASK"];
         this.error = "";
+        this.technicianMail = "";
+        this.myDummyService = dummyService;
 
-        this.newNote = new Note();
+        this.newNote = new Note(Math.floor(Math.random() * 100000), 0, "TASK", "", "", new Date() + "", "OPEN");
         this.newNote.wrapText = false;
-        this.newNote.assignedFrom = this.appSettings.getString("user");
-        this.newNote.status = NoteStatus.ToDo;
-    }
-
-    onchange(args) {
-        this.newNote.status = this.items[args.newIndex] === "TODO" ? NoteStatus.ToDo : NoteStatus.Note;
     }
 
     onTap(res) {
 
-        if (typeof this.newNote.id === "undefined") {
-            this.error = "Please provide an ID.";
-        } else if (typeof this.newNote.assignedTo === "undefined") {
-            this.error = "Please assign this to an E-Mail address.";
-        } else if (typeof this.newNote.text === "undefined") {
+        if (this.newNote.title === "") {
+            this.error = "Please provide a title.";
+        } else if (this.technicianMail === "") {
+            this.error = "Please assign this to a technician.";
+        } else if (this.newNote.description === "") {
             this.error = "Please provide a description.";
         } else {
+            this.newNote.technician = this.myDummyService.getCurrentUser(this.technicianMail);
+            this.newNote.type = this.items[this.selectedIndex];
             this.params.closeCallback(this.newNote);
         }
     }

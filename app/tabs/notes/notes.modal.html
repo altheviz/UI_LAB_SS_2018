@@ -2,15 +2,13 @@
     <Label text=""></Label>
     <Label text=""></Label>
     <Label text="New Note/TODO:" fontSize="22"></Label>
-    <TextField hint="ID" autocorrect="false" autocapitalizationType="none" [(ngModel)]='newNote.id'></TextField>
-    <TextField hint="Assign To" keyboardType="email" autocorrect="false" autocapitalizationType="none"
-               [(ngModel)]='newNote.assignedTo'></TextField>
-    <TextField hint="Text" autocorrect="false" autocapitalizationType="none" [(ngModel)]='newNote.text'></TextField>
-
+	<TextField hint="Title" autocorrect="false" autocapitalizationType="none" [(ngModel)]='newNote.title'></TextField>
+	<TextField hint="Technician" keyboardType="email" autocorrect="false" autocapitalizationType="none" [(ngModel)]='technicianMail'></TextField>
+	<TextField hint="Description" autocorrect="false" autocapitalizationType="none" [(ngModel)]='newNote.description'></TextField>
+	
     <DropDown
             [items]="items"
             [(ngModel)]="selectedIndex"
-            (selectedIndexChanged)="onchange($event)"
             row="0"
             fontSize="38"
             colSpan="2"

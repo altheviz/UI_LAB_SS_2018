@@ -6,23 +6,29 @@
 					<Label [text]="'ID:'" width="35%"></Label>
 					<Label [text]="item.id" textWrap="false" width="65%"></Label>
 				</StackLayout>
-				<StackLayout orientation="horizontal" width="100%">
-					<Label [text]="'Status:'" width="35%"></Label>
-					<Label [text]="item.status" textWrap="false" width="65%"></Label>
-				</StackLayout>
-				<StackLayout orientation="horizontal" width="100%">
-					<Label [text]="'Assigned by:'" width="35%"></Label>
-					<Label [text]="item.assignedBy" textWrap="false" width="65%"></Label>
-				</StackLayout>
-				<StackLayout orientation="horizontal" width="100%">
-					<Label [text]="'Message:'" width="35%"></Label>
-					<Label [text]="item.text" [textWrap]="item.wrapText" width="65%"></Label>
-				</StackLayout>
-				<Label *ngIf="item.status === 'ToDo'" id="{{item.id}}" class="btn btn-primary btn-active close-button" text="Close TODO" (tap)="onTap($event)" ></Label>
+                <StackLayout orientation="horizontal" width="100%">
+                    <Label [text]="'Type:'" width="35%"></Label>
+                    <Label [text]="item.type" textWrap="false" width="65%"></Label>
+                </StackLayout>
+                <StackLayout orientation="horizontal" width="100%">
+                    <Label [text]="'Title:'" width="35%"></Label>
+                    <Label [text]="item.title" textWrap="false" width="65%"></Label>
+                </StackLayout>
+                <StackLayout orientation="horizontal" width="100%">
+                    <Label [text]="'Description:'" width="35%"></Label>
+                    <Label [text]="item.description" [textWrap]="item.wrapText" width="65%"></Label>
+                </StackLayout>
+                <StackLayout orientation="horizontal" width="100%">
+                    <Label [text]="'Creation Date:'" width="35%"></Label>
+                    <Label [text]="item.creationDate" textWrap="false" width="65%"></Label>
+                </StackLayout>
+                <Label [text]="&nbsp;"></Label>
+                <Label *ngIf="item.type === 'TASK' && item.status === 'OPEN'" id="{{item.id}}" class="btn btn-primary btn-active" text="Close Task" (tap)="onTap($event)"></Label>
+                <Label [text]="&nbsp;"></Label>
 			</StackLayout>
 		</ng-template>
 	</ListView>
-    <StackLayout horizontalAlignment="center" verticalAlignment="center">
+    <StackLayout horizontalAlignment="center" verticalAlignment="center" height="10%">
         <Button text="Create new Note/TODO" (tap)="showModal()" class="btn btn-primary"></Button>
     </StackLayout>
 </GridLayout>
