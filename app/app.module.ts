@@ -7,10 +7,9 @@ import { AppComponent } from "./app.component";
 import * as platform from "platform";
 declare var GMSServices: any;
 
-if(platform.isIOS) {
+if (platform.isIOS) {
     GMSServices.provideAPIKey("AIzaSyAtRVvG3Be3xXiZFR7xp-K-9hy4nZ4hMFs");
 }
-
 
 @NgModule({
     bootstrap: [
@@ -27,4 +26,4 @@ if(platform.isIOS) {
         NO_ERRORS_SCHEMA
     ]
 })
-export class AppModule {}
+export class AppModule { }
