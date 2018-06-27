@@ -3,6 +3,9 @@ import { registerElement } from "nativescript-angular/element-registry";
 import { MapView, Marker, Position } from "nativescript-google-maps-sdk";
 import * as Permissions from "nativescript-permissions";
 
+import { ContentService } from "~/models/content.service";
+import { Customer } from "~/models/customer";
+
 const permissions = require("nativescript-permissions");
 
 declare var android: any;
@@ -12,6 +15,7 @@ registerElement("MapView", () => MapView);
 
 @Component({
     selector: "Map",
+    providers: [ContentService],
     moduleId: module.id,
     templateUrl: "./map.component.html"
 })
@@ -30,30 +34,12 @@ export class MapComponent implements OnInit {
 
     lastCamera: string;
 
-    constructor() {
-        // Use the constructor to inject services.
-    }
+    constructor(private contentService: ContentService) {}
 
     ngOnInit(): void {
         // Use the "ngOnInit" handler to initialize data for the view.
         permissions.requestPermission(android.Manifest.permission.ACCESS_FINE_LOCATION,
             "I need these permissions because I'm cool");
-            /*.then(function() {
-                console.log("Woo Hoo, I have the power!");
-
-                /*if(this.mapView.android) {
-                     // ToDo
-                     console.log("Location enabled Android");
-                 }
-                 if(this.mapView.ios) {
-                     // ToDo
-                     console.log("Location enabled iOS");
-                 }*/
-
-            /*})
-            .catch(function() {
-                console.log("Uh oh, no permissions - plan B time!");
-            });*/
     }
 
     // Map events
@@ -63,9 +49,9 @@ export class MapComponent implements OnInit {
         this.mapView = event.object;
 
         // Default View Setting (Germany)
-        this.mapView.latitude = Number(48.944694);
-        this.mapView.longitude = Number(9.769593);
-        this.mapView.zoom = 7;
+        this.mapView.latitude = Number(48.989953);
+        this.mapView.longitude = Number(8.359292);
+        this.mapView.zoom = 12;
 
         // Settings
         this.mapView.settings.compassEnabled = true;
@@ -76,47 +62,39 @@ export class MapComponent implements OnInit {
 
         console.log("Setting a marker...");
 
-        // Adding a marker
+        // Initialize marker
         let marker = new Marker();
-        marker.position = Position.positionFromLatLng(49.015083, 8.389895);
-        marker.title = "HSKA";
-        marker.snippet = "Karlsruhe";
-        marker.userData = { index: 1 };
-        marker.color = "red";
-        this.mapView.addMarker(marker);
 
-        marker = new Marker();
-        marker.position = Position.positionFromLatLng(49.293699, 8.641694);
-        marker.title = "SAP SE";
-        marker.snippet = "Walldorf";
-        marker.userData = { index: 2 };
-        marker.color = "blue";
-        this.mapView.addMarker(marker);
+        // Adding Customers from Database
+        let idx = 0;
 
-        marker = new Marker();
-        marker.position = Position.positionFromLatLng(49.496634, 8.433524);
-        marker.title = "BASF SE";
-        marker.snippet = "Ludwigshafen";
-        marker.userData = { index: 3 };
-        marker.color = "blue";
-        this.mapView.addMarker(marker);
+        this.contentService.getAll<Customer>(this.contentService.customers).then((customersData) => {
+            customersData.forEach((customerElement) => {
 
-        marker = new Marker();
-        marker.position = Position.positionFromLatLng(48.176753, 11.559966);
-        marker.title = "BMW AG";
-        marker.snippet = "München";
-        marker.userData = { index: 2 };
-        marker.color = "blue";
-        this.mapView.addMarker(marker);
+                console.log("Add Customer");
 
-        marker = new Marker();
-        marker.position = Position.positionFromLatLng(48.786267, 9.241270);
-        marker.title = "Daimler AG";
-        marker.snippet = "Stuttgart";
-        marker.userData = { index: 2 };
-        marker.color = "green";
-        this.mapView.addMarker(marker);
+                marker = new Marker();
+                marker.position = Position.positionFromLatLng(customerElement.geolocation.latitude,
+                    customerElement.geolocation.longitude);
+                marker.title = customerElement.name;
+                marker.snippet = "Phone: " + customerElement.phone;
+                marker.userData = { index: idx };
 
+                // Set Marker Color
+                if (customerElement.name === "Aladdin Inc.") {
+                    marker.color = "yellow";
+                } else if (customerElement.name === "Hochschule Karlsruhe") {
+                    marker.color = "blue";
+                } else {
+                    marker.color = "red";
+                }
+
+                // Add Marker
+                this.mapView.addMarker(marker);
+
+                idx++;
+            });
+        });
     }
 
     onCoordinateTapped(args) {
