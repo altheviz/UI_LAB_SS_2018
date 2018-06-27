@@ -1,11 +1,12 @@
 <GridLayout class="page page-content" width="100%">
-	<ListView [items]="visibleNotes" (itemTap)="onItemTap($event)" width="100%">
+	<ListView [items]="visibleNotes" (itemTap)="onItemTap($event)" width="100%" height="90%">
 		<ng-template let-item="item" let-width="notes.length" width="100%">
-			<StackLayout orientation="vertical" width="100%" class="noteStackLayout">
-				<StackLayout orientation="horizontal" width="100%">
-					<Label [text]="'ID:'" width="35%"></Label>
-					<Label [text]="item.id" textWrap="false" width="65%"></Label>
-				</StackLayout>
+		<StackLayout orientation="vertical" width="100%">
+                <Label [text]="&nbsp;"></Label>
+		<StackLayout orientation="horizontal" width="100%">
+                    <Label [text]="'ID:'" width="35%"></Label>
+                    <Label [text]="item.id" textWrap="false" width="65%"></Label>
+                </StackLayout>
                 <StackLayout orientation="horizontal" width="100%">
                     <Label [text]="'Type:'" width="35%"></Label>
                     <Label [text]="item.type" textWrap="false" width="65%"></Label>
