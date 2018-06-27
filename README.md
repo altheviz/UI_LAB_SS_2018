@@ -29,6 +29,14 @@ After you checked out this repository, you only have to install the mising npm d
 npm install
 ```
 
+### Google Maps dependencies
+
+To use Google Maps it is necessary to have the following requirements installed:
+
+On iOS: Cocoapods is [installed](https://guides.cocoapods.org/using/getting-started.html#getting-started)
+
+On Android: Latest Google Play services SDK is [installed](https://guides.cocoapods.org/using/getting-started.html#getting-started)
+
 ## Development
 
 ### Visual Studio Code
