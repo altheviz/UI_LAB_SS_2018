@@ -4,7 +4,7 @@ import { Appointment } from "~/models/appointment";
 import { Contact } from "~/models/contact";
 import { Customer } from "~/models/customer";
 import { Country, Location } from "~/models/location";
-import { Note, NoteStatus } from "~/models/note";
+import { Note } from "~/models/note";
 import { Order } from "~/models/order";
 import { ServiceProduct, ServiceProductStatus } from "~/models/service-product";
 import { Site } from "~/models/site";
@@ -37,6 +37,7 @@ contact.phone = "+49 1234 56 78 90 12";
 export class DummyService {
 
     getAppointments(): Array<Appointment> {
+
         const appointment1 = new Appointment();
         appointment1.id = "appointment01";
         appointment1.description = "Repair smart coffee machine @HsKA";
@@ -138,40 +139,42 @@ export class DummyService {
 
     getNotes(): Array<Note> {
 
-        const notes = [];
-
-        const note1 = new Note();
-        note1.id = "note01";
-        note1.text = "";
-        note1.status = NoteStatus.Note;
-        note1.wrapText = false;
-        notes.push(note1);
-
-        const note2 = new Note();
-        note2.id = "note02";
-        note2.text = "Buy more PZ 4x35 screws doooooooooooooooooooooooooooooooooooooooooooooooo";
-        note2.status = NoteStatus.ToDo;
-        note2.assignedTo = "h@w.com";
-        note2.wrapText = false;
-        notes.push(note2);
-
-        const note3 = new Note();
-        note3.id = "note03";
-        note3.text = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahhhhhhhhhhhhhhhhh";
-        note3.status = NoteStatus.Note;
-        note3.assignedTo = "h@w.com";
-        note3.wrapText = false;
-        notes.push(note3);
-
-        const note4 = new Note();
-        note4.id = "note04";
-        note4.text = "Bring cordless lithium-ion screwdriver";
-        note4.status = NoteStatus.Done;
-        note4.assignedTo = "h@w.com";
-        note4.wrapText = false;
-        notes.push(note4);
+        const notes: Array<Note> = [];
+        notes[0] = new Note(6001, 1001, "TASK", "Call Mr. President",
+            "We mean the company president, not the state president", "2018-04-01 10:30:00 UTC", "OPEN");
+        notes[1] = new Note(6002, 1001, "TASK", "Repair the Atlas carefully",
+            "This robot may grab and throw you. Really!", "2018-04-01 10:30:00 UTC", "OPEN");
+        notes[2] = new Note(6003, 1001, "TASK", "Order temperature sensors",
+            "Need more for the next weeks", "2018-04-01 10:30:00 UTC", "DONE");
+        notes[3] = new Note(6004, 1001, "TASK", "Call Jan Itor",
+            "He has got some parts to share with me", "2018-04-01 10:30:00 UTC", "DONE");
+        notes[4] = new Note(6005, 1001, "NOTE", "Atlas papers",
+            "Tech papers for the robor are in our new Wiki", "2018-04-01 10:30:00 UTC", "OPEN");
+        notes[5] = new Note(6006, 1001, "NOTE", "Other stuff",
+            "Won't need these things anymore", "2018-04-01 10:30:00 UTC", "DONE");
+        notes[6] = new Note(6007, 1001, "TASK", "Buy more cable",
+            "The cables are needed in most of the appointments", "2018-04-01 10:30:00 UTC", "OPEN");
+        notes[7] = new Note(6008, 1001, "TASK", "Talk to Nick",
+            "He has got some valuable tech papers", "2018-04-01 10:30:00 UTC", "OPEN");
+        notes[8] = new Note(6009, 1001, "TASK", "Buy cable",
+            "10m cable needed", "2018-04-01 10:30:00 UTC", "DONE");
+        notes[9] = new Note(6010, 1001, "TASK", "Buy cable",
+            "More cable needed", "2018-04-01 10:30:00 UTC", "DONE");
+        notes[10] = new Note(6011, 1001, "TASK", "Model numbers",
+            "The numbers are behind the robot. In the box where it says 'do not open'",
+            "2018-04-01 10:30:00 UTC", "OPEN");
+        notes[11] = new Note(6012, 1001, "TASK", "Sensors",
+            "New PDFs are available - data sheet", "2018-04-01 10:30:00 UTC", "OPEN");
 
         return notes;
+    }
+
+    getEmail(id: number): string {
+        return "h@w.com";
+    }
+
+    getCurrentUser(email: string): number {
+        return 1001;
     }
 
     getSpareParts(): Array<SparePart> {

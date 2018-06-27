@@ -1,0 +1,20 @@
+<StackLayout backgroundColor="white">
+    <Label text=""></Label>
+    <Label text=""></Label>
+    <Label text="New Note/TODO:" fontSize="22"></Label>
+	<TextField hint="Title" autocorrect="false" autocapitalizationType="none" [(ngModel)]='newNote.title'></TextField>
+	<TextField hint="Technician" keyboardType="email" autocorrect="false" autocapitalizationType="none" [(ngModel)]='technicianMail'></TextField>
+	<TextField hint="Description" autocorrect="false" autocapitalizationType="none" [(ngModel)]='newNote.description'></TextField>
+	
+    <DropDown
+            [items]="items"
+            [(ngModel)]="selectedIndex"
+            row="0"
+            fontSize="38"
+            colSpan="2"
+            style="font-size: 18px"></DropDown>
+
+    <Label class="btn btn-primary btn-active" text="Save" (tap)="onTap($event)"></Label>
+    <Label style="color: #ff0000" text="Save" [text]="error"></Label>
+
+</StackLayout>

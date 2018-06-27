@@ -1,7 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit, ViewContainerRef } from "@angular/core";
 import { Label } from "ui/label";
 import { DummyService } from "~/models/dummy.service";
-import { Note, NoteStatus } from "~/models/note";
+import { Note } from "~/models/note";
+
+import { ModalDialogService } from "nativescript-angular/directives/dialogs";
+import { NotesModalComponent } from "./notes.modal";
 
 @Component({
     selector: "Notes",
@@ -20,18 +23,21 @@ export class NotesComponent implements OnInit {
     appSettings = require("application-settings");
     directory;
     label: Label;
+    myDummyService: DummyService;
 
-    constructor(private dummyService: DummyService) {
+    constructor(private dummyService: DummyService,
+                private modal: ModalDialogService,
+                private vcRef: ViewContainerRef) {
 
         this.notes = dummyService.getNotes();
+        this.myDummyService = dummyService;
         this.visibleNotes = [];
         this.directory = {};
 
         for (let i = 0; i < this.notes.length; i++) {
             this.directory[this.notes[i].id] = i;
-            this.notes[i].wrapText = false;
-            if (this.notes[i].status !== NoteStatus.Done
-                && this.notes[i].assignedTo === this.appSettings.getString("user")) {
+            if (this.notes[i].status !== "DONE"
+                && dummyService.getEmail(this.notes[i].technician) === this.appSettings.getString("user")) {
                 this.visibleNotes.push(this.notes[i]);
             }
         }
@@ -41,10 +47,31 @@ export class NotesComponent implements OnInit {
         // Don't do anything
     }
 
+    showModal() {
+        const options = {
+            context: {},
+            fullscreen: true,
+            viewContainerRef: this.vcRef
+        };
+
+        this.modal.showModal(NotesModalComponent, options).then((newNote) => {
+            if (newNote instanceof Note) {
+                console.log(newNote);
+                this.notes.push(newNote);
+                if (newNote.status === "OPEN"
+                    && this.myDummyService.getEmail(newNote.technician) === this.appSettings.getString("user")) {
+                    this.directory[newNote.id] = this.notes.length;
+                    this.notes.push(newNote);
+                    this.visibleNotes.push(newNote);
+                }
+            }
+        });
+    }
+
     onTap(args) {
 
         this.label = <Label>args.object;
-        this.notes[this.directory[this.label.id]].status = NoteStatus.Done;
+        this.notes[this.directory[parseInt(this.label.id, 10)]].status = "DONE";
     }
 
     onItemTap(args) {

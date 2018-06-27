@@ -1,35 +1,33 @@
-/**
- * All availabel note stati:
- * -------------------------
- * Note: This item is a note
- * ToDo: This item is a ToDo item that has not yet been done
- * Done: This item is a ToDo item that has already been done
- */
-export enum NoteStatus {
-    Note = "Note",
-    ToDo = "ToDo",
-    Done = "Done"
-}
 
 /**
  * A note or a todo item.
  */
 export class Note {
 
-    readonly type: string = "note";
-    id: string;
+    id: number;
 
-    // Text of this note / todo item
-    text: string;
+    technician: number;
 
-    // Current status of this note / todo item
-    status: NoteStatus;
+    type: string;
 
-    // Assigner
-    assignedFrom: string;
+    title: string;
 
-    // Assigner
-    assignedTo: string;
+    description: string;
+
+    creationDate: string;
+
+    status: string;
 
     wrapText: boolean;
+
+    constructor(id, technician, type, title, description, creationDate, status)	{
+        this.id = id;
+        this.technician = technician;
+        this.type = type;
+        this.title = title;
+        this.description = description;
+        this.creationDate = creationDate;
+        this.status = status;
+        this.wrapText = false;
+    }
 }
