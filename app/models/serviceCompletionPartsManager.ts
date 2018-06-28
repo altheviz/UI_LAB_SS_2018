@@ -33,13 +33,13 @@ export class ServiceCompletionPartManager {
                 serviceOrder = serviceOrderData;
 
                 // Request planned parts
-                /*
                 serviceOrder.plannedParts.forEach((plannedPart) => {
+                    const plannedQuantity = plannedPart.quantiy;
                     this.contentService.get<Part>(this.contentService.parts, plannedPart.id.id).then((receivedPart) => {
+                        receivedPart.usedAmount = plannedQuantity;
                         this.usedParts.push(receivedPart);
                     });
                 });
-                */
 
                 // Request all parts in the local warehouse
                 this.contentService.getAll<Warehouse>(this.contentService.warehouses)
@@ -48,6 +48,9 @@ export class ServiceCompletionPartManager {
                             if (warehouseElement.technician.id === serviceOrder.technician.id) {
                                 console.log("Using warehouse from", warehouseElement.name, "for service completion.");
                                 warehouse = warehouseElement;
+
+                                console.log("WAREHOUSE PARTS");
+                                console.log(warehouse.parts);
 
                                 warehouse.parts.forEach((part) => {
                                     const partQuantity = part.quantiy;
