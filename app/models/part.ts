@@ -12,6 +12,8 @@ export class Part {
     currency: string;
     unit: string;
 
+    amount: number;
+
     constructor() {
         this.description = "";
         this.name = "";

@@ -39,6 +39,7 @@ export class ServiceCompletionPartManager {
                     const plannedQuantity = plannedPart.quantity;
                     this.contentService.get<Part>(this.contentService.parts, plannedPart.id.id).then((receivedPart) => {
                         this.usedAmounts[receivedPart.id] = plannedQuantity;
+                        receivedPart.amount = plannedQuantity;
                         this.usedParts.push(receivedPart);
                     });
                 });
@@ -88,6 +89,10 @@ export class ServiceCompletionPartManager {
         if (this.unusedParts.length > 0) {
             console.log("Adding warehouse item to the list of currently used items.");
             const temp: Part = this.unusedParts.splice(indexOfUnusedPart, 1)[0];
+
+            temp.amount = 1;
+            this.usedAmounts[temp.id] = 1;
+
             this.usedParts.push(temp);
         } else {
             console.log("Warehouse is empty. No more items to add!");
@@ -116,7 +121,9 @@ export class ServiceCompletionPartManager {
     }
 
     setUsedPartAmount(index: number, newAmount: number) {
-        this.usedAmounts[this.usedParts[index].id] = newAmount;
+        const part: Part = this.usedParts[index];
+        part.amount = newAmount;
+        this.usedAmounts[part.id] = newAmount;
     }
 
     getAmountSequence(index: number): Array<string> {
