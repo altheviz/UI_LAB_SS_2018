@@ -15,7 +15,7 @@ const routes: Routes = [
     { path: "", component: TabsComponent },
     { path: "/:tab", component: TabsComponent },
     { path: "service_order/:id", component: AppointmentDetailComponent },
-    { path: "appointments-completion/:id", component: CompletionComponent },
+    { path: "service_order/:id/completion", component: CompletionComponent },
     { path: "appointments-service-request", component: ServiceRequestComponent },
     { path: "customer/:id", component: CustomerComponent },
     { path: "note/:id", component: NoteDetailComponent }

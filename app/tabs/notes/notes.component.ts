@@ -26,8 +26,8 @@ export class NotesComponent implements OnInit {
     myDummyService: DummyService;
 
     constructor(private dummyService: DummyService,
-                private modal: ModalDialogService,
-                private vcRef: ViewContainerRef) {
+        private modal: ModalDialogService,
+        private vcRef: ViewContainerRef) {
 
         this.notes = dummyService.getNotes();
         this.myDummyService = dummyService;

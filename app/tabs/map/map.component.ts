@@ -34,7 +34,7 @@ export class MapComponent implements OnInit {
 
     lastCamera: string;
 
-    constructor(private contentService: ContentService) {}
+    constructor(private contentService: ContentService) { }
 
     ngOnInit(): void {
         // Use the "ngOnInit" handler to initialize data for the view.
