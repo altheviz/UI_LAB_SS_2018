@@ -27,8 +27,8 @@
             </DockLayout>
             <StackLayout row="2" col="0" class="parts-list">
                 <StackLayout orientation="horizontal" *ngFor="let part of manager.usedParts;let i = index">
-                    <Label [text]="part.description" width="60%" (tap)="usedPartClicked(i)"></Label >
-                    <Label [text]="part.amount" width="20%" (tap)="changeUsedPartAmount(i)"></Label >
+                    <Label verticalAlignment="center" [text]="part.description" width="60%" (tap)="usedPartClicked(i)"></Label >
+                    <Label class="amount" horizontalAlignment="center" verticalAlignment="center" [text]="part.amount" width="20%" (tap)="changeUsedPartAmount(i)"></Label >
                     <Button class="btn-minus btn btn-primary far fas" (tap)="removePart(i)" width="20%" text="&#xf068;" horizontalAlignment="right"></Button>
                 </StackLayout>
             </StackLayout>
