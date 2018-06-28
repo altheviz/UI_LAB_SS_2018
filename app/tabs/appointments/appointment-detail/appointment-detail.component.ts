@@ -49,7 +49,8 @@ export class AppointmentDetailComponent implements OnInit {
     }
 
     confirmServiceOrder() {
-        console.log("ConfirmDialog!");
+        console.log("Confirm Button");
+
         confirm({
             title: "Complete Service Order",
             message: "Confirm the completion of the service order here.",

@@ -1,23 +1,24 @@
-<ActionBar title="{{serviceOrder.id}}"></ActionBar>
+<ActionBar title="Appointment {{serviceOrder.id}}"></ActionBar>
 <ScrollView orientation="vertical">
     <StackLayout>
-
         <CardView class="cardStyle" shadowColor="#FE00FC" margin="10" elevation="40" radius="1">
-            <GridLayout class="border" columns="auto,15,*" rows="35,35,35,10,35,35,35,35">
-
+            <GridLayout class="border" columns="auto,15,*" rows="35,35,35,150,10">
                 <Label class="strong" text="Technician" row="0" col="0"> </Label>
                 <Label text="{{technician.fullName}}" row="0" col="2"> </Label>
                 <Label class="strong" text="Customer" row="1" col="0"> </Label>
                 <Label text="{{customer.name}}" row="1" col="2"> </Label>
                 <Label class="strong" text="Planned Time" row="2" col="0"> </Label>
                 <Label text="{{serviceOrder.plannedTime}} h" row="2" col="2"> </Label>
-
+                <Label class="strong" text="Description" row="3" col="0"> </Label>
+                <TextView row="3" col="2" editable="false" text="{{ serviceOrder.description }}"></TextView>
             </GridLayout>
         </CardView>
         <CardView class="cardStyle" shadowColor="#FE00FC" margin="10" elevation="40" radius="1">
-            <Label class="strong" text="Parts"> </Label>
-            <Label *ngFor="let part of parts" text="{{part.name}}"> </Label>
+            <Label class="border strong" text="PLANNED PARTS:"> </Label>
         </CardView>
-        <Button text="Complete Service Order!" (tap)="confirmServiceOrder()" class="btn btn-primary btn-active" [isEnabled]="!serviceOrder.completed"></Button>
+        <CardView class="cardStyle" shadowColor="#FE00FC" margin="10" elevation="40" radius="1">
+            <Label class="border" *ngFor="let part of parts" text="{{part.name}}"> </Label>
+        </CardView>
+        <Button text="Complete" [nsRouterLink]="['completion']" class="btn btn-primary btn-active" [isEnabled]="!serviceOrder.completed"></Button>
     </StackLayout>
 </ScrollView>
