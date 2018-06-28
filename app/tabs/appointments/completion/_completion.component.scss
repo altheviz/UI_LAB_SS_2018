@@ -1,0 +1,20 @@
+// Custom common variables
+@import '../../../app-variables';
+
+.border {
+    margin: 15;
+}
+
+.headline {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.strong {
+    font-weight: bold;
+}
+
+ActionBar {
+    background-color: $ab-background;
+    color: $ab-color;
+}
