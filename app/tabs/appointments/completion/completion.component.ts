@@ -8,25 +8,27 @@ import { ServiceCompletionPartManager } from "~/models/serviceCompletionPartsMan
 
 @Component({
     selector: "Completion",
-    providers: [ContentService],
+    providers: [ContentService, ServiceCompletionPartManager],
     moduleId: module.id,
     templateUrl: "./completion.component.html",
     styleUrls: ["./completion.component.scss"]
 })
 export class CompletionComponent {
 
-    private manager: ServiceCompletionPartManager;
     private hour: number = 0;
     private startHour: number = -1;
     private endHour: number = -1;
     private date: Date;
     private id: string;
 
-    constructor(private route: ActivatedRoute, private contentService: ContentService) {
+    constructor(
+        private route: ActivatedRoute,
+        private contentService: ContentService,
+        private manager: ServiceCompletionPartManager) {
 
         this.route.params.subscribe((params) => {
             this.id = params.id;
-            this.manager = new ServiceCompletionPartManager(this.contentService, params.id);
+            this.manager.init(params.id);
         });
     }
 

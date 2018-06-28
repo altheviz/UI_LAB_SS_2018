@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import { ContentService } from "~/models/content.service";
 import { Part } from "~/models/part";
+import { ServiceOrder } from "~/models/service-order";
+import { Warehouse } from "~/models/warehouse";
 
 /**
  * A container that manages the parts from the warehouse, while being
@@ -9,18 +11,72 @@ import { Part } from "~/models/part";
  * If a part is used it will be moved from the first to
  * the second mentioned list and vice versa if it is no longer used.
  */
+@Injectable()
 export class ServiceCompletionPartManager {
 
     // List with all parts of a warehouse that are not used for the current service completion.
-    unusedParts: Array<Part> = [];
+    unusedParts: Array<Part> = new Array();
 
     // List with the parts used for a service completion.
-    usedParts: Array<Part> = [];
+    usedParts: Array<Part> = new Array();
 
-    constructor(private contentService: ContentService, private serviceOrderId: string) {
+    constructor(public contentService: ContentService) { }
 
-        this.unusedParts = new Array();
-        this.usedParts = new Array();
+    init(serviceOrderId: string): void {
+
+        let serviceOrder: ServiceOrder;
+        let warehouse: Warehouse;
+
+        this.contentService.get<ServiceOrder>(this.contentService.serviceOrders, serviceOrderId)
+            .then((serviceOrderData) => {
+
+                serviceOrder = serviceOrderData;
+
+                // Request planned parts
+                /*
+                serviceOrder.plannedParts.forEach((plannedPart) => {
+                    this.contentService.get<Part>(this.contentService.parts, plannedPart.id.id).then((receivedPart) => {
+                        this.usedParts.push(receivedPart);
+                    });
+                });
+                */
+
+                // Request all parts in the local warehouse
+                this.contentService.getAll<Warehouse>(this.contentService.warehouses)
+                    .then((warehouses) => {
+                        warehouses.forEach((warehouseElement) => {
+                            if (warehouseElement.technician.id === serviceOrder.technician.id) {
+                                console.log("Using warehouse from", warehouseElement.name, "for service completion.");
+                                warehouse = warehouseElement;
+
+                                warehouse.parts.forEach((part) => {
+                                    const partQuantity = part.quantiy;
+                                    this.contentService.get<Part>(this.contentService.parts, part.id)
+                                        .then((p) => {
+                                            p.amount = partQuantity;
+                                            this.unusedParts.push(p);
+                                        });
+                                });
+                            }
+                        });
+                    });
+
+                /*
+                this.contentService.get<Technician>(this.contentService.technicians, serviceOrderData.technician.id)
+                    .then((technicianData) => {
+                        this.technician = technicianData;
+                    });
+                this.contentService.get<Customer>(this.contentService.customers, serviceOrderData.customer.id)
+                    .then((customerData) => {
+                        this.customer = customerData;
+                    });
+                for (const orderPart of this.serviceOrder.plannedParts) {
+                    this.contentService.get<Part>(this.contentService.parts, orderPart.id.id).then((partData) => {
+                        this.parts.push(partData);
+                    });
+                }
+                */
+            });
 
         this.contentService.getAll<Part>(this.contentService.parts).then((partsData) => {
             partsData.forEach((partElement) => {

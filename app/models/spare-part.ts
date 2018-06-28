@@ -1,6 +1,4 @@
-/**
- * A spare item for repairs that is stored in the warehouse.
- */
+
 export class SparePart {
 
     readonly type: string = "part";
