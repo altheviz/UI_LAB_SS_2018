@@ -5,11 +5,11 @@
         <GridLayout row="0" col="0" rows="auto, auto, *, auto" columns="*" class="border">
             <GridLayout row="0" col="0" columns="auto,15,*" rows="35,35,35,auto,auto,auto,35" marginBottom="10">
                 <Label class="strong" text="Product" row="0" col="0"></Label>
-                <Label text="TODO" row="0" col="2"></Label>
+                <Label text="{{product}}" row="0" col="2"></Label>
                 <Label class="strong" text="Customer" row="1" col="0"></Label>
-                <Label text="TODO" row="1" col="2"></Label>
+                <Label text="{{customer}}" row="1" col="2"></Label>
                 <Label class="strong" text="Technician" row="2" col="0"></Label>
-                <Label text="TODO" row="2" col="2"></Label>
+                <Label text="{{technician}}" row="2" col="2"></Label>
                 <Label class="strong" verticalAlignment="center" text="Date" row="3" col="0"></Label>
                 <DatePicker row="3" col="2" (loaded)="onDatePickerLoaded($event)" (dateChange)="onDateChanged($event)" verticalAlignment="center"></DatePicker>
                 <Label class="strong" verticalAlignment="center" text="Start Time" row="4" col="0"></Label>

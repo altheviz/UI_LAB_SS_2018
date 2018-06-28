@@ -32,6 +32,7 @@ export class ContentService {
     technicians = firestore.collection("technicans");
     warehouses = firestore.collection("warehouses");
     serviceOrders = firestore.collection("service_orders");
+    serviceProducts = firestore.collection("service_products");
 
     private types: Map<firestore.CollectionReference, string> = new Map([
         [this.appointments, "appointment"],

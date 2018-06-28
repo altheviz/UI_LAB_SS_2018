@@ -66,22 +66,6 @@ export class ServiceCompletionPartManager {
                             }
                         });
                     });
-
-                /*
-                this.contentService.get<Technician>(this.contentService.technicians, serviceOrderData.technician.id)
-                    .then((technicianData) => {
-                        this.technician = technicianData;
-                    });
-                this.contentService.get<Customer>(this.contentService.customers, serviceOrderData.customer.id)
-                    .then((customerData) => {
-                        this.customer = customerData;
-                    });
-                for (const orderPart of this.serviceOrder.plannedParts) {
-                    this.contentService.get<Part>(this.contentService.parts, orderPart.id.id).then((partData) => {
-                        this.parts.push(partData);
-                    });
-                }
-                */
             });
     }
 

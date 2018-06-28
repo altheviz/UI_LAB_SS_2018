@@ -1,11 +1,15 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { RouterExtensions } from "nativescript-angular/router";
 import { DatePicker } from "tns-core-modules/ui/date-picker/date-picker";
 import { TimePicker } from "tns-core-modules/ui/time-picker/time-picker";
 import { action, confirm } from "ui/dialogs";
 import { ContentService } from "~/models/content.service";
+import { Customer } from "~/models/customer";
+import { ServiceOrder } from "~/models/service-order";
+import { ServiceProduct } from "~/models/service-product";
 import { ServiceCompletionPartManager } from "~/models/serviceCompletionPartsManager";
+import { Technician } from "~/models/technician";
 
 @Component({
     selector: "Completion",
@@ -22,6 +26,10 @@ export class CompletionComponent {
     private date: Date;
     private id: string;
 
+    private customer: string;
+    private technician: string;
+    private product: string;
+
     constructor(
         private route: ActivatedRoute,
         private contentService: ContentService,
@@ -29,8 +37,34 @@ export class CompletionComponent {
         private routerExtensions: RouterExtensions) {
 
         this.route.params.subscribe((params) => {
+
             this.id = params.id;
             this.manager.init(params.id);
+
+            this.contentService
+                .get<ServiceOrder>(this.contentService.serviceOrders, params.id).then((serviceOrderData) => {
+                    this.contentService
+                        .get<Technician>(this.contentService.technicians, serviceOrderData.technician.id)
+                        .then((technicianData) => {
+                            // console.log("TECHNICIAN");
+                            // console.log(technicianData);
+                            this.technician = technicianData.fullName;
+                        });
+                    this.contentService
+                        .get<Customer>(this.contentService.customers, serviceOrderData.customer.id)
+                        .then((customerData) => {
+                            // console.log("CUSTOMER");
+                            // console.log(customerData);
+                            this.customer = customerData.name;
+                        });
+                    this.contentService
+                        .get<ServiceProduct>(this.contentService.serviceProducts, serviceOrderData.serviceProduct.id)
+                        .then((serviceProductData) => {
+                            // console.log("SERVICE PRODUCT");
+                            // console.log(serviceProductData);
+                            this.product = serviceProductData.serialNumber;
+                        });
+                });
         });
     }
 

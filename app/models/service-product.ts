@@ -29,4 +29,6 @@ export class ServiceProduct {
 
     // Concrete location of this service product within a company's site
     location: Location;
+
+    serialNumber: string;
 }

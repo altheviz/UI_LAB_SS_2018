@@ -6,7 +6,7 @@ export class ServiceOrder {
 
     technician: any;
     customer: any;
-    serviceProduct: string;
+    serviceProduct: any;
     creationDate: Date;
     serviceDate: Date;
     plannedTime: number;
