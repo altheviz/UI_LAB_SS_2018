@@ -36,7 +36,7 @@ export class ServiceCompletionPartManager {
 
                 // Request planned parts
                 serviceOrder.plannedParts.forEach((plannedPart) => {
-                    const plannedQuantity = plannedPart.quantiy;
+                    const plannedQuantity = plannedPart.quantity;
                     this.contentService.get<Part>(this.contentService.parts, plannedPart.id.id).then((receivedPart) => {
                         this.usedAmounts[receivedPart.id] = plannedQuantity;
                         this.usedParts.push(receivedPart);
@@ -53,7 +53,7 @@ export class ServiceCompletionPartManager {
 
                                 // console.log(warehouse.parts);
                                 warehouse.parts.forEach((part) => {
-                                    const partQuantity = part.quantiy;
+                                    const partQuantity = part.quantity;
                                     this.contentService.get<Part>(this.contentService.parts, part.id.id)
                                         .then((p) => {
                                             this.unusedAmounts[p.id] = partQuantity;
