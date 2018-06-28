@@ -132,9 +132,10 @@ export class CompletionComponent {
         console.log("TODO: Signing appointment");
 
         confirm({
-            title: "Complete Service Order",
-            message: "Confirm the completion of the service order here.",
-            okButtonText: "Confirm Completion",
+            title: "Sign Service Order",
+            message: "Hereby you confirm that the service has been successfully completed. "
+                + "Please approve the used time and parts. This step cannot be undone.",
+            okButtonText: "Confirm",
             cancelButtonText: "Cancel"
         }).then((result) => {
             // this.serviceOrder.completed = result;
