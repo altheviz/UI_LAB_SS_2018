@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { RouterExtensions } from "nativescript-angular/router";
 import { DatePicker } from "tns-core-modules/ui/date-picker/date-picker";
 import { TimePicker } from "tns-core-modules/ui/time-picker/time-picker";
 import { action, confirm } from "ui/dialogs";
@@ -24,7 +25,8 @@ export class CompletionComponent {
     constructor(
         private route: ActivatedRoute,
         private contentService: ContentService,
-        private manager: ServiceCompletionPartManager) {
+        private manager: ServiceCompletionPartManager,
+        private routerExtensions: RouterExtensions) {
 
         this.route.params.subscribe((params) => {
             this.id = params.id;
@@ -129,7 +131,6 @@ export class CompletionComponent {
     signAppointment() {
 
         // TODO: save all items in the list manager.usedParts
-        console.log("TODO: Signing appointment");
 
         confirm({
             title: "Sign Service Order",
@@ -138,8 +139,14 @@ export class CompletionComponent {
             okButtonText: "Confirm",
             cancelButtonText: "Cancel"
         }).then((result) => {
-            // this.serviceOrder.completed = result;
-            // TODO: Firebase Call!!! (as soon as completed field is added to firebase)
+            if (result) {
+                console.log("SIGNED: Signing appointment");
+                // this.serviceOrder.completed = result;
+                // TODO: Firebase Call!!! (as soon as completed field is added to firebase)
+                this.routerExtensions.navigate(["/tabs"], { clearHistory: false });
+            } else {
+                console.log("CANCEL: Signing appointment");
+            }
         });
     }
 }

@@ -1,4 +1,4 @@
-<ActionBar title="Service Completion"></ActionBar>
+<ActionBar title="Service Completion {{id}}"></ActionBar>
 
 <GridLayout rows="*, auto" columns="*" horizontalAlignment="stretch" verticalAlignment="stretch">
     <ScrollView #ScrollList>
@@ -13,26 +13,25 @@
                 <Label class="strong" verticalAlignment="center" text="Date" row="3" col="0"></Label>
                 <DatePicker row="3" col="2" (loaded)="onDatePickerLoaded($event)" (dateChange)="onDateChanged($event)" verticalAlignment="center"></DatePicker>
                 <Label class="strong" verticalAlignment="center" text="Start Time" row="4" col="0"></Label>
-                <TimePicker row="4" col="2" (loaded)="onTimePickerLoaded($event)" (timeChange)="onStartTimeChanged($event)" 
-                    ></TimePicker>
+                <TimePicker row="4" col="2" (loaded)="onTimePickerLoaded($event)" (timeChange)="onStartTimeChanged($event)"></TimePicker>
                 <Label class="strong" verticalAlignment="center" text="End Time" row="5" col="0"></Label>
-                <TimePicker row="5" col="2" (loaded)="onTimePickerLoaded($event)" (timeChange)="onEndTimeChanged($event)" verticalAlignment="center"
-                    ></TimePicker>
+                <TimePicker row="5" col="2" (loaded)="onTimePickerLoaded($event)" (timeChange)="onEndTimeChanged($event)" verticalAlignment="center"></TimePicker>
                 <Label class="strong" text="Hours spent" row="6" col="0"></Label>
                 <Label text="{{ hour }}" row="6" col="2"></Label>
             </GridLayout>
-            <DockLayout row="1" col="0"  horizontalAlignment="stretch">
+            <DockLayout row="1" col="0" horizontalAlignment="stretch">
                 <Label dock="left" text="Used parts" class="strong"></Label>
-                <Button class="btn btn-primary btn-active far fas" dock="right" (tap)="addPart()" text="&#xf067;" width="60" horizontalAlignment="right"></Button> 
+                <Button class="btn btn-primary btn-active far fas" dock="right" (tap)="addPart()" text="&#xf067;" width="60" horizontalAlignment="right"></Button>
             </DockLayout>
             <StackLayout row="2" col="0" class="parts-list">
                 <StackLayout orientation="horizontal" *ngFor="let part of manager.usedParts;let i = index">
-                    <Label verticalAlignment="center" [text]="part.description" width="60%" (tap)="usedPartClicked(i)"></Label >
-                    <Label class="amount" horizontalAlignment="center" verticalAlignment="center" [text]="part.amount" width="20%" (tap)="changeUsedPartAmount(i)"></Label >
+                    <Label verticalAlignment="center" [text]="part.description" width="60%" (tap)="usedPartClicked(i)"></Label>
+                    <Label class="amount" horizontalAlignment="center" verticalAlignment="center" [text]="part.amount" width="20%" (tap)="changeUsedPartAmount(i)"></Label>
                     <Button class="btn-minus btn btn-primary far fas" (tap)="removePart(i)" width="20%" text="&#xf068;" horizontalAlignment="right"></Button>
                 </StackLayout>
             </StackLayout>
         </GridLayout>
     </ScrollView>
-    <Button row="1" col="0" text="SIGN" verticalAlignment="bottom" horizontalAlignment="stretch" (tap)="signAppointment()"></Button>
+    <Button class="btn-minus btn btn-primary" row="1" col="0" text="SIGN" verticalAlignment="bottom" horizontalAlignment="stretch"
+        (tap)="signAppointment()"></Button>
 </GridLayout>
