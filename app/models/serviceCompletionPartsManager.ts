@@ -123,9 +123,9 @@ export class ServiceCompletionPartManager {
         const amountSequence: Array<string> = new Array();
 
         // Creating sequence of incremented numbers.
-        const usedAmount: number = this.usedAmounts[this.usedParts[index].id];
+        const unusedAmount: number = this.unusedAmounts[this.usedParts[index].id];
 
-        Array.from(Array(usedAmount).keys()).map((amount) => {
+        Array.from(Array(unusedAmount).keys()).map((amount) => {
             amountSequence.push((amount + 1) + "");
         });
         return amountSequence;
