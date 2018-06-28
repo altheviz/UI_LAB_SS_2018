@@ -123,7 +123,7 @@ export class ServiceCompletionPartManager {
         const amountSequence: Array<string> = new Array();
 
         // Creating sequence of incremented numbers.
-        const usedAmount = this.usedAmounts[this.usedParts[index].id];
+        const usedAmount: number = this.usedAmounts[this.usedParts[index].id];
 
         Array.from(Array(usedAmount).keys()).map((amount) => {
             amountSequence.push((amount + 1) + "");
