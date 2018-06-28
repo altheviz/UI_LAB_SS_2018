@@ -20,7 +20,7 @@ export class Note {
 
     wrapText: boolean;
 
-    constructor(id, technician, type, title, description, creationDate, status)	{
+    constructor(id, technician, type, title, description, creationDate, status) {
         this.id = id;
         this.technician = technician;
         this.type = type;
