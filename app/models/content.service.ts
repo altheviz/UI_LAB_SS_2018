@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { firestore } from "nativescript-plugin-firebase";
+import { on } from "tns-core-modules/application/application";
 
 // Nicht benötigte imports?
 // ------------------------
@@ -77,6 +78,7 @@ export class ContentService {
     get<T>(collection: firestore.CollectionReference, id: string): Promise<T> {
         return new Promise<T>((resolve, reject) => {
             collection.doc(id).get().then((onFulfilled) => {
+                onFulfilled.data().id = onFulfilled.id;
                 resolve(onFulfilled.data() as T);
             }, (onRejected) => {
                 reject();

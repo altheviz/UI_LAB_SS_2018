@@ -16,9 +16,11 @@ export class ServiceCompletionPartManager {
 
     // List with all parts of a warehouse that are not used for the current service completion.
     unusedParts: Array<Part> = new Array();
+    unusedAmounts = new Map();
 
     // List with the parts used for a service completion.
     usedParts: Array<Part> = new Array();
+    usedAmounts = new Map();
 
     constructor(public contentService: ContentService) { }
 
@@ -36,7 +38,7 @@ export class ServiceCompletionPartManager {
                 serviceOrder.plannedParts.forEach((plannedPart) => {
                     const plannedQuantity = plannedPart.quantiy;
                     this.contentService.get<Part>(this.contentService.parts, plannedPart.id.id).then((receivedPart) => {
-                        receivedPart.usedAmount = plannedQuantity;
+                        this.usedAmounts.set(receivedPart.id, plannedQuantity);
                         this.usedParts.push(receivedPart);
                     });
                 });
@@ -49,14 +51,14 @@ export class ServiceCompletionPartManager {
                                 console.log("Using warehouse from", warehouseElement.name, "for service completion.");
                                 warehouse = warehouseElement;
 
-                                console.log("WAREHOUSE PARTS");
-                                console.log(warehouse.parts);
-
+                                // console.log(warehouse.parts);
                                 warehouse.parts.forEach((part) => {
                                     const partQuantity = part.quantiy;
-                                    this.contentService.get<Part>(this.contentService.parts, part.id)
+                                    this.contentService.get<Part>(this.contentService.parts, part.id.id)
                                         .then((p) => {
-                                            p.amount = partQuantity;
+                                            this.unusedAmounts.set(p.id, partQuantity);
+
+                                            // console.log(p);
                                             this.unusedParts.push(p);
                                         });
                                 });
@@ -80,12 +82,6 @@ export class ServiceCompletionPartManager {
                 }
                 */
             });
-
-        this.contentService.getAll<Part>(this.contentService.parts).then((partsData) => {
-            partsData.forEach((partElement) => {
-                this.unusedParts.unshift(partElement);
-            });
-        });
     }
 
     addUsedPart(indexOfUnusedPart: number) {
@@ -102,25 +98,34 @@ export class ServiceCompletionPartManager {
         console.log("Removing part at index: " + index);
         // delete doesn't remove the item or reduces the array length. Splice does that.
         const temp: Part = this.usedParts.splice(index, 1)[0];
-        temp.usedAmount = Math.min(1, temp.amount);
+
+        // temp.usedAmount = Math.min(1, temp.amount);
+        this.usedAmounts.set(temp.id, Math.min(1, this.unusedAmounts.get(temp.id)));
+
         this.unusedParts.push(temp);
     }
 
     replaceUsedPart(indexOfOldUsedPart: number, indexOfNewPart: number) {
         const temp: Part = this.usedParts[indexOfOldUsedPart];
         this.usedParts[indexOfOldUsedPart] = this.unusedParts[indexOfNewPart];
-        temp.usedAmount = Math.min(1, temp.amount);
+
+        // temp.usedAmount = Math.min(1, temp.amount);
+        this.usedAmounts.set(temp.id, Math.min(1, this.unusedAmounts.get(temp.id)));
+
         this.unusedParts[indexOfNewPart] = temp;
     }
 
     setUsedPartAmount(index: number, newAmount: number) {
-        this.usedParts[index].usedAmount = newAmount;
+        this.usedAmounts.set(this.usedParts[index].id, newAmount);
     }
 
     getAmountSequence(index: number): Array<string> {
         const amountSequence: Array<string> = new Array();
+
         // Creating sequence of incremented numbers.
-        Array.from(Array(this.usedParts[index].amount).keys()).map((amount) => {
+        const usedAmount = this.usedAmounts.get(this.usedParts[index].id);
+
+        Array.from(Array(usedAmount).keys()).map((amount) => {
             amountSequence.push((amount + 1) + "");
         });
         return amountSequence;
