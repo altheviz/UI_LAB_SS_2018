@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { RouterExtensions } from "nativescript-angular/router";
 import { DatePicker } from "tns-core-modules/ui/date-picker/date-picker";
@@ -18,7 +18,7 @@ import { Technician } from "~/models/technician";
     templateUrl: "./completion.component.html",
     styleUrls: ["./completion.component.scss"]
 })
-export class CompletionComponent {
+export class CompletionComponent implements OnInit {
 
     private hour: number = 0;
     private startHour: number = -1;
@@ -37,35 +37,41 @@ export class CompletionComponent {
         private routerExtensions: RouterExtensions) {
 
         this.route.params.subscribe((params) => {
-
             this.id = params.id;
             this.manager.init(params.id);
-
-            this.contentService
-                .get<ServiceOrder>(this.contentService.serviceOrders, params.id).then((serviceOrderData) => {
-                    this.contentService
-                        .get<Technician>(this.contentService.technicians, serviceOrderData.technician.id)
-                        .then((technicianData) => {
-                            // console.log("TECHNICIAN");
-                            // console.log(technicianData);
-                            this.technician = technicianData.fullName;
-                        });
-                    this.contentService
-                        .get<Customer>(this.contentService.customers, serviceOrderData.customer.id)
-                        .then((customerData) => {
-                            // console.log("CUSTOMER");
-                            // console.log(customerData);
-                            this.customer = customerData.name;
-                        });
-                    this.contentService
-                        .get<ServiceProduct>(this.contentService.serviceProducts, serviceOrderData.serviceProduct.id)
-                        .then((serviceProductData) => {
-                            // console.log("SERVICE PRODUCT");
-                            // console.log(serviceProductData);
-                            this.product = serviceProductData.serialNumber;
-                        });
-                });
         });
+
+        this.customer = "";
+        this.technician = "";
+        this.product = "";
+    }
+
+    ngOnInit(): void {
+        this.contentService
+            .get<ServiceOrder>(this.contentService.serviceOrders, this.id).then((serviceOrderData) => {
+                this.contentService
+                    .get<Technician>(this.contentService.technicians, serviceOrderData.technician.id)
+                    .then((technicianData) => {
+                        // console.log("TECHNICIAN");
+                        // console.log(technicianData);
+                        this.technician = technicianData.fullName;
+                    });
+                this.contentService
+                    .get<Customer>(this.contentService.customers, serviceOrderData.customer.id)
+                    .then((customerData) => {
+                        // console.log("CUSTOMER");
+                        // console.log(customerData);
+                        this.customer = customerData.name;
+                    });
+                this.contentService
+                    .get<ServiceProduct>(this.contentService.serviceProducts, serviceOrderData.serviceProduct.id)
+                    .then((serviceProductData) => {
+                        // console.log("SERVICE PRODUCT");
+                        // console.log(serviceProductData);
+                        // HSKA_BD_2392347
+                        this.product = serviceProductData.serialNumber;
+                    });
+            });
     }
 
     onDatePickerLoaded(args): void {
