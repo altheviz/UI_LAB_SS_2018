@@ -1,7 +1,12 @@
 import { Injectable } from "@angular/core";
+import { firestore } from "nativescript-plugin-firebase";
 import { ContentService } from "~/models/content.service";
+import { Customer } from "~/models/customer";
 import { Part } from "~/models/part";
+import { ServiceCompletion } from "~/models/service-completion";
 import { ServiceOrder } from "~/models/service-order";
+import { ServiceProduct } from "~/models/service-product";
+import { Technician } from "~/models/technician";
 import { Warehouse } from "~/models/warehouse";
 
 /**
@@ -22,9 +27,17 @@ export class ServiceCompletionPartManager {
     usedParts: Array<Part> = new Array();
     usedAmounts: { [key: string]: number; } = {};
 
+    warehouseId: string;
+
     constructor(public contentService: ContentService) { }
 
     init(serviceOrderId: string): void {
+
+        // Reset
+        this.unusedParts = new Array();
+        this.unusedAmounts = {};
+        this.usedParts = new Array();
+        this.usedAmounts = {};
 
         let serviceOrder: ServiceOrder;
         let warehouse: Warehouse;
@@ -50,6 +63,9 @@ export class ServiceCompletionPartManager {
                         warehouses.forEach((warehouseElement) => {
                             if (warehouseElement.technician.id === serviceOrder.technician.id) {
                                 console.log("Using warehouse from", warehouseElement.name, "for service completion.");
+                                console.log("Warehouse ID:", warehouseElement.id);
+
+                                this.warehouseId = warehouseElement.id;
                                 warehouse = warehouseElement;
 
                                 // console.log(warehouse.parts);
@@ -91,6 +107,8 @@ export class ServiceCompletionPartManager {
         // temp.usedAmount = Math.min(1, temp.amount);
         this.usedAmounts[temp.id] = Math.min(1, this.unusedAmounts[temp.id]);
 
+        // TODO Amounts anpassen
+
         this.unusedParts.push(temp);
     }
 
@@ -100,6 +118,8 @@ export class ServiceCompletionPartManager {
 
         // temp.usedAmount = Math.min(1, temp.amount);
         this.usedAmounts[temp.id] = Math.min(1, this.unusedAmounts[temp.id]);
+
+        // TODO Amounts anpassen
 
         this.unusedParts[indexOfNewPart] = temp;
     }
@@ -128,5 +148,127 @@ export class ServiceCompletionPartManager {
             unusedPartDescriptions.push(part.description);
         });
         return unusedPartDescriptions;
+    }
+
+    saveCompletion(
+        hour: number,
+        date: Date,
+        customerId: string,
+        serviceOrderId: string,
+        serviceProductId: string,
+        technicianId: string): void {
+
+        const customer = this.contentService.customers.doc(customerId);
+        const serviceOrder = this.contentService.serviceOrders.doc(serviceOrderId);
+        const serviceProduct = this.contentService.serviceProducts.doc(serviceProductId);
+        const technician = this.contentService.technicians.doc(technicianId);
+
+        const parts = [];
+
+        this.usedParts.forEach((usedPart) => {
+            const part = this.contentService.parts.doc(usedPart.id);
+            parts.push({
+                id: part,
+                quantity: usedPart.amount
+            });
+        });
+
+        const serviceCompletion: ServiceCompletion = new ServiceCompletion(
+            hour,
+            customer,
+            "Service successfully completed",
+            date,
+            serviceOrder,
+            serviceProduct,
+            technician,
+            parts
+        );
+
+        this.contentService.add(this.contentService.serviceCompletions, serviceCompletion
+            /* {
+            actualTime: hour,
+            creationDate: new Date(),
+            customer: {customer},
+            description:  "Service successfully completed",
+            serviceDate: date,
+            serviceOrder: {serviceOrder},
+            serviceProduct: {serviceProduct},
+            status: "DONE",
+            technician: {technician},
+            usedParts: this.usedParts
+                }
+            */
+        )
+            .then((completionId) => {
+                console.log("Saved service completion with ID", completionId);
+            }).catch((err) => {
+                console.log("Error during save of a service completion");
+                console.log(err);
+            });
+    }
+
+    updateWarehouse(): void {
+
+        const warehouse: Warehouse = new Warehouse();
+
+        // this.contentService.update(this.contentService.warehouses, this.warehouseId, warehouse)
+        this.contentService.get<Warehouse>(this.contentService.warehouses, this.warehouseId)
+            .then((warehouseData) => {
+                const warehouseParts = warehouseData.parts;
+                const updatedParts: Array<any> = [];
+
+                warehouseParts.forEach((warehousePart) => {
+
+                    const newAmount = this.usedAmounts[warehousePart.id.id];
+                    const difference = warehousePart.quantity - newAmount;
+
+                    if (newAmount) {
+                        console.log("Updating warehouse part", warehousePart.id.id);
+                        console.log("Old quantity", warehousePart.quantity);
+                        console.log("New quantity", difference);
+
+                        // Don't save totally used parts
+                        if (difference > 0) {
+                            updatedParts.push({
+                                id: this.contentService.parts.doc(warehousePart.id.id),
+                                quantity: difference
+                            });
+                        }
+
+                    } else {
+                        updatedParts.push({
+                            id: this.contentService.parts.doc(warehousePart.id.id),
+                            quantity: warehousePart.quantity
+                        });
+                    }
+
+                });
+
+                warehouseData.parts = updatedParts;
+                this.contentService.add(this.contentService.warehouses, warehouseData)
+                    .then((newID) => {
+                        console.log("Successfully updated warehouse", newID);
+                        // console.log("Successfully updated warehouse", this.warehouseId);
+                    }).catch((err) => {
+                        console.log("Error during update of warehouse", this.warehouseId);
+                        console.log(err);
+                    });
+            });
+
+    }
+
+    setCompletionFlag(serviceOrderId: string): void {
+        this.contentService.get<ServiceOrder>(this.contentService.serviceOrders, serviceOrderId)
+            .then((appointment) => {
+                appointment.completed = true;
+
+                this.contentService.update(this.contentService.serviceOrders, serviceOrderId, appointment)
+                    .then(() => {
+                        console.log("Successfully updated appointment", serviceOrderId);
+                    }).catch((err) => {
+                        console.log("Error during update of appointment", serviceOrderId);
+                        console.log(err);
+                    });
+            });
     }
 }

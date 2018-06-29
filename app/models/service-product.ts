@@ -31,4 +31,9 @@ export class ServiceProduct {
     location: Location;
 
     serialNumber: string;
+
+    constructor() {
+        this.name = "";
+        this.serialNumber = "";
+    }
 }

@@ -24,11 +24,15 @@ export class CompletionComponent implements OnInit {
     private startHour: number = -1;
     private endHour: number = -1;
     private date: Date;
-    private id: string;
 
     private customer: string;
     private technician: string;
     private product: string;
+
+    private customerId: string;
+    private serviceOrderId: string;
+    private serviceProductId: string;
+    private technicianId: string;
 
     constructor(
         private route: ActivatedRoute,
@@ -37,10 +41,11 @@ export class CompletionComponent implements OnInit {
         private routerExtensions: RouterExtensions) {
 
         this.route.params.subscribe((params) => {
-            this.id = params.id;
+            this.serviceOrderId = params.id;
             this.manager.init(params.id);
         });
 
+        this.date = new Date();
         this.customer = "";
         this.technician = "";
         this.product = "";
@@ -48,12 +53,13 @@ export class CompletionComponent implements OnInit {
 
     ngOnInit(): void {
         this.contentService
-            .get<ServiceOrder>(this.contentService.serviceOrders, this.id).then((serviceOrderData) => {
+            .get<ServiceOrder>(this.contentService.serviceOrders, this.serviceOrderId).then((serviceOrderData) => {
                 this.contentService
                     .get<Technician>(this.contentService.technicians, serviceOrderData.technician.id)
                     .then((technicianData) => {
                         // console.log("TECHNICIAN");
                         // console.log(technicianData);
+                        this.technicianId = technicianData.id;
                         this.technician = technicianData.fullName;
                     });
                 this.contentService
@@ -61,6 +67,7 @@ export class CompletionComponent implements OnInit {
                     .then((customerData) => {
                         // console.log("CUSTOMER");
                         // console.log(customerData);
+                        this.customerId = customerData.id;
                         this.customer = customerData.name;
                     });
                 this.contentService
@@ -68,7 +75,7 @@ export class CompletionComponent implements OnInit {
                     .then((serviceProductData) => {
                         // console.log("SERVICE PRODUCT");
                         // console.log(serviceProductData);
-                        // HSKA_BD_2392347
+                        this.serviceProductId = serviceProductData.id;
                         this.product = serviceProductData.serialNumber;
                     });
             });
@@ -153,8 +160,7 @@ export class CompletionComponent implements OnInit {
     changeUsedPartAmount(index: number) {
         console.log("Selecting new amount at index: " + index);
         action({
-            message:
-                "Amount of " + this.manager.usedParts[index].description,
+            message: "Amount of " + this.manager.usedParts[index].description,
             cancelButtonText: "Cancel",
             actions: this.manager.getAmountSequence(index)
         })
@@ -181,8 +187,23 @@ export class CompletionComponent implements OnInit {
         }).then((result) => {
             if (result) {
                 console.log("SIGNED: Signing appointment");
-                // this.serviceOrder.completed = result;
-                // TODO: Firebase Call!!! (as soon as completed field is added to firebase)
+
+                // Completion speichern
+                this.manager.saveCompletion(
+                    this.hour,
+                    this.date,
+                    this.customerId,
+                    this.serviceOrderId,
+                    this.serviceProductId,
+                    this.technicianId
+                );
+
+                // Warehouse reduzieren + evtl löschen
+                this.manager.updateWarehouse();
+
+                // Flag setzen
+                this.manager.setCompletionFlag(this.serviceOrderId);
+
                 this.routerExtensions.navigate(["/tabs"], { clearHistory: false });
             } else {
                 console.log("CANCEL: Signing appointment");
